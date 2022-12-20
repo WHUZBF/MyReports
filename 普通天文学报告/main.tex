@@ -1,0 +1,77 @@
+\documentclass{ctexart}
+
+% 导言区
+\usepackage[colorlinks,linkcolor=blue,bookmarksopen=true,bookmarksnumbered=true,citecolor=blue]{hyperref}             % 目录点击跳转
+\usepackage[]{amsmath}
+\usepackage{cite}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+
+
+\newcommand\subtitle[1]{\rightline{\small #1}} 
+
+
+\setlength{\parindent}{4em}
+\title{不幸掉进黑洞会发生什么？\\ \subtitle{——普通天文学课程期末报告}  } % 添加标题
+\author{郑卜凡\quad2021302022016}                     % 添加作者
+\date{\today}                             %最后更新日期
+
+
+\begin{document}
+    \maketitle              %制作封面
+    \begin{abstract}
+        简略的论述了黑洞的一些相关知识以及科幻片中对于黑洞的想象。基于相关的一些论文以及书籍作品讨论了如果人不幸掉入黑洞他/她会经历什么？黑洞外的人观察到了
+        什么？
+    \end{abstract}
+    \tableofcontents        %制作目录
+    \section{什么是黑洞？}
+    \subsection{黑洞的历史由来}
+        其实\textbf{黑洞}这个概念历史上并不新鲜。早在1784年,John Michell根据牛顿的微粒说，认为光由粒子构成，那么自然的想到这些粒子便会在靠近星体时由于万有
+        引力定律被吸引。米歇尔设想了一个极限情形，当恒星的质量大到一定程度时，“所有的光都会被恒星的引力拖拽回去”。这意味着这颗恒星所辐射出的光永远无法逃逸，这颗恒星永远无法被看见，
+        Michell称之为“暗星(dark star)”。1976年，法国大革命期间，法国数学家Laplace也独立的得出了与Michell类似的结论，并在他著作《宇宙体系论》（{\itshape Exposition du syst\'eme du monde}）中记录了这一发现。\cite{montgomery2009michell}
+        不过后来Laplace并没有坚持他的这一想法, 可能是后来光的波动学说打败了光的微粒学说, 也或者是他仅仅对此失去了兴趣, 总之后来他在《宇宙体系论》的第二版中删除了这一论述。
+
+        相反Michell在1784年发表的那篇论文中提到了虽然“暗星”无法被直接看见，但是其周围的星体却会因为它强大的吸引力而随之运动，从而可以用来证明它的存在性。\cite{1784michell}
+        而这也是当今天文学家追踪黑洞的有效手段之一！
+
+        尽管Michell和Laplace在当时都走在了时代的前沿，但是由于时代的限制，他们的论断是基于万有引力定律以及错误的光理论得出的，而且当时大众还不完全接受万有引力
+        定律的正确性，仍然迷信的认为行星收到的引力是来自于看不见的“天使”的推动。\cite{feynman2011feynman}而且它们都只考虑了密度和太阳相同但体积比太阳大很多的恒星可能会变成暗星（Michell的计算认为直径是太阳的500倍），
+        却没有考虑体积非常小，但是密度很大的星体变成所谓“暗星”的可能性，在当今宇宙中，超大恒星的密度要远远小于他们的想象。这或者也是因为时代的限制，当时的天文学家认为所有的星体的密度
+        与地球和太阳都差不多。
+        
+    \subsection{人类对黑洞的探索历程}
+
+    读者或多或少都见过下面的推导，考虑一个质量为$M$半径为$R$的星体，根据万有引力定律可以计算出其最小逃逸速度也即第二宇宙速度为：
+    \begin{equation}
+        v_2=\sqrt{\frac{2GM}{R}}
+    \end{equation}
+    
+    我们假若把上面的$v_1$替换成光速，字面意义上看就是在这一情况下光都无法逃脱，我们可以得到：
+    \begin{equation}
+        R_s=\frac{2GM}{c^2}
+    \end{equation}
+    
+    巧合的是，这一简单的、依赖于万有引力定律的粗略计算竟然正是依赖于广义相对论给出的\textbf{施瓦西半径(Schwarzschild Radius)}的精确形式！在这一半径内的物理
+    恰恰是和Michell所想的那样连光都无法逃脱。难以置信，两百多年前，Michell和Laplace根据这一 简单的计算给出了黑洞的雏形——“暗星”，又过了一百多年，广义相对论的出现让关于“暗星”的讨论重新走在了历史前沿。
+    
+    Schwarzschild最初的目标是去为求解广义相对论方程发展一套通用的数学方法，他最先考虑了最简单的情形求出了点质量分布和各向同性球分布质量的引力场方程精确解。\cite{Schwarzschild.K}
+    这个解重点就在于预言了前面所说的施瓦西半径，这一半径解具有奇异性，是时空中的一个奇点，落入这一奇点的光只进不出。
+
+    这一奇点让所有物理规律全部失效，所以迅速的引起了大家的讨论，不过广义相对论的提出者Albert Einstein并没有在这上面花费多少精力，因为他认为这意味着广义相对论还尚不完善，
+    所以他后来专注一大统一理论的建立，他认为建立大统一理论之后奇点会自然不复存在，当然他后来没有成功。另外比如Arthur Eddington 认为奇点只是因为坐标系选取的原因，不具有任何
+    物理意义。\cite{EA} 还有很多人认为这完全是杞人忧天，宇宙中不可能存在这样致密的极端天体，而且它们认为只有这种球对称的广义相对论方程的解会出现这一问题，并不是一般解所具有的。
+    不过在上世纪六十年代Roger Penrose 和Stephen Hawking就证明了在这一奇点是普遍存在的\cite{RP}，证明了宇宙中存在黑洞的可能性非常大，当然Penrose本人也因此获得了2020年的Nobel物理学奖。
+
+    在Penrose之前，学界对于恒星是否及如何演化成黑洞的讨论也从未停止过
+
+
+
+
+
+
+
+
+
+
+    \bibliographystyle{plain}
+    \bibliography{ref}
+\end{document}

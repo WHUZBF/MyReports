@@ -1,0 +1,42 @@
+\begin{thebibliography}{1}
+
+\bibitem{EA}
+Arthur Eddington.
+\newblock The internal constitution of the stars.
+\newblock {\em Science}, 52:233--240, 1926.
+
+\bibitem{feynman2011feynman}
+Richard~P Feynman, Robert~B Leighton, and Matthew Sands.
+\newblock {\em The Feynman lectures on physics, Vol. I: The new millennium
+  edition: mainly mechanics, radiation, and heat}, volume~1.
+\newblock Basic books, 2011.
+
+\bibitem{1784michell}
+Michell.
+\newblock On the means of discovering the distance, magnitude, \&c. of the
+  fixed stars, in consequence of the diminution of the velocity of their light,
+  in case such a diminution should be found to take place in any of them, and
+  such other data should be procured from observations, as would be farther
+  necessary for that purpose.
+\newblock {\em Philosophical Transactions of the Royal Society}, 74:35--57,
+  1784.
+
+\bibitem{montgomery2009michell}
+Colin Montgomery, Wayne Orchiston, and Ian Whittingham.
+\newblock Michell, laplace and the origin of the black hole concept.
+\newblock {\em Journal of Astronomical History and Heritage}, 12:90--96, 2009.
+
+\bibitem{RP}
+Rogen Penrose.
+\newblock Gravitational collapse and space-time singularities.
+\newblock {\em Physical Review Letters}, 14:57, 1965.
+
+\bibitem{Schwarzschild.K}
+Schwarzschild.K.
+\newblock Über das gravitationsfeld eines massenpunktes nach der einsteinschen
+  theorie.
+\newblock {\em Sitzungsberichte der Königlich Preussischen Akademie der
+  Wissenschaften}, 7:189--196, 1916(\href{https://arxiv.org/abs/p
+  hysics/9905030}{Translation}).
+
+\end{thebibliography}

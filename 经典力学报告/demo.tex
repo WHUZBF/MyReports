@@ -1,0 +1,357 @@
+\documentclass{whu-beamer}
+
+% 图片所在路径
+\graphicspath{{figures/}{logo/}}
+
+% 信息设置
+\whubeamersetup{
+  info = {
+    author            = {郑卜凡},
+    advisor           = {何春清 \, 教授},
+    title             = {经典力学中Lagrange形式的重要性},
+    date              = {2022.12.16},
+    % research-fields   = {函数空间上的算子理论},
+    type              = {理论力学课程期末报告}
+  },
+  bib = {
+    % 参考文献数据库
+    resource = {demo.bib}
+  }
+}
+
+% 加载自己所需宏包
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{lipsum}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\begin{document}
+
+% 标题页
+\maketitle
+
+
+% 目录
+\section{内容提要}
+
+\begin{frame}
+  \frametitle{内容提要}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+
+
+% 正文
+\section{狭义相对论}
+
+\begin{frame}
+  \frametitle{Galileo \& Lorentz \alert{Boost}}
+  首先我们来回忆一下伽利略和洛伦兹变换：\pause
+  \begin{definition}[伽利略变换]
+    \begin{equation}
+    \left\{
+    \begin{aligned}
+      x^\prime & =  x-vt \\
+      t^\prime & =  t 
+    \end{aligned}
+    \right.
+    \end{equation}
+  \end{definition}
+  \pause
+  \begin{definition}[洛伦兹变换]
+    \begin{equation}
+    \left\{
+    \begin{aligned}
+      x^\prime & =  \gamma\left(x-vt\right) \\
+      t^\prime & =  \gamma\left(t-\frac{vx}{c^2}\right) 
+    \end{aligned}
+    \right.
+    ,\quad \gamma\equiv\frac{1}{\sqrt{1-\beta^2}},\beta\equiv\frac{v}{c}
+    \end{equation}
+  \end{definition}
+  \pause
+  
+  我们考虑的boost是沿着$x$轴的, 所以上面$y$和$z$方向的变换比较trivial, 没有写出来
+\end{frame}
+
+\begin{frame}
+  \frametitle{物理规律的协变性}
+  众所周知，每次讲SR的时候就要把Newton老爷子的\alert{$\mathbf{F}=m\mathbf{a}$}和Maxwell小年轻的方程组搬出来比较一下(此处省略Maxwell方程组，观众请脑补)\pause
+
+  \begin{theorem}[我愿称之为\alert{时代变了}！]
+    任何物理规律在不同的惯性系中都是一样的，或者说方程具有\alert{协变性}
+  \end{theorem}
+  \pause
+  啥是协变性？\pause
+  \[\mathbf{F}=m\mathbf{a}\xrightarrow[transform]{Galileo}\mathbf{F}^\prime=m\mathbf{a}^\prime\]
+  我觉得这就是一种协变性(伽利略协变性)！\pause
+  
+  但是现在所有的物理都是建立在洛伦兹协变性上的, 所以所有理论正确性检验的第一步应该是看是否满足\alert{Lorentz}协变性
+\end{frame}
+
+\begin{frame}
+  \frametitle{那要怎样才能保证协变性呢？}
+  我后面会向大家展示我们只需要知道洛伦兹协变性和一些基本的对称性就可以构造出大自然的方程, 我们下面先来看一下SR里面啥玩意是\alert{不变的}
+  \pause
+
+  \begin{definition}[four-vector]
+    SR里面时间和空间是平权的, 我们干脆就把它们放一起考虑好了。定义逆变四矢量
+    \[x^\mu\equiv(ct,x,y,z),\quad(\mu=0,1,2,3)\]
+    另外再搞一个协变四矢量：
+    \[x_\mu\equiv(ct,-x,-y,-z),\quad(\mu=0,1,2,3)\]
+  \end{definition}
+  \pause
+  上面这样定义是考虑了SR里面的度规张量，而且这样的定义可以很自然的推广到GR上(早就不玩带虚数的SR辣！)
+\end{frame}
+
+\begin{frame}
+  \frametitle{那要怎样才能保证协变性呢？}
+  对了，下面的讨论中我们取自然单位制$c=\hbar=1$，因为现在时间轴和空间轴平权了，你这里不取$c=1$就跟用两米长的单位度量$x$轴，再用一米长的单位度量$y$轴一样蠢。
+  
+  \setlength{\parindent}{2em}我们把这俩玩意拼在一起看看？注意偷懒惯例：
+  \pause
+  \begin{equation}
+    x^\mu x_\mu=t^2-x^2-y^2-z^2
+  \end{equation}
+  这玩意不就是时空间隔吗？好像是个不变量欸！所以我草率的宣布下面的定理成立：
+  \begin{claim}[沃·兹基·硕德定理]
+    一个上指标的量和一个下指标的量组合在一起是个Lorentz不变量
+  \end{claim}
+\end{frame}
+
+\section{最小作用量原理}
+\begin{frame}
+  \frametitle{最小作用量原理这个框框}
+  其实最小作用量原理最大的好处就是给出了一个框框, 啥玩意我们只要写出他的作用量, 然后套用一下\alert{$\delta S=0$}就可以完全照搬之前研究经典力学的模式去研究了。
+  \pause
+  \begin{example}[几何光学]
+    \begin{equation}
+      S=\int n(\mathbf{r})|d\mathbf{r}|=\int n(y)\sqrt{1+(y^\prime)^2}dx
+    \end{equation}
+    我们以$x$为参数可以完全类似的写出其拉式量：
+    \[L(y,y^\prime)=n(y)\sqrt{1+(y^\prime)^2}\]
+  \end{example}
+  \pause
+  我们直接开始考虑一个相对论性的自由粒子拉式量怎么构造？
+\end{frame}
+\begin{frame}
+  \frametitle{自由粒子的拉式量}
+  \begin{itemize}
+    \item[$\bullet$]  要满足运动方程洛伦兹协变性。\\
+    {\small 只要$S$洛伦兹不变就好, 或者说构造一个洛伦兹不变的拉格朗日量}
+    \item[$\bullet$]  自由粒子，所以时空平移对称性。\\
+    {\small 看来拉格朗日量不能显含时空坐标$x^\mu$}
+  \end{itemize}
+  综上, 我们的作用量要长这个样子：
+  \begin{equation}
+    S=-mc\int ds=-mc\int d\tau \left(\frac{dx^\mu}{d\tau}\frac{dx_\mu}{d\tau}\right)^{1/2}
+  \end{equation}
+  一通计算后可以写出具体的拉式量：
+  \begin{equation}
+    L(\mathbf{x},\mathbf{v},t)=-mc^2\sqrt{1-\frac{\mathbf{v}^2}{c^2}}\approx\frac{1}{2}mv^2-\cancel{mc^2}
+  \end{equation}
+  前面的负号是为了经典近似后$m>0$
+\end{frame}
+
+\begin{frame}
+  \frametitle{Summery}
+  从上面的一些例子或许我们可以看到当今物理学的很多理论都是去猜测拉式量, 再用实验去验证。你完全可以以开始就从最小作用量原理出发, 断言对于经典系统在惯性系下
+  $L=T-V$去构建整个体系, 事实上Landau就是这么做的。最后你要证明的就是这个理论与牛顿力学等价, 毕竟牛顿力学体系是依赖于实验的, 而这正是d'Alembert原理干的事情。
+\end{frame}
+
+\section{Klein-Gordon 方程}
+\begin{frame}
+  \frametitle{场}
+  当今人们已知最为精确的理论那得是量子场论了. 关键就在于之前我们描述的系统的自由度都是有限多, 现在是无限了.
+  \pause
+
+  \setlength{\parindent}{2em}就好比一根连续分布的细绳, 你要想类似的写出其拉氏量. 它上面有无数多个连续分布的点, 每个点都有个坐标, 整体来看有无限多的自由度。
+  这个时候你直接用一个函数$u(x)$来描述其振动是最合适的, 而不是跟原先一样考虑每个质点单独的振动$q_1,q_2,\cdots$, 用一个函数就可以很好表达了。
+  \pause
+
+  \setlength{\parindent}{2em}或者你也可以理解为我们也是每个质点的振动单独考虑, 只是这个时候用$\mathbb{R}$上连续取值下标标记这些广义坐标, $u_{0.001},u_{0.002},\cdots$.
+  这玩意不就是函数么, 之前的你可以理解为整标函数（数列）而已
+\end{frame}
+
+\begin{frame}
+  \frametitle{还缺点啥$\ldots$}
+  除了前面要求$L$具有洛伦兹不变性, 我们还有其它约束。你或许注意到了经典力学中我们的Lagrangian不含$q$的二阶或者更高阶导数项！我目前看到的理论是说如果含有更高阶导数项, 会导致整个世界都没有稳定解(Ostrogradski)。
+  或者是说高阶项会导致最终EOM是高于二阶的方程, 确定解需要两个以上初始条件, 与我们的感知经验相悖。
+  \pause
+  \begin{theorem}
+     拉格朗日量最多含有一阶导数项
+  \end{theorem}
+  上面这个论断其实还告诉了我们构建的理论是locality的（非超距）
+\end{frame}
+
+\begin{frame}
+  \frametitle{还需要点啥$\ldots$}
+  我们下面要构建的是描述自由的自旋为0的粒子(Higgs)对应的标量场方程, 这个场是时空坐标的函数, 我们就简记为$\Phi$
+  \pause
+  由于是连续体系, 所以更常用拉氏密度：
+  \begin{definition}
+    \begin{equation}
+       \mathcal{L}=\int d^3 x \mathscr{L}(\Phi^i,\partial_\mu\Phi^i)
+    \end{equation}
+    \begin{equation}
+      S=\int dt\mathcal{L}=\int d^4x\mathscr{L}(\Phi^i,\partial_\mu\Phi^i)
+    \end{equation}
+  \end{definition}
+  \pause
+  利用变分法也可以得到场的Euler-Lagrange方程：
+  \alert{
+    \begin{equation}
+      \label{eq:9}
+      \partial_\mu\left(\frac{\partial\mathscr{L}}{\partial(\partial_\mu \Phi^i)}\right)-\frac{\partial\mathscr{L}}{\partial \Phi^i}=0
+  \end{equation}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{开导！}
+  上面的方程只是形式上有点吓人, 其实和我们现在学的差不了多少。我们现在只考虑一个自由的场, 所以可以不要那个上标$i$, 现在我们要构建一个洛伦兹不变的$\mathscr{L}$.
+  \pause
+  \setlength{\parindent}{2em}按照前面说的, 我们只能使用
+  \[\partial_\mu \Phi(\checkmark )\quad \xcancel{\partial_\mu^n\Phi}\quad\partial^\mu \Phi(\checkmark )\quad \xcancel{(\partial^\mu)^n\Phi} \]
+  上下指标是可以相互转换的。运算时用一个就好, 都写出来方便后面猜拉式量
+  \pause
+  \begin{theorem}
+    对于自由场, 只允许使用
+    \[\Phi^0,\Phi^1,\Phi^2\]
+  \end{theorem}
+  注意$\Phi^2\partial_\mu\Phi$算三次方喔~~~
+\end{frame}
+
+\begin{frame}
+  \frametitle{继续导！}
+  我们把那几个线性组合一下, 排列一下, 我们便猜测下面的拉式量：
+  \pause
+  \begin{align*}
+    \mathscr{L}=& A\Phi^0  + B\Phi^1+ C\Phi^2+ D\partial_\mu\Phi+ \xcancel{D^\prime\partial^\mu\Phi}\\
+    &+ E\partial_\mu \Phi \partial^\mu\Phi + F\Phi\partial_\mu\Phi+ \xcancel{F^\prime\Phi\partial^\mu\Phi}
+  \end{align*}
+  \pause
+再根据洛伦兹不变性这要求$D=F=0$, 倒回去看一眼\ref{eq:9}, 你会发现$\Phi^0 ,\Phi^1$对方程没有影响, 干脆就取$A=B=0$.现在还剩下：
+\begin{equation}
+  \mathscr{L}=C\Phi^2+E\partial_\mu \Phi \partial^\mu\Phi 
+\end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{导！都可以导！}
+  $\mathscr{L}$整体乘上一个系数对EOM也没有任何影响, 所以我们可以根据惯例选取：
+  \alert{
+    \begin{equation}
+      \mathscr{L}=\frac{1}{2}\left(\partial_\mu \Phi \partial^\mu\Phi-m^2\Phi^2\right) 
+    \end{equation}
+  }
+  \pause
+  再多看一眼\ref{eq:9}可以导出：
+  \alert{
+    \begin{equation}
+      \left(\partial_\mu\partial^\mu+m^2\right)\Phi=0
+    \end{equation}
+  }
+  这便是Klein-Gordan 方程. 
+\end{frame}
+\begin{frame}
+  \frametitle{其它可以导的}
+  类似的你还可以导出旋量场的Dirac方程, 描述的是自旋为1/2的粒子(electron), 是薛定谔方程的超级升级船新相对论版本：
+  \begin{equation}
+    (i\gamma_\mu\partial^\mu-m)\Psi=0
+  \end{equation}
+  \pause
+  你还可以导出$\mathcal{4}$矢量场的Proca方程:
+  \begin{equation}
+    m^2A^\rho=\partial_\sigma\left(\partial^\sigma A^\rho-\partial^\rho A^\sigma\right)
+  \end{equation}
+  它描述的是自旋为1的粒子. 比如光子, 这时$m=0$, 光不是是电磁波么, 那光子对应的就应该是电磁场啊,难道$\ldots$
+  \pause
+  
+  \alert{是的你猜对了, 这玩意真和Maxwell方程组一样！}
+\end{frame}
+\section{尾声}
+\begin{frame}
+  \frametitle{搞定}
+  \setlength{\parindent}{2em}由于时间原因, 我只和大家分享了我觉得最有意思的部分, 为了让大家能大致接受这个理论花了很多时间思考如何用通俗的语言讲给别人听, 希望大家喜欢
+
+  \setlength{\parindent}{2em}其实经典力学里面的很多东西都能在后续的学习中找到影子, 比如哈密顿雅可比方程和薛定谔方程, 比如泊松括号和量子对易括号$\ldots$
+  
+  \setlength{\parindent}{2em}后面还有比如更精彩的相互作用理论, 希格斯玻色子对称性自发破缺赋予粒子质量这些都来不及一一阐述, 这里举了一个最简单的例子分享给大家, 让大家知道经典力学
+  这门课其实是非常重要的, 特别是拉格朗日和哈密顿形式, 尽管在最初提出来是为了更方便的解决约束问题, 而现代物理来看, 少了他俩都寸步难行！
+\end{frame}
+
+\section{附录}
+\begin{frame}
+  \frametitle{\alert{沃·兹基·硕德}定理证明}
+  设Lorentz变换为$\Lambda^\mu_\nu$, 根据定义有$\Lambda^T\eta\Lambda=\eta$
+  \begin{align*}
+    (a^\prime)^\mu(a^\prime)_\mu&=\eta^{\mu\nu}(a^\prime)_\nu(a^\prime)_\mu=\eta^{\mu\nu}\Lambda^{\ \sigma}_{\nu} a_\sigma \Lambda^{\ \delta}_\mu a_\delta\\
+    &=\Lambda^{\ \delta}_\mu \eta^{\mu\nu}\Lambda^{\ \sigma}_{\nu} a_\sigma a_\delta\\
+    &=\eta^{\delta\sigma}a_\sigma a_\delta=a^\delta a_\delta\\
+    &=a^\mu a_\mu
+  \end{align*}
+  \alert{注}：把这个定理的名字默念两遍有奇效喔~
+\end{frame}
+\begin{frame}
+  \frametitle{相对论性自由粒子的拉氏量}
+  首先注意到$$\frac{dx^\mu}{dt}\frac{dx_\mu}{dt}=c^2-\mathbf{v}^2$$
+  \begin{equation*}
+    S=-mc\int ds=-mc\int \frac{ds}{dt}dt
+  \end{equation*}
+  不难看出Lagrangian为：
+  \begin{align*}
+    L&=-mc\frac{ds}{dt}=-mc\left(\frac{dx^\mu}{dt}\frac{dx_\mu}{dt}\right)^{1/2}\\
+    &=-mc\sqrt{c^2-\mathbf{v^2}}=-mc^2\sqrt{1-\frac{\mathbf{v^2}}{c^2}}
+  \end{align*}
+\end{frame}
+\begin{frame}
+  \frametitle{场的Euler-Lagrange方程推导}
+  推导的基本思想和经典力学里面的是一样的, 只要注意现在的变分固定端点变成了Minkovski空间中的曲面就好,而且等时变分条件类似变为$\delta t\equiv t\to\delta x^\mu\equiv0$。
+  \begin{align*}
+    \delta S&=\delta\int d^4x\mathscr{L}(\Phi^i,\partial_\mu\Phi^i)=\int d^4x\delta\mathscr{L}(\Phi^i,\partial_\mu\Phi^i)\\
+    &=\int d^4x\left[\frac{\partial\mathscr{L}}{\partial\Phi^i}\delta\Phi^i+\frac{\partial\mathscr{L}}{\partial(\partial_\mu\Phi^i)}\delta\partial_\mu\Phi^i\right]\\
+    &=\int d^4x\left[\frac{\partial\mathscr{L}}{\partial\Phi^i}\delta\Phi^i+\frac{\partial\mathscr{L}}{\partial(\partial_\mu\Phi^i)}\partial_\mu\delta\Phi^i\right]
+  \end{align*}
+  然后再用下分部积分(高维形式), 这里多重积分号为了简便全部用一维代替.
+\end{frame}
+\begin{frame}
+  \frametitle{场的Euler-Lagrange方程推导}
+  方程变为：
+  \begin{align*}
+    \delta S=&\int_\Omega d^4x\left[\partial_\mu\left(\frac{\partial\mathscr{L}}{\partial(\partial_\mu \Phi^i)}\right)-\frac{\partial\mathscr{L}}{\partial \Phi^i}\right]\delta\Phi^i\\
+    &+\underbrace{\oint_{\partial\Omega}\frac{\partial\mathscr{L}}{\partial(\partial_\mu\Phi^i)}\cdot d\mathbf{V}}_{=0}
+  \end{align*}
+  最后一步和经典力学里面的类似, 端点处变分为0.然后根据变分法基本引理答案就呼之欲出了, 还真就内个读者易证不难了。
+\end{frame}
+
+%% 如果有需要显示参考文献的
+    % 1. 正文中用 \cite 引用 .bib 数据库文件中的参考文献
+    % 2. 取消下面 `\section{参考文献}... \printbibliography \end{frame}` 代码的注释
+    % 3. 使用 `xelatex -> biber -> xelatex*2` 的方式进行编译
+
+% \section{参考文献}
+% \begin{frame}
+%   \frametitle{参考文献}
+%   \printbibliography
+% \end{frame}
+
+
+
+% 致谢
+\begin{acknowledgements}[color = blue!80]
+  Thanks for your attention!
+
+  感谢各位老师同学的聆听
+\end{acknowledgements}
+
+\end{document}
