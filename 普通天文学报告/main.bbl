@@ -1,4 +1,41 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{abramowicz1990centrifugal}
+Marek~A Abramowicz and AR~Prasanna.
+\newblock Centrifugal force reversal near a schwarzschild black-hole.
+\newblock {\em Monthly Notices of the Royal Astronomical Society}, 245:720,
+  1990.
+
+\bibitem{almheiri2013black}
+Ahmed Almheiri, Donald Marolf, Joseph Polchinski, and James Sully.
+\newblock Black holes: complementarity or firewalls?
+\newblock {\em Journal of High Energy Physics}, 2013(2):1--20, 2013.
+
+\bibitem{bardeen1973four}
+James~M Bardeen, Brandon Carter, and Stephen~W Hawking.
+\newblock The four laws of black hole mechanics.
+\newblock {\em Communications in mathematical physics}, 31(2):161--170, 1973.
+
+\bibitem{chang2020black}
+Zhe Chang and Qing-Hua Zhu.
+\newblock Black hole shadow in the view of freely falling observers.
+\newblock {\em Journal of Cosmology and Astroparticle Physics}, 2020(06):055,
+  2020.
+
+\bibitem{chrusciel2012stationary}
+Piotr~T Chru{\'s}ciel, Jo{\~a}o~Lopes Costa, and Markus Heusler.
+\newblock Stationary black holes: uniqueness and beyond.
+\newblock {\em Living Reviews in Relativity}, 15(1):1--73, 2012.
+
+\bibitem{Griffiths}
+Darrell~F.Schroeter David~J.Griffiths.
+\newblock {\em Introduction to Quantum Mechanics,3rd}.
+\newblock Combridge, 2020.
+
+\bibitem{chan2}
+S~Detweiler.
+\newblock Resource letter bh-1: Black holes.
+\newblock {\em American Journal of Physics}, 49:394--400, 1981.
 
 \bibitem{EA}
 Arthur Eddington.
@@ -10,6 +47,51 @@ Richard~P Feynman, Robert~B Leighton, and Matthew Sands.
 \newblock {\em The Feynman lectures on physics, Vol. I: The new millennium
   edition: mainly mechanics, radiation, and heat}, volume~1.
 \newblock Basic books, 2011.
+
+\bibitem{finkelstein1958past}
+David Finkelstein.
+\newblock Past-future asymmetry of the gravitational field of a point particle.
+\newblock {\em Physical Review}, 110(4):965, 1958.
+
+\bibitem{florides2002einstein}
+Petros~S Florides.
+\newblock Einstein's equivalence principle and the gravitational red shift.
+\newblock {\em International Journal of Modern Physics A}, 17(20):2759--2759,
+  2002.
+
+\bibitem{fukue1988color}
+Jun Fukue and Takushi Yokoyama.
+\newblock Color photographs of an accretion disk around a black hole.
+\newblock {\em Publications of the Astronomical Society of Japan}, 40:15--24,
+  1988.
+
+\bibitem{time}
+Stephen Hawking.
+\newblock {\em A Brief History of Time: From the Big Bang to Black Holes}.
+\newblock Bantam Dell Publishing Group, 1988.
+
+\bibitem{hawking1974black}
+Stephen~W Hawking.
+\newblock Black hole explosions?
+\newblock {\em Nature}, 248(5443):30--31, 1974.
+
+\bibitem{hewish201374}
+Antony Hewish, S~Joceyln Bell, John~DH Pilkington, Paul~Frederick Scott, and
+  Robin~Ashley Collins.
+\newblock 74. observation of a rapidly pulsating radio source.
+\newblock In {\em A Source Book in Astronomy and Astrophysics, 1900--1975},
+  pages 498--504. Harvard University Press, 2013.
+
+\bibitem{hooft2001holographic}
+Gerard't Hooft.
+\newblock The holographic principle.
+\newblock In {\em Basics and Highlights in Fundamental Physics}, pages 72--100.
+  World Scientific, 2001.
+
+\bibitem{TOV2}
+Vassiliki Kalogera and Gordon Baym.
+\newblock The maximum mass of a neutron star.
+\newblock {\em The Astrophysical Journal}, 470(1):L61, 1996.
 
 \bibitem{1784michell}
 Michell.
@@ -26,10 +108,42 @@ Colin Montgomery, Wayne Orchiston, and Ian Whittingham.
 \newblock Michell, laplace and the origin of the black hole concept.
 \newblock {\em Journal of Astronomical History and Heritage}, 12:90--96, 2009.
 
+\bibitem{Muller_2012}
+Thomas Müller and Jörg Frauendiener.
+\newblock Interactive visualization of a thin disc around a schwarzschild black
+  hole.
+\newblock {\em European Journal of Physics}, 33(4):955, may 2012.
+
+\bibitem{newman1965metric}
+Ezra~T Newman, E~Couch, K~Chinnapared, A~Exton, A~Prakash, and R~Torrence.
+\newblock Metric of a rotating, charged mass.
+\newblock {\em Journal of mathematical physics}, 6(6):918--919, 1965.
+
+\bibitem{TOV}
+J~Robert Oppenheimer and George~M Volkoff.
+\newblock On massive neutron cores.
+\newblock {\em Physical Review}, 55(4):374, 1939.
+
+\bibitem{page1974disk}
+Don~N Page and Kip~S Thorne.
+\newblock Disk-accretion onto a black hole. time-averaged structure of
+  accretion disk.
+\newblock {\em The Astrophysical Journal}, 191:499--506, 1974.
+
 \bibitem{RP}
 Rogen Penrose.
 \newblock Gravitational collapse and space-time singularities.
 \newblock {\em Physical Review Letters}, 14:57, 1965.
+
+\bibitem{pilkington1968observations}
+JDH Pilkington, A~Hewish, SJ~Bell, and TW~Cole.
+\newblock Observations of some further pulsed radio sources.
+\newblock In {\em Pulsating Stars}, pages 9--12. Springer, 1968.
+
+\bibitem{pound1959gravitational}
+Robert~V Pound and Glen~A Rebka~Jr.
+\newblock Gravitational red-shift in nuclear resonance.
+\newblock {\em Physical Review Letters}, 3(9):439, 1959.
 
 \bibitem{Schwarzschild.K}
 Schwarzschild.K.
@@ -38,5 +152,42 @@ Schwarzschild.K.
 \newblock {\em Sitzungsberichte der Königlich Preussischen Akademie der
   Wissenschaften}, 7:189--196, 1916(\href{https://arxiv.org/abs/p
   hysics/9905030}{Translation}).
+
+\bibitem{shibata2017modeling}
+Masaru Shibata, Sho Fujibayashi, Kenta Hotokezaka, Kenta Kiuchi, Koutarou
+  Kyutoku, Yuichiro Sekiguchi, and Masaomi Tanaka.
+\newblock Modeling gw170817 based on numerical relativity and its implications.
+\newblock {\em Physical Review D}, 96(12):123012, 2017.
+
+\bibitem{siegfried201950}
+Tom Siegfried.
+\newblock 50 years later, it’s hard to say who named balck holes.
+\newblock {\em Science News}, 23, 2019.
+
+\bibitem{terrell1959invisibility}
+James Terrell.
+\newblock Invisibility of the lorentz contraction.
+\newblock {\em Physical Review}, 116(4):1041, 1959.
+
+\bibitem{thirring1918effect}
+Hans Thirring.
+\newblock On the effect of rotating distant masses in einstein’s theory of
+  gravitation.
+\newblock {\em Phys. Z}, 19:33, 1918.
+
+\bibitem{valente2018einstein}
+Mario~Bacelar Valente.
+\newblock Einstein's redshift derivations: its history from 1907 to 1921.
+\newblock {\em Circumscribere}, 22:1--16, 2018.
+
+\bibitem{chan}
+G.~Venkataraman.
+\newblock {\em Chandrasekhar and his limit}.
+\newblock Universities Press, 1992.
+
+\bibitem{bl}
+加藤正二，福江纯，岭重慎.
+\newblock {\em 黑洞吸积盘}.
+\newblock 科学出版社, 2016.
 
 \end{thebibliography}

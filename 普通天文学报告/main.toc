@@ -1,3 +1,23 @@
-\contentsline {section}{\numberline {1}什么是黑洞？}{1}{section.1}%
-\contentsline {subsection}{\numberline {1.1}黑洞的历史由来}{1}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}人类对黑洞的探索历程}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {1}什么是黑洞？}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}黑洞的历史由来}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}人类对黑洞的探索历程}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}给黑洞拍照}{5}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}关于黑洞名字由来的有趣轶事}{6}{subsection.1.4}%
+\contentsline {section}{\numberline {2}掉入黑洞之前}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}黑洞的吸积盘}{7}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}引力透镜效应与吸积盘}{7}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}引力红移}{9}{subsection.2.3}%
+\contentsline {section}{\numberline {3}穿越吸积盘}{9}{section.3}%
+\contentsline {subsection}{\numberline {3.1}震惊！看起来竟然还越来越远？}{9}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}无聊下坠ing}{9}{subsection.3.2}%
+\contentsline {section}{\numberline {4}飞跃事件视界}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}何为事件视界？}{10}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}飞船上的人眼中的你}{10}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}光子球}{10}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}穿过光子球后大约$\SI []{24}{s}$}{11}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}意大利面条}{11}{subsection.4.5}%
+\contentsline {section}{\numberline {5}黑洞中心}{11}{section.5}%
+\contentsline {subsection}{\numberline {5.1}令人担忧的时空奇点}{12}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}黑洞的未来}{12}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}我们所不知道的事}{12}{subsection.5.3}%
+\contentsline {section}{\numberline {6}尾声}{13}{section.6}%
