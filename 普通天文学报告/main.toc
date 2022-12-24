@@ -1,9 +1,9 @@
 \contentsline {section}{\numberline {1}什么是黑洞？}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}黑洞的历史由来}{2}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}人类对黑洞的探索历程}{3}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}给黑洞拍照}{5}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.3}给黑洞拍照}{6}{subsection.1.3}%
 \contentsline {subsection}{\numberline {1.4}关于黑洞名字由来的有趣轶事}{6}{subsection.1.4}%
-\contentsline {section}{\numberline {2}掉入黑洞之前}{6}{section.2}%
+\contentsline {section}{\numberline {2}掉入黑洞之前}{7}{section.2}%
 \contentsline {subsection}{\numberline {2.1}黑洞的吸积盘}{7}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}引力透镜效应与吸积盘}{7}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}引力红移}{9}{subsection.2.3}%

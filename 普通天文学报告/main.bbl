@@ -185,9 +185,20 @@ G.~Venkataraman.
 \newblock {\em Chandrasekhar and his limit}.
 \newblock Universities Press, 1992.
 
+\bibitem{huanqiu}
+《环球科学》.
+\newblock {\em 环球科学：黑洞特刊}.
+\newblock 《环球科学》杂志社, 2016.
+
 \bibitem{bl}
-加藤正二，福江纯，岭重慎.
+[日]加藤正二，[日]福江纯，[日]岭重慎.
 \newblock {\em 黑洞吸积盘}.
 \newblock 科学出版社, 2016.
+
+\bibitem{Marcia}
+[美]玛西亚·芭楚莎.
+\newblock {\em
+  黑洞简史：从史瓦西奇点到引力波，霍金痴迷、爱因斯坦拒绝、牛顿错过的伟大发现}.
+\newblock 湖南科学技术出版社, 2016.
 
 \end{thebibliography}
