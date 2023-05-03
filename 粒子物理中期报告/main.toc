@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}绪论}{2}{section.1}%
+\contentsline {section}{\numberline {2}广义相对论与宇宙学回顾}{4}{section.2}%
+\contentsline {section}{\numberline {3}天文学观测证据}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}星系旋转曲线}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}星系团的质量}{9}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}引力透镜效应与子弹星系团}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}暗物质与加速膨胀的宇宙}{10}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}宇宙大尺度结构}{13}{subsection.3.5}%
+\contentsline {section}{\numberline {4}暗物质的候选者}{15}{section.4}%
+\contentsline {subsection}{\numberline {4.1}WIMP}{15}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}轴子}{16}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}惰性中微子$\nu _R$}{16}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}超大质量粒子与超轻矢量粒子}{16}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}原初黑洞}{17}{subsection.4.5}%
+\contentsline {section}{\numberline {5}暗物质的探测实验}{18}{section.5}%
+\contentsline {section}{\numberline {6}ATIC项目}{18}{section.6}%
+\contentsline {section}{\numberline {7}总结}{18}{section.7}%
