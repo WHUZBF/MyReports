@@ -2,6 +2,22 @@
 
 % 导言区
 \usepackage[colorlinks,linkcolor=blue,bookmarksopen=true,bookmarksnumbered=true,citecolor=blue]{hyperref}             % 目录点击跳转
+
+% \url 链接换行 参考https://liam.page/2017/05/17/help-the-url-command-from-hyperref-to-break-at-line-wrapping-point/
+\makeatletter
+\def\UrlAlphabet{%
+	\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
+	\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
+	\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
+	\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+	\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
+	\do\Y\do\Z}
+\def\UrlDigits{\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\0}
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\g@addto@macro{\UrlBreaks}{\UrlAlphabet}
+\g@addto@macro{\UrlBreaks}{\UrlDigits}
+\makeatother
+
 \usepackage[]{physics}
 \usepackage[]{amsmath}
 \usepackage{cite}
@@ -15,6 +31,9 @@
 \usepackage[most]{tcolorbox}
 \xeCJKsetup{underdot/symbol={\normalfont^^b7}}
 \newcommand{\dotemph}[1]{\CJKunderdot{#1}}
+\usepackage{geometry}
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+\linespread{1.25}% 修改行间距
 
 
 \newcommand\subtitle[1]{\rightline{\small #1}} 
@@ -33,6 +52,7 @@
     \end{abstract}
     \tableofcontents        %制作目录
 	
+	\newpage
 	\section{绪论}
 	\setlength{\epigraphwidth}{.7\textwidth}
 	\epigraph{最能说明科学内在统一性的莫过于将探索宇宙最大物体，即宇宙学，和探索宇宙最小物体，即粒子物理学，结合正在一起所进行的研究。}{E.W.Kolb}
@@ -144,7 +164,7 @@
 		T^{\mu\nu}=\sum\frac{p_n^\mu p_n^\nu}{E_n^2}\delta\left(\mathbf{x}-\mathbf{x}_n\right)
 	\end{equation}
 
-	其中一类非常重要的模型是相对论性理想流体模型，在局部惯性系下\footnote{或者后面将会提到的共动参照系}流体相对静止，相应的能动量张量为：
+	其中一类非常重要的模型是相对论性理想流体模型，在局部惯性系下\footnote{或者后面$\S 3.4$将会提到的共动参照系}流体相对静止，相应的能动量张量为：
 	\begin{equation}
 		T^{\mu\nu}=\mqty(\dmat{\varepsilon,P,P,P})
 	\end{equation}
@@ -381,14 +401,58 @@
 	
 	由于霍金辐射效应\footnote{真正去理解霍金辐射效应涉及到量子场论中很深奥的知识，有意思的是在Hawking著名科普书籍《时间简史》中给出了一个比较大众化的解释：真空中会自发产生正反粒子对，它们一般来说会迅速湮灭，所以能量还是守恒的，不过黑洞附近可能某个粒子被吸收，这样剩下的那个粒子就无法湮灭，看起来就像是黑洞向外发射粒子，也即Hawking辐射，从而慢慢蒸发。不过这一解释虽然通俗易懂，但是很大程度上歪曲了Hawking辐射原本的意思。}，原初黑洞从诞生后会慢慢蒸发损失质量，因此即使原初黑洞在极早期宇宙中产生，它也不一定能存活到今天。不过，黑洞质量越大蒸发速度越慢，由计算可知质量大于 $10^9$ 吨的原初黑洞经过了138亿年的演化依然可以存活到今天，从而充当暗物质。引力波、引力透镜等实验可以对能够充当全部暗物质的原初黑洞的质量提供较强的限制。目前基本可以确定如果原初黑洞大量存在的话，它的平均质量应在太阳质量以下，并拥有一个较宽的质量分布。未来的空间引力波探测实验，如LISA或我国的太极计划，可以对原初黑洞的参数空间提供更强的限制\footnote{暗物质研究实验总是在做排除法。}，进一步检验这种暗物质模型的可行性。
 	\section{暗物质的探测实验}
+	前面说了这么多天文学上的观测，对于天文学家来说暗物质的存在性已经毋庸置疑了，但是对于粒子物理学家来说，研究暗物质在非引力相互作用下的行为是非常重要的，从而对标准模型进行修正。在现今的理论框架下，暗物质与普通粒子之间可能存在弱相互作用，这也是驱动所有实验进行的根源。而暗物质候选者如此之多，需要靠专门针对某种暗物质模型设计的暗物质探测实验来进行验证，单一的实验是不可能成功的，所以目前正在运行的暗物质探测项目非常多。依据实验环境，大致可以将暗物质探测实验分为三类：深地探测、空间探测和对撞机实验。
 	
+	\subsection{深地探测}
+	由于暗物质与普通物质之间相互作用十分微弱，这不但是对探测器本身灵敏度的一个挑战，另外我们还要尽可能的屏蔽掉本底信号的干扰，其中最显著的就是来自宇宙射线$\mu$子衰变而成的中子。所以简单粗暴的方法就是将实验室建在地底，利用地壳屏蔽干扰信号，目前比较有名的实验有：美国的SuperCDMS实验，欧洲的EDELWEISS实验、XENON实验，以及中国的锦屏（CJPL）实验、PandaX实验等等，详情见下面的地图\ref{fig:7}。
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\linewidth]{figs/fig7.pdf}
+		\label{fig:7}
+		\caption{世界上现在正在运行的暗物质深地实验}
+	\end{figure}
+	目前的深地实验主要是针对WIMP型暗物质的直接探测。根据暗物质模型，星系的可见物质被引力束缚在一个更重的范围更大的暗物质晕中，地球随着太阳系不断地在星系晕暗物质粒子流中穿梭，一旦暗物质粒子与探测器中的普通物质相互作用，我们就可以通过探测被暗物质敲出来的核子反冲从而确定暗物质的存在，并测量散射截面等物理量与理论预言相比较。
+	
+	比如中国的PandaX实验（下图\ref{fig:8}\footnote{图源自：\href{http://www.pppi.sdu.edu.cn/info/1041/2937.htm}{粒子物理与粒子辐照教育部重点实验室}}），它的主要实验装置是一个装满了4吨高纯度液氙的容器，在容器的顶部与底部布满了光电探测器。如果有暗物质粒子从外部射入这个探测器，它就有一定概率与氙原子的原子核发生碰撞，从而产生光电信号，被探测器捕捉到。然而，绝大多数的实验至今都没有发现超出本底的信号，也就是说，从统计的角度没有发现暗物质的显著痕迹。
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=.45\linewidth]{figs/fig8-1.jpg}
+		\hspace{.05\linewidth}
+		\includegraphics[width=.45\linewidth]{figs/fig8-2.jpg}
+		\label{fig:8}
+		\caption{中国的PandaX实验}
+	\end{figure}
+	\subsection{空间实验}
+	空间实验和深地实验是对立的两面，空间实验室搭建在绕地卫星上，比较著名的实验包括：国际空间站的AMS实验、美国的Fermi卫星、中国的DAMPE卫星（悟空号）等等。
+	
+	不过空间实验主要采用的是\dotemph{间接探测}手段，间接探测与直接探测最大的区别就在于其信号可以来源于各种天体，并不局限于太阳系，可以让我们进一步了解暗物质在宇宙中的分布情况。
+	
+	间接探测通过探测暗物质粒子相互碰撞后产生的看得见的粒子（普通例子），来推测看不见的粒子（暗物质），特别要关注的是反物质信号相对于宇宙线背景的反常，因为反物质本来宇宙中就很稀有。比如丁肇中先生领导的AMS02项目就是通过磁谱仪探测反粒子在磁场中偏转从而测定其动量，观测得到的正电子$e^+$以及反质子$\bar{p}$在高能段下与理论模型相比有明显的\dotemph{超出}现象，不过由于AMS02本身观测能段的限制，目前还无法分辨这个超出来源于暗物质还是特殊天体。
+	
+	目前我国的悟空号暗物质探测器主要是通过探测伽马射线谱线以及高能电子的能谱来探测暗物质粒子，观测能段在TeV量级，能量分辨率小于$1.5\%$，本地抑制率大于$10^5$，在世界上处于领先阶段\footnote{\href{http://pmo.cas.cn/dampe/}{暗物质粒子探测卫星}}。
+	
+	\subsection{对撞机产生}
+	如果暗物质粒子是在早期宇宙的高温环境中产生的，那么它应该也可以在高能加速器，例如LHC上产生，除非它们只和轻子相互作用。但是遗憾的是，目前人类没有在对撞机上探测到任何有关信号，要么说明暗物质粒子的质量太大，超出了对撞机的最高有效能量；要么质量太小，淹没在了标准模型粒子的背景中；也有可能它们与标准模型粒子的相互作用太弱，以至于产生的数量太少，没有明显的统计信号。
+	
+	\subsection{其它实验}
+	除了上面讲的这些实验，在前面$\S 4$中的讨论中我们还介绍过轴子、惰性中微子等。它们也有对应的探测实验，比如用于探测轴子的ADMX实验，通过探测中微子来判断暗物质的超级神冈（Super-K）\footnote{预计2027年超级神冈将会升级为\href{https://www-sk.icrr.u-tokyo.ac.jp/en/hk/}{顶级神冈（Hyper-K）实验}，神冈项目在探测太阳中微子上为日本赢得了两个诺贝尔奖，所以一致在政府的支持下不断升级！}\cite{Super-K}、冰立方（IceCube）\cite{IceCube}实验等。
+	
+	\hspace*{\fill}
+	\noindent\makebox[\linewidth]{\rule{.5\paperwidth}{0.4pt}}
+	\hspace*{\fill}
+	
+	说了这么多实验，但实际上到目前位置人类还没有探测到任何暗物质的信号，或者说观测到了很多反常现象却无法确定是不是由暗物质产生的，在暗物质探测这件事上，人类还有很长的路要走。
 	
 	\section{ATIC项目}
 	
 	
 	
 	\section{总结}
-	这篇文章\footnote{本文是粒子物理课程上关于暗物质主题讨论的课程报告，读书笔记类型，本文使用\LaTeX 编写，项目Github地址为：\href{https://github.com/WHUZBF/MyReports/tree/main/粒子物理中期报告}{https://github.com/WHUZBF/MyReports/tree/main/粒子物理中期报告}}
+	这篇文章\footnote{本文是粒子物理课程上关于暗物质主题讨论的课程报告，读书笔记类型，本文使用\LaTeX 编写，项目Github地址为：\url{https://github.com/WHUZBF/MyReports/tree/main/粒子物理中期报告}}由于是读书笔记类型，所以很多讨论都可以在文中注明的文献中找到。
+	
+	虽说选修的是粒子物理课程，不过为了大致能看懂暗物质的一些初级文献，所以用了一个多月时间抽空学习广义相对论和宇宙学相关的极初步内容\footnote{其实就是懂了点基本假设，看得懂几个GR里重要的方程}，它们构成了本文前半部分内容，后半部分就是对暗物质专门的讨论了，通过精读暗物质的经典综述文章\cite{RN32}，以及历史性综述文章\cite{RevModPhys.90.045002}，它们构成了本文$\S3$和$\S4$的内容。
+	
+	最后就是关于暗物质探测实验方面的内容，这一方面主要是去查阅相关项目组的官方网站，并略读了相关的一些论文（相关的论文在文中都有提及），这构成了本文的$\S 5$，由于ATIC项目是小组选题，所以看了更多关于这个项目的有关资料，单独写成$\S 6$，这便是本文的全部结构了。
 	
 	
 	

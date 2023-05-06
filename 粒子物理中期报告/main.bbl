@@ -81,4 +81,21 @@ Leanne~D Duffy and Karl van Bibber.
 \newblock Axions as dark matter particles.
 \newblock {\em New Journal of Physics}, 11(10):105008, oct 2009.
 
+\bibitem{RN32}
+Bing-Lin Young.
+\newblock A survey of dark matter and related topics in cosmology.
+\newblock {\em Frontiers of Physics}, 12(2):121201, 2016.
+
+\bibitem{Super-K}
+K.~Choi et~al.
+\newblock {Search for neutrinos from annihilation of captured low-mass dark
+  matter particles in the Sun by Super-Kamiokande}.
+\newblock {\em Phys. Rev. Lett.}, 114(14):141301, 2015.
+
+\bibitem{IceCube}
+M.~G. Aartsen. et~al.
+\newblock Search for dark matter annihilations in the sun with the 79-string
+  icecube detector.
+\newblock {\em Phys. Rev. Lett.}, 110:131302, Mar 2013.
+
 \end{thebibliography}
