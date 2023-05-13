@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.9.12)  6 MAY 2023 23:57
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.9.12)  13 MAY 2023 12:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1182,41 +1182,41 @@ or `english'. on input line 48.
 LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <10.53937> not available
 (Font)              size <10.95> substituted on input line 4.
 
-)
+[1
+
+])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [1
-
-]
-File: figs/Standard_Model_of_Elementary_Particles.png Graphic file (type bmp)
-<figs/Standard_Model_of_Elementary_Particles.png>
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/sl' in size <10.53937> not avail
 able
 (Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 
-74.
+55.
  [2]
+File: figs/Standard_Model_of_Elementary_Particles.png Graphic file (type bmp)
+<figs/Standard_Model_of_Elementary_Particles.png>
+ [3]
 File: figs/dark_matter.jpg Graphic file (type bmp)
 <figs/dark_matter.jpg>
- [3] [4]
+ [4] [5]
 \matrixtoks=\toks42
- [5]
+ [6]
 File: figs/fig3.pdf Graphic file (type pdf)
 <use figs/fig3.pdf>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6]
+[7]
 File: figs/fig5.jpg Graphic file (type bmp)
 <figs/fig5.jpg>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7]
+[8]
 \matrixtoks=\toks43
- [8] [9]
+ [9] [10]
 File: figs/fig4.jpg Graphic file (type bmp)
 <figs/fig4.jpg>
 
@@ -1225,7 +1225,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: figs/fig6.jpg Graphic file (type bmp)
 <figs/fig6.jpg>
-[10] [11]
+[11] [12]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 389.
@@ -1243,20 +1243,36 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 389.
 
 
-LaTeX Warning: Citation `。' on page 12 undefined on input line 390.
+LaTeX Warning: Citation `。' on page 13 undefined on input line 390.
 
-[12] [13]
+[13]
+Missing character: There is no δ (U+03B4) in font [lmroman10-regular]:mapping=t
+ex-text;!
+ [14]
 File: figs/fig7.pdf Graphic file (type pdf)
 <use figs/fig7.pdf>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 File: figs/fig8-1.jpg Graphic file (type bmp)
 <figs/fig8-1.jpg>
 File: figs/fig8-2.jpg Graphic file (type bmp)
 <figs/fig8-2.jpg>
- [14] [15]
-Overfull \hbox (23.41849pt too wide) in paragraph at lines 440--443
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[15] [16]
+Overfull \hbox (23.41849pt too wide) in paragraph at lines 444--447
 []|  []
  []
 
+[17]
+File: figs/fig9-1.jpg Graphic file (type bmp)
+<figs/fig9-1.jpg>
+File: figs/fig9-2.jpg Graphic file (type bmp)
+<figs/fig9-2.jpg>
+ [18]
 
 Package fontspec Info: Could not resolve font "FangSong/BI" (it probably
 (fontspec)             doesn't exist).
@@ -1288,7 +1304,12 @@ Missing character: There is no 中 (U+4E2D) in font [lmmono8-regular]:!
 Missing character: There is no 期 (U+671F) in font [lmmono8-regular]:!
 Missing character: There is no 报 (U+62A5) in font [lmmono8-regular]:!
 Missing character: There is no 告 (U+544A) in font [lmmono8-regular]:!
-(./main.bbl [16]) [17] (./main.aux)
+ [19] (./main.bbl
+Missing character: There is no   (U+2009) in font [lmroman10-regular]:mapping=t
+ex-text;!
+ [20
+
+]) [21] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
@@ -1297,15 +1318,15 @@ LaTeX Font Warning: Size substitutions with differences
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 84CECFD937F9AFFFA8FBB88FFB4F0235;2524.
+(rerunfilecheck)             Checksum: 43F0848E73A00EA600F78D414DF03A80;3114.
  ) 
 Here is how much of TeX's memory you used:
- 36659 strings out of 476533
- 849847 string characters out of 5818886
- 1184733 words of memory out of 5000000
- 56420 multiletter control sequences out of 15000+600000
+ 36698 strings out of 476533
+ 851512 string characters out of 5818886
+ 1186452 words of memory out of 5000000
+ 56457 multiletter control sequences out of 15000+600000
  413254 words of font info for 111 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 91i,16n,102p,604b,934s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 91i,16n,102p,668b,934s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (17 pages).
+Output written on main.pdf (21 pages).

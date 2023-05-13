@@ -1,0 +1,5 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is 'ref.blg'
+[202] biber-MSWIN32:340> INFO - === 
+[1356] Utils.pm:411> ERROR - Cannot find 'ref.bcf'!
+[1356] Biber.pm:132> INFO - ERRORS: 1

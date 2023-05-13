@@ -81,11 +81,6 @@ Leanne~D Duffy and Karl van Bibber.
 \newblock Axions as dark matter particles.
 \newblock {\em New Journal of Physics}, 11(10):105008, oct 2009.
 
-\bibitem{RN32}
-Bing-Lin Young.
-\newblock A survey of dark matter and related topics in cosmology.
-\newblock {\em Frontiers of Physics}, 12(2):121201, 2016.
-
 \bibitem{Super-K}
 K.~Choi et~al.
 \newblock {Search for neutrinos from annihilation of captured low-mass dark
@@ -97,5 +92,15 @@ M.~G. Aartsen. et~al.
 \newblock Search for dark matter annihilations in the sun with the 79-string
   icecube detector.
 \newblock {\em Phys. Rev. Lett.}, 110:131302, Mar 2013.
+
+\bibitem{RN33}
+Chang J. et~al.
+\newblock An excess of cosmic ray electrons at energies of 300–800 gev.
+\newblock {\em Nature}, 456(7220):362--365, 2008.
+
+\bibitem{RN32}
+Bing-Lin Young.
+\newblock A survey of dark matter and related topics in cosmology.
+\newblock {\em Frontiers of Physics}, 12(2):121201, 2016.
 
 \end{thebibliography}
