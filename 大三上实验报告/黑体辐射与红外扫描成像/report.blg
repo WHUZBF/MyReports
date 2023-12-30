@@ -1,0 +1,83 @@
+This is BibTeX, Version 0.99d (TeX Live 2021/W32TeX)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: report.aux
+The style file: gbt7714-numerical.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 150 items from 100.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: ref.bib
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2437 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2437 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2437 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2437 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2437 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2437 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2453 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2453 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2453 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2453 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2453 of file gbt7714-numerical.bst
+Too many commas in name 1 of "张敏,韩芳,康键,孙浩,郭亮，李春领" for entry zhang2
+while executing---line 2453 of file gbt7714-numerical.bst
+You've used 9 entries,
+            5385 wiz_defined-function locations,
+            1094 strings with 8536 characters,
+and the built_in function-call counts, 31909 in all, are:
+= -- 1188
+> -- 2313
+< -- 4493
++ -- 1909
+- -- 407
+* -- 216
+:= -- 4909
+add.period$ -- 27
+call.type$ -- 9
+change.case$ -- 18
+chr.to.int$ -- 1648
+cite$ -- 9
+duplicate$ -- 216
+empty$ -- 541
+format.name$ -- 108
+if$ -- 8128
+int.to.chr$ -- 1
+int.to.str$ -- 10
+missing$ -- 0
+newline$ -- 59
+num.names$ -- 27
+pop$ -- 515
+preamble$ -- 1
+purify$ -- 18
+quote$ -- 0
+skip$ -- 2466
+stack$ -- 0
+substring$ -- 2172
+swap$ -- 9
+text.length$ -- 126
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 99
+warning$ -- 0
+while$ -- 135
+width$ -- 0
+write$ -- 132
+(There were 12 error messages)

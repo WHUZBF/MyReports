@@ -1,0 +1,53 @@
+\begin{thebibliography}{1}
+
+\bibitem{PhysRevLett.74.4083}
+Adriano Barenco, David Deutsch, Artur Ekert, and Richard Jozsa.
+\newblock Conditional quantum dynamics and logic gates.
+\newblock {\em Phys. Rev. Lett.}, 74:4083--4086, May 1995.
+
+\bibitem{Has}
+T.~Hasegawa and J.~J. Bollinger.
+\newblock Rotating-radio-frequency ion traps.
+\newblock {\em Phys. Rev. A}, 72:043403, Oct 2005.
+
+\bibitem{PhysRevA.71.032504}
+A.~Kreuter, C.~Becher, G.~P.~T. Lancaster, A.~B. Mundt, C.~Russo, H.~H\"affner,
+  C.~Roos, W.~H\"ansel, F.~Schmidt-Kaler, R.~Blatt, and M.~S. Safronova.
+\newblock Experimental and theoretical study of the
+  $3d\phantom{\rule{0.3em}{0ex}}^{2}d$--level lifetimes of
+  $^{40}\mathrm{Ca}^{+}$.
+\newblock {\em Phys. Rev. A}, 71:032504, Mar 2005.
+
+\bibitem{paul}
+Wolfgang Paul.
+\newblock Electromagnetic traps for charged and neutral particles.
+\newblock {\em Rev. Mod. Phys.}, 62:531--540, Jul 1990.
+
+\bibitem{PhysRevA.62.042305}
+A.~Steane, C.~F. Roos, D.~Stevens, A.~Mundt, D.~Leibfried, F.~Schmidt-Kaler,
+  and R.~Blatt.
+\newblock Speed of ion-trap quantum-information processors.
+\newblock {\em Phys. Rev. A}, 62:042305, Sep 2000.
+
+\bibitem{main}
+冯禹，习爽，何雨华，倪晨，顾牡，赵敏.
+\newblock 利用保罗机械阱探究囚禁粒子的动力学特性.
+\newblock {\em 物理实验}, 36(1-6), 2016.
+
+\bibitem{QIT1}
+吴浩煜.
+\newblock 囚禁离子非线性动力学的实验研究.
+\newblock Master's thesis,
+  中国科学院研究生院（武汉物理与数学研究所）, 2014.
+
+\bibitem{QIT2}
+楚士颖，谢洁，江游等.
+\newblock 四极离子阱阱内离子解离技术的研究进展.
+\newblock {\em 质谱学报}, 40(391-400), 2019.
+
+\bibitem{luo}
+罗学立，朱熙文.
+\newblock 离子囚禁技术与量子计量基准的新进展.
+\newblock {\em 物理}, 1996.
+
+\end{thebibliography}

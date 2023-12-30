@@ -1,0 +1,60 @@
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{#1}
+\expandafter\ifx\csname urlstyle\endcsname\relax\else
+  \urlstyle{same}\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \DeclareUrlCommand\doi{\urlstyle{rm}}
+  \def\eprint#1#2{#2}
+\else
+  \def\doi#1{\href{https://doi.org/#1}{\nolinkurl{#1}}}
+  \let\eprint\href
+\fi
+
+\bibitem[陈难先(2023)]{chen}
+陈难先.
+\newblock
+  黑体辐射定律轶闻遐思——从普朗克一百年前的一段话说起\allowbreak[J].
+\newblock 物理, 2023, 52\allowbreak (283-289).
+
+\bibitem[李伟斌，熊永红(2003)]{li}
+李伟斌，熊永红.
+\newblock 热辐射基础实验\allowbreak[J].
+\newblock 物理实验, 2003\allowbreak (9-12+17).
+
+\bibitem[张敏康键 孙浩~郭亮，李春领(2019)]{zhang2}
+张敏康键 孙浩~郭亮，李春领.
+\newblock 红外热成像技术在民用领域的应用\allowbreak[J].
+\newblock 红外, 2019, 40\allowbreak (35-43).
+
+\bibitem[蔡毅，潘顺臣(1999)]{cai}
+蔡毅，潘顺臣.
+\newblock 红外技术在未来军事技术中的地位和作用\allowbreak[J].
+\newblock 红外技术, 1999\allowbreak (1-7).
+
+\bibitem[曹鼎汉(1994)]{cao}
+曹鼎汉.
+\newblock 斯特藩－玻尔兹曼辐射定律及其应用\allowbreak[J].
+\newblock 红外技术, 1994.
+
+\bibitem[马洪良，王春涛，张义邴，韩咏梅，易传详(2014)]{ma}
+马洪良，王春涛，张义邴，韩咏梅，易传详.
+\newblock 热辐射实验演示仪及热辐射规律探究\allowbreak[J].
+\newblock 物理实验, 2014, 34\allowbreak (43-44+48).
+
+\bibitem[张宇峰，邬玉玲，吴元庆，贾辉，刘文皓，戴景民(2023)]{zhang}
+张宇峰，邬玉玲，吴元庆，贾辉，刘文皓，戴景民.
+\newblock 表面结构对面源黑体光谱发射率的影响\allowbreak[J].
+\newblock 光谱学与光谱分析, 2023, 43\allowbreak (389-393).
+
+\bibitem[曹鼎汉(1994)]{cao2}
+曹鼎汉.
+\newblock 维恩位移定律及其应用\allowbreak[J].
+\newblock 红外技术, 1994.
+
+\bibitem[邓泽微，熊永红，邱自成，杨珊，李建国(2005)]{deng}
+邓泽微，熊永红，邱自成，杨珊，李建国.
+\newblock 热辐射扫描成像系统的实验研究\allowbreak[J].
+\newblock 大学物理实验, 2005\allowbreak (1-4).
+
+\end{thebibliography}
