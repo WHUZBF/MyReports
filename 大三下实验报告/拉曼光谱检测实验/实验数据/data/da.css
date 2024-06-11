@@ -1,0 +1,7 @@
+h1 {color: #204060; font-size:16px; font-family: simhei; padding-bottom: 20px;}
+h2{color: #204060; font-size:12px; font-family: simhei; padding-bottom: 10px;}
+p {text-align: left; color: #202020; font-size:10px; font-family: simsun; padding-bottom: 10px;}
+table, th, td {border: 0px solid blue;}
+body {color: #202020; background: #FFFAF4; margin: 0px; padding: 0; font-family: simsun;}
+div.hint {margin:3px; float:left; background-image: url(information.png); background-repeat: no-repeat; background-position: 0px 5px; }
+div.desc {padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; text-align:left; font-weight:normal; width:auto; font-size:10px; margin:0px 25px 0px 30px; background: #E0F0F0; }
