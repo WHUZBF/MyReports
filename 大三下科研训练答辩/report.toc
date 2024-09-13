@@ -1,0 +1,3 @@
+\beamer@sectionintoc {1}{Scattering Amplitudes}{3}{0}{1}
+\beamer@sectionintoc {2}{scattering Equations}{9}{0}{2}
+\beamer@sectionintoc {3}{CHY formalism}{15}{0}{3}
