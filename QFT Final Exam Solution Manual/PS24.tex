@@ -1,0 +1,72 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 24} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\noindent Conventions: mostly-plus metric. Use modern normalization \(\mathcal{L}\supset-\frac{1}{4e^2}F^2\) and \(D_\mu=\partial_\mu+iA_\mu\).
+
+\begin{problem}
+    \textbf{Longitudinal polarization vector.} For a massive vector of mass \(m\), write the longitudinal polarization vector \(\epsilon_L^\mu(p)\) and show that for \(E\gg m\) it behaves like \(\epsilon_L^\mu(p)\sim p^\mu/m\) up to corrections of order \(m/E\).
+\end{problem}
+\begin{solution}[24.1]
+	In the rest frame, a massive vector boson has 3 polarization states
+	$$\epsilon_{\pm}^{\mu}=(1/\sqrt{2})(0,1,\pm i,0)^{\mu},\quad\epsilon_{L}^{\mu}=(0,0,0,1)^{\mu}$$
+	representing the 3 possible states of a spin 1 particle with $J^3=\pm1,0$ .Now boost along the 3 axis to high energy. The boosts of
+	the polarization vectors are
+	$$\epsilon_{\pm}^{\mu}=(1/\sqrt{2})(0,1,\pm i,0)^{\mu},\quad\epsilon_L^\mu=(\frac{p}{m},0,0,\frac{E}{m})^\mu$$
+	Note that, as E becomes large, the components of $\epsilon^\mu_L$ grow without bound, in fact:
+	\[
+	\boxed{\epsilon_0^\mu\to\frac{p^\mu}{m}}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Equivalence theorem statement.} State the Goldstone equivalence theorem in the Abelian Higgs model. Describe the regime of validity and what is meant by “up to \(m/E\) corrections.”
+\end{problem}
+\begin{solution}[24.2]
+	The Goldstone equivalence theorem for Abelian Higgs model is as follows:
+	
+	Consider the Abelian Higgs model in an $R_\xi$ gauge, where the gauge boson $A_\mu$ acquires a mass $m_A$ and the would-be Goldstone mode is $\pi$.
+	For a scattering amplitude with $n$ external \emph{longitudinally polarized} massive gauge bosons,
+	\[
+	A_L^{a_1}(p_1),\;A_L^{a_2}(p_2),\;\dots,\;A_L^{a_n}(p_n),
+	\]
+	the Goldstone equivalence theorem states that, in the high-energy regime
+	\[
+	E_k \gg m_A \quad (k=1,\dots,n),
+	\]
+	the amplitude is equal, at leading order in $m_A/E_k$, to the amplitude in which each external longitudinal gauge boson is replaced by the corresponding Goldstone field:
+	\[
+	\boxed{
+		\mathcal{M}\!\left(\cdots A_L(p_1)\cdots A_L(p_n)\cdots\right)
+		= i^{\,n}\Bigl(\prod_{k=1}^n C_k\Bigr)\,
+		\mathcal{M}\!\left(\cdots \pi(p_1)\cdots \pi(p_n)\cdots\right)
+		+\mathcal{O}\!\left(\sum_{k=1}^n \frac{m_A}{E_k}\right).
+	}
+	\]
+	Here $E_k$ denotes the typical energy scale associated with the external leg $p_k$ (e.g.\ $E_k\simeq |p_k^0|$ in the center-of-mass frame), and the factors $C_k$ are external-leg normalization constants that satisfy $C_k=1$ at tree level (and receive loop-level renormalization corrections in general).
+	
+	\paragraph{Meaning of ``up to $m/E$ corrections.''}
+	The statement ``up to $m/E$ corrections'' means that the difference between the longitudinal-gauge-boson amplitude and the Goldstone amplitude is suppressed by at least one power of $m_A/E$ (and similarly by other relevant masses over $E$), originating from the fact that
+	\[
+	\epsilon_L^\mu(p)=\frac{p^\mu}{m_A}+\mathcal{O}\!\left(\frac{m_A}{E}\right),
+	\]
+	so subleading terms in the longitudinal polarization vector and other non-leading contributions are parametrically small in the high-energy limit.
+\end{solution}
+\begin{problem}
+    \textbf{Simple amplitude comparison.} Consider a process involving one external longitudinal vector. Compute the leading high-energy behavior using \(\epsilon_L^\mu\simeq p^\mu/m\) and compare with the amplitude computed using the Goldstone mode \(\pi\). Show agreement at leading order.
+\end{problem}
+\begin{problem}
+    \textbf{Gauge-fixing dependence of unphysical poles.} In \(R_\xi\) gauge, identify the pole masses of \(A_\mu\) (transverse and longitudinal parts) and \(\pi\). Show explicitly that the unphysical pole depends on \(\xi\).
+\end{problem}
+\begin{problem}
+    \textbf{Unitary gauge vs \(R_\xi\) gauge at large momentum.} Explain why the unitary-gauge propagator behaves poorly at large momentum, and how \(R_\xi\) gauge restores manifest power counting. Relate this to renormalizability in perturbation theory.
+\end{problem}
+\begin{problem}
+    \textbf{Gauge-invariant observables.} Give two examples of gauge-invariant quantities in the Abelian Higgs model and explain why their values cannot depend on \(\xi\).
+\end{problem}
+\begin{problem}
+    \textbf{Stueckelberg viewpoint.} Rewrite the massive vector theory using a Stueckelberg field \(\pi\). Show how \(R_\xi\) gauge corresponds to adding a particular gauge-fixing functional involving \(\pi\).
+\end{problem}

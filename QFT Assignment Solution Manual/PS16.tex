@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage[]{cancel}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+\newenvironment{solution}[1][]{\begin{proof}[\textbf{Solution}]}{\end{proof}}
+% --- Rounded box style for each problem (whole statement) ---
+\tcbset{
+    problem/.style={
+        enhanced,
+        boxrule=0.7pt,
+        arc=3mm,
+        left=3mm,right=3mm,top=2mm,bottom=2mm,
+        colback=white,
+        colframe=black,
+        before skip=10pt,
+        after skip=6pt,
+    }
+}
+
+
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 16} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\begin{tcolorbox}[problem]
+\textbf{1.} Write the most general Lorentz-covariant decomposition of the on-shell QED vertex $\Gamma^\mu(p',p)$ in $D=4$ (Dirac + Pauli form factors).
+\end{tcolorbox}
+\begin{solution}[16.1]
+	\textbf{MY FINAL ANSWER IS}
+	\[
+\boxed{\bar{u}(p^{\prime})\operatorname{\Gamma}^\mu(p^{\prime},p)\operatorname{u}(p)=\bar{u}(p^{\prime})\left[F_1(q^2)\gamma^\mu+i\operatorname{}\frac{F_2(q^2)}{2m}\operatorname{\sigma}^{\mu\nu}q_\nu\right]u(p)}
+	\]
+	Where, $\sigma^{\mu\nu}\equiv\frac{i}{2}[\gamma^\mu,\gamma^\nu]$.
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{2.} Explain what changes in general $D$, what replaces $\sigma^{\mu\nu}$ as an independent structure, and what assumptions (on-shell, parity, time reversal) constrain the decomposition.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{3.} Define $a_e$ (``anomalous magnetic moment'') in a way that makes sense as $D\to 4$ in dimensional regularization, and explain why the physical observable is extracted from $F_2(0)$ after renormalization.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{4.} Compute the superficial degree of divergence of the one-loop vertex correction in $D$ dimensions.
+\end{tcolorbox}
+\begin{solution}[16.4]
+	The amplitude corresponding to a typical Feynman diagram has the following structure. 
+	\[
+\int\frac{d^Dk_1d^Dk_2\cdots d^Dk_L}{(k_i-m)\cdots(k_j^2)\cdots(k_n^2)}.
+	\]
+	The superficial degree of divergence $\mathfrak{D}$ can be calculated using the formula below. 
+	\[
+	\begin{aligned}\mathfrak{D}&\equiv(\text{power of }k\text{ in numerator})-(\text{power of }k\text{ in denominator})\\&=DL-P_e-2P_\gamma.\end{aligned}
+	\]
+	For the one-loop vertex correction in QED, $P_e=2$,$P_\gamma=1$,$L=1$ , so we obtain
+	\[
+	\boxed{
+	\mathfrak{D}= D-2-2=D-4}
+	\]
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{5.} Show that the one-loop vertex correction satisfies the Ward--Takahashi identity relating it to the electron self-energy.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{6.} In covariant $\xi$ gauge, identify which terms in the photon propagator can potentially contribute to $F_2(0)$, and argue why the final $a_e$ is gauge independent.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{7.} In $D=4-2\epsilon$, show how UV divergences appear as $1/\epsilon$ poles in the vertex and how they are removed by renormalization.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{8.} Explain why $F_2(0)$ is finite in renormalized QED at one loop in $D=4$ even though individual integrals contain UV divergences.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{9.} Derive (or outline derivation of) the classic one-loop result $a_e=\alpha/(2\pi)$ in $D=4$, identifying where the ``$1/2$'' comes from (trace algebra + Feynman parameters).
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{10.} Discuss dimension dependence, for which $D$ would you expect the one-loop contribution to $a_e$ to be power-law UV divergent instead of logarithmic, based on operator dimension/power counting?
+\end{tcolorbox}
+
+
+\end{document}

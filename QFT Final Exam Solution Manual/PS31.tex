@@ -1,0 +1,188 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 31} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\noindent Conventions: gauge group \(G\) with generators \(T^a\) in a representation \(R\) normalized by
+\[
+    \mathrm{tr}_R(T^aT^b)=T(R)\,\delta^{ab},\qquad
+    (T^aT^a)=C(R)\,\mathbf{1},\qquad
+    f^{acd}f^{bcd}=C_A\,\delta^{ab}.
+\]
+Modern normalization: \(\mathcal{L}\supset-\frac{1}{4g^2}F^{\mu\nu a}F_{\mu\nu}^a\).
+
+\begin{problem}
+    \textbf{One-loop structure and the sign.} State the one-loop \(\beta\)-function for pure Yang–Mills in \(D=4\) in the form
+    \[
+        \beta(g)\equiv \mu\frac{dg}{d\mu}=-\frac{g^3}{16\pi^2}\frac{11}{3}C_A.
+    \]
+    Explain in one sentence why the sign is opposite to QED (screening vs antiscreening).
+\end{problem}
+\begin{solution}[31.1]
+	\paragraph{Explain in one sentence.} The self-interactions of non-Abelian gauge fields make the vacuum polarization antiscreening, so the coupling decreases at high energies, whereas in QED the fluctuations of charged matter screen the charge, so the coupling increases at high energies.
+\end{solution}
+\begin{problem}
+    \textbf{Including matter (general formula).} For \(n_f\) Dirac fermions in representations \(R_f\) and \(n_s\) complex scalars in representations \(R_s\), show that the one-loop coefficient can be written as
+    \[
+        \beta(g)=-\frac{g^3}{16\pi^2}\,b_0,\qquad
+        b_0=\frac{11}{3}C_A-\frac{4}{3}\sum_{\text{Dirac }f}T(R_f)-\frac{1}{6}\sum_{\text{cpx }s}T(R_s).
+    \]
+\end{problem}
+\begin{problem}
+    \textbf{Asymptotic freedom condition.} Using Problem 2, give the condition on the matter content for asymptotic freedom. Apply it to \(G=SU(N)\) with \(n_f\) Dirac fermions in the fundamental.
+\end{problem}
+\begin{solution}[31.3]
+		Asymptotic freedom means:
+	\[
+	\boxed{
+		b_0=\frac{11}{3}C_A-\frac{4}{3}\sum_{\text{Dirac }f}T(R_f)-\frac{1}{6}\sum_{\text{cpx }s}T(R_s)> 0
+	}
+	\]
+	For $SU(N)$ group, we have:
+	\[
+	C_A=N,\quad T(R_f)=\frac12
+	\]
+	Hence
+	\[
+	b_0=\frac{11}{3}\times N-\frac43 \times n_f\times\frac12>0\Rightarrow \boxed{n_f<\frac{11}{2}N}
+	\]
+	For QCD $N=3$ and $n_f=6$, so we know that it is Asymptotic free.
+\end{solution}
+\begin{problem}
+    \textbf{Running coupling and dimensional transmutation.} Solve the one-loop RG equation in \(D=4\) for \(g(\mu)\) in terms of a reference scale \(\mu_0\) and \(g(\mu_0)\). Define the RG-invariant scale \(\Lambda\) and rewrite \(g(\mu)\) in terms of \(\Lambda\) (dimensional transmutation).
+\end{problem}
+\begin{solution}
+	The 1--loop RG equation is:
+	\[
+	\mu\,\frac{dg}{d\mu} \;=\; -\,\frac{b_0}{16\pi^2}\,g^3 
+	\]
+	which can be solved by
+	\[
+	\frac{1}{g^2(\mu)}=\frac{1}{g^2(\mu_0)}+\frac{b_0}{8\pi^2}\ln\frac{\mu}{\mu_0}.
+	\]
+	Define the RG-invariant scale \(\Lambda\) by
+	\[
+	\Lambda \equiv \mu\,\exp\!\left(-\frac{8\pi^2}{b_0\,g^2(\mu)}\right).
+	\]
+	By construction, \(\Lambda\) is independent of \(\mu\). Using this definition, the running coupling can be rewritten as
+	\[
+	\frac{1}{g^2(\mu)}=\frac{b_0}{8\pi^2}\ln\frac{\mu}{\Lambda}
+	\quad\Longleftrightarrow\quad
+	\boxed{g^2(\mu)=\frac{8\pi^2}{b_0\,\ln(\mu/\Lambda)}}.
+	\]
+	
+	This is dimensional transmutation: the classically dimensionless coupling \(g\) is traded, through quantum effects, for a dimensionful scale \(\Lambda\).
+\end{solution}
+\begin{problem}
+    \textbf{Modern normalization: flow of \(1/g^2\).} Starting from \(\beta(g)=-\frac{b_0}{16\pi^2}g^3\), show that
+    \[
+        \mu\frac{d}{d\mu}\Bigl(\frac{1}{g^2}\Bigr)=\frac{b_0}{8\pi^2}.
+    \]
+    Explain why this is the natural quantity to quote when the action is written with \(-\frac{1}{4g^2}F^2\).
+\end{problem}
+\begin{solution}[31.5]
+	\[
+	\mu\,\frac{d}{d\mu}\!\left(\frac{1}{g^2}\right)
+	=\mu\left(-2g^{-3}\frac{dg}{d\mu}\right)
+	=-2g^{-3}\left(\mu\frac{dg}{d\mu}\right)
+	=-2g^{-3}\beta(g)
+	=-2g^{-3}\left(-\frac{b_0}{16\pi^2}g^3\right)
+	=\frac{b_0}{8\pi^2}.
+	\]
+	The parameter \(1/g^2\) multiplies the gauge kinetic term directly, so it appears linearly as the coefficient in front of \(F^2\).
+\end{solution}
+\begin{problem}
+    \(D=4-\epsilon\): \textbf{classical scaling vs one-loop.} Use dimensional analysis to show that classically
+    \[
+        \beta(g)=\frac{D-4}{2}\,g,
+    \]
+    and combine with the one-loop term to write
+    \[
+        \beta(g)=\frac{D-4}{2}\,g-\frac{b_0}{16\pi^2}g^3
+    \]
+    to leading order in \(g\) and \(\epsilon\). Discuss when a nontrivial fixed point can occur.
+\end{problem}
+\begin{solution}[31.6]
+Take the Yang--Mills action in the mordern normalization
+	\[
+	S \;=\; -\frac{1}{4g^2}\int d^D x\, F_{\mu\nu}^a F^{a\,\mu\nu},
+	\qquad
+	F_{\mu\nu}^a=\partial_\mu A_\nu^a-\partial_\nu A_\mu^a + f^{abc}A_\mu^b A_\nu^c.
+	\]
+	In units where \(\hbar=c=1\), the action is dimensionless, so the Lagrangian density has mass dimension
+	\[
+	[\mathcal L]=D.
+	\]
+	Also \([\partial_\mu]=1\). From the kinetic term \((\partial A)^2\subset F^2\) we get
+	\[
+	[F_{\mu\nu}]=[\partial A]=1+[A].
+	\]
+	Hence
+	\[
+	[F_{\mu\nu}^2]=2[F_{\mu\nu}]=2(1+[A]).
+	\]
+	Now impose \([\mathcal L]=D\) for \(\mathcal L\sim \frac{1}{g^2}F^2\):
+	\[
+	\left[\frac{1}{g^2}\right]+[F^2]=D
+	\quad\Longrightarrow\quad
+	-2[g]+2(1+[A])=D.
+	\]
+	To fix \([A]\), we back to the old normalization and use the fact that the pure gauge kinetic term is the quadratic piece \((\partial A)^2\), which must already have dimension \(D\), giving
+	\[
+	[A]=\frac{D-2}{2}.
+	\]
+	Plugging this into the previous relation yields
+	\[
+	-2[g]+2\Bigl(1+\frac{D-2}{2}\Bigr)=D
+	\quad\Longrightarrow\quad
+	-2[g]+D=D
+	\quad\Longrightarrow\quad
+	\boxed{[g]=\frac{4-D}{2}}.
+	\]
+	Because \(g\) has mass dimension \((4-D)/2\), the dimensionless coupling is
+	\[
+	\hat g \equiv \mu^{\frac{D-4}{2}}\,g.
+	\]
+	At the classical level (no quantum corrections), \(\hat g\) is scale independent, so
+	\[
+	0=\mu\frac{d\hat g}{d\mu}
+	=\mu\frac{d}{d\mu}\left(\mu^{\frac{D-4}{2}}g\right)
+	=\frac{D-4}{2}\,\hat g+\mu^{\frac{D-4}{2}}\beta(g).
+	\]
+	Multiplying by \(\mu^{\frac{4-D}{2}}\) gives the classical beta function for \(g\):
+	\[
+	\boxed{\beta_{\mathrm{cl}}(g)=\frac{D-4}{2}\,g.}
+	\]
+	Including the one-loop correction, we have,
+	\[
+	\boxed{\beta(g)=\frac{D-4}{2}\,g-\frac{b_0}{16\pi^2}\,g^3}
+	\]
+	In particular, for \(D=4-\epsilon\),
+	\[
+	\beta(g)=-\frac{\epsilon}{2}\,g-\frac{b_0}{16\pi^2}\,g^3\quad (D=4-\epsilon).
+	\]
+	Fixed points satisfy \(\beta(g_*)=0\). Besides the trivial fixed point \(g_*=0\), a nontrivial fixed point would require
+	\[
+	\frac{D-4}{2}-\frac{b_0}{16\pi^2}g_*^2=0
+	\quad\Longrightarrow\quad
+	\boxed{g_*^2=\frac{8\pi^2}{b_0}(D-4).}
+	\]
+	Thus a real (physical) nontrivial fixed point exists only if
+	\[
+	\boxed{\frac{D-4}{b_0}>0,}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Banks–Zaks type regime (parametric).} For \(SU(N)\) with \(n_f\) fundamentals, treat \(n_f\) near the loss-of-asymptotic-freedom value so that \(b_0\) is small and positive. Using the \(D=4-\epsilon\) form from Problem 6 with \(\epsilon>0\) small, estimate the fixed-point coupling \(g_*^2\) scaling with \(b_0\) and \(\epsilon\). (You do not need the two-loop coefficient.)
+\end{problem}
+\begin{solution}[31.7]
+	The non-trivial fixed point has been solved in the last problem. For $D=4-\epsilon$, we have,
+	\[
+	\boxed{
+	g_*^2=-\frac{8\pi^2}{b_0}\epsilon<0},
+	\]
+	since $\epsilon>0$ and $b_0>0$. So we conclude, without any knowledge about 2--loop correction, the fixed--point is parametric.
+\end{solution}

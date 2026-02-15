@@ -1,0 +1,227 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\allowdisplaybreaks[4]
+\usepackage[hidelinks]{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage[]{cancel}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+\newenvironment{solution}[1][]{\begin{proof}[\textbf{Solution}]}{\end{proof}}
+% --- Rounded box style for each problem (whole statement) ---
+\tcbset{
+    problem/.style={
+        enhanced,
+        boxrule=0.7pt,
+        arc=3mm,
+        left=3mm,right=3mm,top=2mm,bottom=2mm,
+        colback=white,
+        colframe=black,
+        before skip=10pt,
+        after skip=6pt,
+    }
+}
+
+
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 17} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+
+\begin{tcolorbox}[problem]
+\textbf{1.} For a massless scalar on an interval of length $L$ with Dirichlet boundary conditions in $D=2$, write the normal mode frequencies $\omega_n$.
+\end{tcolorbox}
+\begin{solution}[17.1]
+		We consider a massless scalar field $\phi(t,x)$ on the interval $x\in[0,L]$ in $D=2$,
+		satisfying the wave equation
+		\[
+		(\partial_t^2-\partial_x^2)\phi(t,x)=0,
+		\]
+		with Dirichlet boundary conditions
+		\[
+		\phi(t,0)=0,\qquad \phi(t,L)=0.
+		\]
+		Separating variables $\phi(t,x)=e^{-i\omega t}f(x)$ gives
+		\[
+		f''(x)+\omega^2 f(x)=0,\qquad f(0)=f(L)=0,
+		\]
+		whose normalizable solutions are
+		\[
+		f_n(x)=\sin\!\left(\frac{n\pi x}{L}\right),\qquad n=1,2,3,\ldots
+		\]
+		Thus the allowed wave numbers and normal-mode frequencies are
+		\[
+		k_n=\frac{n\pi}{L},\qquad \omega_n=|k_n|=\frac{n\pi}{L},\qquad n=1,2,3,\ldots
+		\]
+		So, \textbf{MY FINAL ANSWER IS}:
+		\[
+		\boxed{
+		\omega_n=|k_n|=\frac{n\pi}{L},\quad n=1,2,3,\ldots
+		}
+		\]
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{2.} Formally write the vacuum energy $E_0(L)=\frac12\sum_n\omega_n$ and explain why it diverges.
+\end{tcolorbox}
+\begin{solution}[17.2]
+	Using the frequencies found in Problem 1, we obtain the formal expression
+	\[
+	E_0(L)=\frac{1}{2}\sum_{n=1}^{\infty}\frac{n\pi}{L}
+	=\frac{\pi}{2L}\sum_{n=1}^{\infty} n.
+	\]
+	This diverges because the high-frequency (large-$n$) modes contribute without bound:
+	as $n\to\infty$, $\omega_n\sim n$, so the partial sums grow like
+	\[
+	\sum_{n=1}^{N}\omega_n \sim \frac{\pi}{L}\sum_{n=1}^{N} n
+	= \frac{\pi}{L}\,\frac{N(N+1)}{2}\xrightarrow[N\to\infty]{}\infty.
+	\]
+	Equivalently, $\sum_{n=1}^{\infty} n$ is a divergent series, reflecting the ultraviolet divergence of the vacuum energy.
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{3.} Use zeta-function regularization in $D=2$ to compute the finite part of $E_0(L)$ and show it scales like $-1/L$.
+\end{tcolorbox}
+\begin{solution}[17.3]
+	The zeta-function regularization is:
+	\[
+	1+2+3+\cdots=\zeta(-1)=-\frac{1}{12}
+	\]
+	plug it into the result of last problem:
+	\[
+	E_0(L)=\frac{\pi}{2L}\sum_{n=1}^{\infty}n=\frac{\pi}{2L}\cdot-\frac{1}{12}+\infty=-\frac{\pi}{24L}+\infty
+	\]
+	It is clear it scales like $-\frac{1}{L}$.
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{4.} Explain precisely what ``subtracting local counterterms'' means here, identify the terms in $E_0$ that are extensive in $L$ and how they are absorbed into local terms (cosmological constant / boundary tensions if relevant).
+\end{tcolorbox}
+\begin{solution}[17.4]
+	As a first step, we replace $E_0$ by the regularized quantity:
+	\[
+	E_0\left(L;\alpha\right)=\frac{\pi}{2L}\sum_{n=1}^\infty n\exp\left[-\frac{n\alpha}{L}\right]
+	\]
+	where $\alpha$ is the cutoff parameter. It is easy to see that this series converges for $\alpha>0$, while the original divergent expression is recovered in the limit $\alpha\to0$. A straightforward calculation gives
+	\[
+	\begin{aligned}
+	E_0\left(L;\alpha\right)&=-\frac{\pi}{2}\frac{\partial}{\partial\alpha}\sum_{n=1}^\infty\exp\left[-\frac{n\alpha}{L}\right]=\frac{\pi}{2L}\frac{\exp\left(-\frac{\alpha}{L}\right)}{\left[1-\exp\left(-\frac{\alpha}{L}\right)\right]^2}\\
+	&=\frac{\pi}{8L}\frac{1}{\sinh^2\frac{\alpha}{2L}}=\frac{\pi L}{2\alpha^2}-\frac{\pi}{24L}+\frac{1}{L}O\left(\frac{\alpha^2}{L^2}\right)
+	\end{aligned}
+	\]
+	As $\alpha\to0$, the first term here diverges as $\alpha^{-2}$, the second term remains finite and further terms vanish. The crucial fact is that the singular term does not depend on the distance $L$ between the plates and \textbf{can be interpreted as the energy density of the zero-point fluctuations in Minkowski spacetime without boundaries.} 
+	\[
+	S_{\rm ct}=-\int dt\int_{0}^{L}dx\;\delta\Lambda
+	\]
+	It is clear this is a local counter term, so the divergent part can be absorbed by local counter term \textbf{due to the cosmological constant.}
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{5.} Show that the remaining finite part depends nonlocally on $L$ and cannot be cancelled by any counterterm that is an integral of local densities.
+\end{tcolorbox}
+\begin{solution}[17.5]
+	Subtracting from $E_0(L;\alpha)$ the vacuum energy density and removing the cutoff (taking the limit $\alpha\to0)$, we obtain
+	
+	$$\Delta E_{\mathrm{ren}}(L)=\lim_{\alpha\to0}\left[E_0\left(L;\alpha\right)-\lim_{L\to\infty}E_0\left(L;\alpha\right)\right]=-\frac\pi{24L}.$$
+	
+	After we have decided to fix the normalization point and to attribute a “zero” energy to vacuum fluctuations in Minkowski spacetime, there remains no more freedom to renormalize the finite shift of the energy density due to the presence of the plates. 
+	
+	In the parallel-plate setup (here we consider, more generally, parallel plates in arbitrary dimension, and we denote by $\perp$ the directions along which Neumann boundary conditions are imposed), the allowed local terms are either a bulk cosmological constant term, $\int_{\mathrm{bulk}} d^{d}x$, which implies $E \propto V_\perp L$, or boundary tensions terms, $\int_{\partial} d^{d-1}x,\tau$, which give $E \propto V_\perp$. By contrast, the finite contribution we find, $E \propto L^{-1}$, cannot be removed by any local counterterm, and is therefore entirely physical and observable.
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{6.} Generalize to $D$ dimensions with parallel plates separated by $L$, write the mode sum/integral structure and identify how the divergent pieces scale with the transverse volume.
+\end{tcolorbox}
+\begin{solution}[17.6]
+	Consider two parallel plates located at $z=0$ and $z=L$. Based on the analysis in Problem 1, the boundary conditions impose constraints on $k_z$
+	\[
+	k_z=\frac{n\pi}{L},\quad n=1,2,\ldots
+	\]
+	However, the transverse directions remain as free plane waves and are unrestricted. By summing over the discrete modes in the $z$-direction and integrating over the phase space of the transverse directions, we obtain the vacuum zero-point energy as:
+	\[
+	E_0(L)=\frac{1}{2}V_\perp\sum_{n=1}^\infty\int\frac{d^{D-2}k_\perp}{(2\pi)^{D-2}}\sqrt{k_\perp^2+\left(\frac{n\pi}{L}\right)^2}
+	\]
+	Next, choosing a cutoff, we obtain:
+	\begin{align*}
+		\frac{E_0(L)}{V_\perp}
+		&=\frac12\sum_{n=1}^\infty \int\frac{d^{d}k}{(2\pi)^{d}}
+		\sqrt{k^2+\left(\frac{n\pi}{L}\right)^2} \\[4pt]
+		&=\frac12\sum_{n=1}^\infty \int\frac{d^{d}k}{(2\pi)^{d}}
+		\left[-\frac1{2\sqrt\pi}\int_{1/\Lambda^2}^{\infty}ds\,s^{-3/2}
+		\exp\!\left(-s\left[k^2+\left(\frac{n\pi}{L}\right)^2\right]\right)\right] \\[6pt]
+		&=-\frac1{4\sqrt\pi}\int_{1/\Lambda^2}^{\infty}ds\,s^{-3/2}
+		\sum_{n=1}^\infty \int\frac{d^{d}k}{(2\pi)^{d}}
+		e^{-sk^2}\,e^{-s(n\pi/L)^2} \\[6pt]
+		&=-\frac1{4\sqrt\pi}\int_{1/\Lambda^2}^{\infty}ds\,s^{-3/2}
+		\sum_{n=1}^\infty \frac1{(4\pi s)^{d/2}}\,e^{-s(n\pi/L)^2} \\[6pt]
+		&=-\frac1{4\sqrt\pi(4\pi)^{d/2}}
+		\int_{1/\Lambda^2}^{\infty}ds\,s^{-(d+3)/2}\sum_{n=1}^\infty e^{-s(n\pi/L)^2} \\[8pt]
+		&=-\frac1{4\sqrt\pi(4\pi)^{d/2}}
+		\int_{1/\Lambda^2}^{\infty}ds\,s^{-(d+3)/2}
+		\left[\frac{L}{2\sqrt{\pi s}}-\frac12+\frac{L}{\sqrt{\pi s}}\sum_{m=1}^{\infty}e^{-m^2L^2/s}\right] \\[10pt]
+		&=-\frac{L}{8\pi(4\pi)^{d/2}}\int_{1/\Lambda^2}^{\infty}ds\,s^{-(d+4)/2}
+		+\frac{1}{8\sqrt\pi(4\pi)^{d/2}}\int_{1/\Lambda^2}^{\infty}ds\,s^{-(d+3)/2} \\[4pt]
+		&\quad-\frac{L}{4\pi(4\pi)^{d/2}}\sum_{m=1}^\infty\int_{1/\Lambda^2}^{\infty}ds\,s^{-(d+4)/2}e^{-m^2L^2/s} \\[10pt]
+		&=-\frac{L}{8\pi(4\pi)^{d/2}}\left[\frac{2}{D}\Lambda^{D}\right]
+		+\frac{1}{8\sqrt\pi(4\pi)^{d/2}}\left[\frac{2}{D-1}\Lambda^{D-1}\right] \\[4pt]
+		&\quad-\frac{L}{4\pi(4\pi)^{d/2}}\sum_{m=1}^\infty\int_{0}^{\infty}ds\,s^{-(d+4)/2}e^{-m^2L^2/s} \\[10pt]
+		&=-\frac{L}{D(4\pi)^{D/2}}\Lambda^{D}
+		+\frac{1}{2(D-1)(4\pi)^{(D-1)/2}}\Lambda^{D-1} \\[4pt]
+		&\quad-\frac{L}{4\pi(4\pi)^{d/2}}\sum_{m=1}^\infty
+		\left[\Gamma\!\left(\frac{D}{2}\right)m^{-D}L^{-D}\right] \\[10pt]
+		&=-\frac{L}{D(4\pi)^{D/2}}\Lambda^{D}
+		+\frac{1}{2(D-1)(4\pi)^{(D-1)/2}}\Lambda^{D-1}
+		-\frac{\Gamma(D/2)\,\zeta(D)}{(4\pi)^{D/2}}\frac{1}{L^{D-1}}.
+	\end{align*}
+	In the above derivation, we used following well-known formula:
+	\[
+	\begin{gathered}
+			\sqrt{A}=-\frac{1}{2\sqrt{\pi}}\int_{1/\Lambda^2}^\infty dss^{-3/2}e^{-sA}\\
+			\sum_{n=1}^\infty e^{-s(n\pi/L)^2}=\frac{L}{2\sqrt{\pi s}}-\frac{1}{2}+\frac{L}{\sqrt{\pi s}}\sum_{m=1}^\infty e^{-m^2L^2/s}\\
+			\int_0^\infty dss^{-(d+4)/2}e^{-m^2L^2/s}=\Gamma\left(\frac{D}{2}\right)m^{-D}L^{-D}
+	\end{gathered}
+	\]
+	So, \textbf{MY FINAL ANSWER IS}:
+	\[
+	\boxed{
+	E_0(L)=\underbrace{-\frac{V_\perp L}{D(4\pi)^{D/2}}\Lambda^D}_{\text{bulk}}+\underbrace{\frac{V_\perp}{2(D-1)(4\pi)^{(D-1)/2}}\Lambda^{D-1}}_{\text{surface}}\underbrace{-\frac{\Gamma(D/2)\zeta(D)}{(4\pi)^{D/2}}\frac{V_\perp}{L^{D-1}}}_{\text{Casimir}}
+	}
+	\]
+	Based on the analysis in the previous problem, the first two divergent terms can be removed by local counterterms coming from the cosmological constant and the boundary tensions, respectively, while the last term is physically observable. However, in $D=2$ the term associated with the boundary tensions seems to be nonzero, which appears to contradict the conclusion in the previous problem. This is because we adopted different cutoff prescriptions in the two problems. The divergent pieces are naturally scheme-dependent and therefore depend on how the cutoff is implemented, whereas the final finite term is a scheme-independent, physically observable quantity.
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{7.} Using dimensional analysis, determine how the finite Casimir energy per transverse area scales with $L$ in general $D$ for a massless field.
+\end{tcolorbox}
+\begin{solution}[17.7]
+From the analysis in the previous problem, we already know that the correct answer should be proportional to $1/L^{D-1}$. Here, we re-derive this result using dimensional analysis. We adopt natural units where $\hbar=c=1$. The dimension of energy is $[E]=[L]^{-1}$. The dimension of the transverse area is $[V_\perp]=[L]^{D-2}$. Therefore, the dimension of energy per unit transverse area is
+\begin{equation}
+	\left[\frac{E}{V_\perp}\right] = [L]^{-1-(D-2)} = [L]^{-(D-1)}.
+\end{equation}
+Since the field is massless and characterized by a single length scale $L$, it follows that
+\begin{equation}
+	\boxed{\frac{E_{0}}{V_{\perp}} \propto \frac{1}{L^{D-1}}}
+\end{equation}
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{8.} In $D=4$, compute (or quote and justify) the sign of the Casimir force for a massless scalar with Dirichlet boundary conditions between plates.
+\end{tcolorbox}
+\begin{solution}[17.8]
+	From Problem 6, we know the Casimir energy:
+	\[
+	E_0^{D=4}(L)=-\frac{\Gamma{4/2}\xi(4)}{(4\pi)^2}\frac{V_\perp}{L^3}=-\frac{\pi^2}{1440}\frac{V_\perp}{L^3}
+	\]
+	So the Casimir force per unit area is given by:
+	\[
+	\frac{F}{V_\perp}=-\frac{d}{dL}\frac{E_0^{D=4}(L)}{V_\perp}=-\frac{d}{dL}\left(-\frac{\pi^{2}}{1440}L^{-3}\right)=-\frac{\pi^{2}}{480L^{4}}<0
+	\]
+	This indicates that the Casimir force between the two plates is attractive.
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{9.} Replace the scalar with the photon, explain how gauge invariance and physical polarizations imply an effective factor of $D-2$ compared to a scalar (up to boundary condition subtleties).
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{10.} Experimental connection in $D=4$, list the dominant real-world corrections one must control (finite conductivity, surface roughness, temperature, geometry) and explain why Casimir measurements are still a clean test of a QFT vacuum effect rather than a scattering cross section.
+\end{tcolorbox}
+
+
+\end{document}

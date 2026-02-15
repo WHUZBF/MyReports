@@ -1,0 +1,69 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 29} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\begin{problem}
+    \textbf{Coarse graining in 0+1d.} Consider the Euclidean path integral for a single degree of freedom with a UV cutoff \(\Lambda\). Split the field into slow and fast modes in a small momentum shell. Integrate out the fast modes to obtain an effective action for the slow modes.
+\end{problem}
+\begin{problem}
+    \textbf{Induced operators.} Starting from a quartic interaction, show that integrating out a shell generates additional local operators (for example a mass term and higher-derivative terms). Identify which are relevant, marginal, and irrelevant by engineering dimension.
+\end{problem}
+\begin{problem}
+    \textbf{Rescaling step.} After integrating out a momentum shell, rescale coordinates and fields to restore the cutoff to \(\Lambda\). Derive the classical scaling of couplings under this step.
+\end{problem}
+\begin{problem}
+    \textbf{Fixed points and linearization.} Define what it means for an action (or set of couplings) to be at a fixed point of the RG. Linearize the flow around a fixed point and define critical exponents in terms of eigenvalues of the linearized RG map.
+\end{problem}
+\begin{solution}[29.4]
+	Let the Wilsonian action be parameterized by couplings $\{g_i\}$ at cutoff $\Lambda$,
+	\[
+	S_\Lambda[\phi]=S[\phi;\{g_i(\Lambda)\}],\qquad t\equiv \ln\frac{\Lambda}{\Lambda_0}.
+	\]
+	The RG flow is
+	\[
+	\frac{d g_i}{dt}=\beta_i(\{g\}).
+	\]
+	A fixed point $\{g_i^\ast\}$ is defined by
+	\[
+	\boxed{
+	\beta_i(\{g^\ast\})=0\qquad \forall i},
+	\]
+	so that under an RG step the action keeps the same functional form (up to the trivial rescalings built into the RG transformation). Write $g_i(t)=g_i^\ast+\delta g_i(t)$. Expanding the beta functions,
+	\[
+	\beta_i(\{g\})=\beta_i(\{g^\ast\})+\sum_j\left.\frac{\partial\beta_i}{\partial g_j}\right|_{g^\ast}\delta g_j+O(\delta g^2)
+	=\sum_j M_{ij}\,\delta g_j+O(\delta g^2),
+	\]
+	Keeping only the linear terms gives
+	\[
+	\frac{d(\delta g_i)}{dt}=\sum_j M_{ij}\,\delta g_j.
+	\]
+	Diagonalize $M$ by choosing eigenvectors $v^{(a)}$ and eigenvalues $\lambda_a$, then directions in RG flow can be classified by the sign of $\lambda_a$:
+	\begin{itemize}
+		\item $y_a>0:$ relevant
+		\item $y_a<0:$ marginal (need higher order)
+		\item $y_a=0:$ irrelevan
+	\end{itemize}
+	
+	Let $u$ be a single relevant scaling variable with eigenvalue $y>0$ so that $u(t)=u(0)e^{y t}$.
+	Under the RG rescaling by a factor $b=e^{-t}$, correlation lengths satisfy $\xi(u)=b\,\xi(u(t))$.
+	Choose $t$ such that $u(t)\sim O(1)$, i.e.\ $e^{y t}\sim 1/u(0)$, so $b=e^{-t}\sim u(0)^{1/y}$.
+	Then we obtain the definition of critical exponents $\nu$:
+	\[
+	\xi(u)\sim u(0)^{-1/y}
+	\quad\Longrightarrow\quad
+	\boxed{\nu=\frac{1}{y}}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Universality.} Explain why irrelevant operators do not affect long-distance physics at a critical point. Give a simple example illustrating universality classes.
+\end{problem}
+\begin{problem}
+    \textbf{Nonperturbative RG as a functional flow.} Write schematically what it means to have an RG flow equation for the full Wilsonian effective action \(S_\Lambda[\phi]\) rather than for finitely many couplings. Explain why such an equation can encode nonperturbative information.
+\end{problem}
+\begin{problem}
+        \textbf{Infinitesimal Wilsonian RG has one-loop form.} Derive the infinitesimal RG step \(\Lambda\to\Lambda-\delta\Lambda\) by integrating out an infinitesimal momentum shell of (approximately) Gaussian modes. Show that the exact flow equation for \(S_\Lambda\) (or equivalently \(\mathcal{L}_{\text{eff}}\)) has a one-loop functional form (a single shell contraction or single functional trace/logdet structure). Explain briefly why expanding the flowing action in couplings can nevertheless reproduce multi-loop beta functions when iterated.
+    \end{problem}

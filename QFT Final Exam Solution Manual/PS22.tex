@@ -1,0 +1,224 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 22} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\noindent Conventions: mostly-plus metric \( \eta^{\mu\nu}=\mathrm{diag}(-,+,\ldots,+) \) and \( \{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu} \).
+
+\begin{problem}
+    \textbf{Old vs modern normalization (field redefinition).} Start from
+    \[
+        \mathcal{L}_{\text{old}}
+        = -\frac{1}{4}F^{\mu\nu}F_{\mu\nu}
+        - \bar{\psi}(\gamma^\mu\partial_\mu + m)\psi
+        - e\,\bar{\psi}\gamma^\mu A_\mu\psi.
+    \]
+    Define a rescaled gauge field \(A_\mu = e\,A'_\mu\). Rewrite the Lagrangian in terms of \(A'_\mu\) and show it becomes
+    \[
+        \mathcal{L}_{\text{modern}}
+        = -\frac{1}{4e^{2}}F'^{\mu\nu}F'_{\mu\nu}
+        - \bar{\psi}(\gamma^\mu\partial_\mu + m)\psi
+        - \bar{\psi}\gamma^\mu A'_\mu\psi.
+    \]
+\end{problem}
+\begin{solution}[22.1]
+	$F\sim\partial A$, so \textbf{MY FINAL ANSWER IS}:
+	\[
+	\begin{aligned}
+	\mathcal{L}_{\mathrm{old}}&=-\frac{1}{4}F^{\mu\nu}F_{\mu\nu}+\bar{\psi}(i\gamma^\mu\partial_\mu-m)\psi-e\bar{\psi}\gamma^\mu A_\mu\psi\\
+	&=-\frac{1}{4e^2}\left(eF^{\mu\nu}\right)\left(eF_{\mu\nu}\right)+\bar{\psi}(i\gamma^\mu\partial_\mu-m)\psi-\bar{\psi}\gamma^\mu \left(eA_\mu\right)\psi\\
+	&=-\frac{1}{4e^2}F^{\prime\mu\nu}F_{\mu\nu}^{\prime}+\bar{\psi}(i\gamma^\mu\partial_\mu-m)\psi-\bar{\psi}\gamma^\mu A_\mu^{\prime}\psi
+	\end{aligned}
+	\]
+	Note that the Lagrangian in this problem is wrong.
+\end{solution}
+\begin{problem}
+    \textbf{Gauge transformation in both normalizations.} In the old normalization, take \(\psi\to e^{i\alpha}\psi\), \(A_\mu\to A_\mu-\partial_\mu\alpha/e\). Show that in the modern normalization \(A'_\mu\to A'_\mu-\partial_\mu\alpha\). Derive the corresponding covariant derivative \(D_\mu=\partial_\mu+iA'_\mu\).
+\end{problem}
+\begin{solution}[22.2]
+	\[
+		A_{\mu}\rightarrow A_{\mu}-\partial_{\mu}\alpha/e
+		\quad\Rightarrow\quad
+		eA_{\mu}\to eA_{\mu}-\partial_{\mu}\alpha
+		\quad\Rightarrow\quad
+		A_{\mu}^{\prime}\to A_{\mu}^{\prime}-\partial_{\mu}\alpha
+	\]
+	Focus on the modern lagrangian:
+	\[
+	\begin{aligned}
+			\mathcal{L}_{\mathrm{modern}}&=-\frac{1}{4e^2}F^{\prime\mu\nu}F_{\mu\nu}^{\prime}+\bar{\psi}(i\gamma^\mu\partial_\mu-m)\psi-\bar{\psi}\gamma^\mu A_\mu^{\prime}\psi\\
+		&=-\frac{1}{4e^2}F^{\prime\mu\nu}F_{\mu\nu}^{\prime}+\bar{\psi}\left(i\gamma^\mu\left(\partial_\mu+i{A_\mu}'\right)-m\right)\psi\\
+		\Rightarrow&\quad D_{\mu}=\partial_{\mu}+iA_{\mu}^{\prime}
+	\end{aligned}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Current and coupling dependence.} Define the Noether current \(j^\mu\) for the global \(U(1)\) symmetry. Show that the coupling \(e\) appears only in the Maxwell term in the modern normalization, and not in the current coupling \(j^\mu A'_\mu\).
+\end{problem}
+\begin{solution}[22.3]
+	Consider the global $U(1)$ symmetry:
+	\[
+	\psi\to e^{i\alpha}\psi,\quad\mathrm{~}\bar{\psi}\to\bar{\psi}e^{-i\alpha},\quad A_{\mu}\to A_{\mu}
+	\]
+	The infinisimal form is:
+	\[
+	\delta\psi=i\alpha\psi,\quad\delta\bar{\psi}=-i\alpha\bar{\psi}
+	\]
+	The corresponding Noether current is:
+	\[
+	j^\mu=\frac{\partial\mathcal{L}}{\partial(\partial_\mu\psi)}\delta\psi+\delta\bar{\psi}\frac{\partial\mathcal{L}}{\partial(\partial_\mu\bar{\psi})}=(i\bar{\psi}\gamma^\mu)(i\alpha\psi)=\alpha\bar{\psi}\gamma^\mu\psi
+	\]
+	we can drop out $\alpha$ and obtain:
+	\[
+	\boxed{j^{\mu}=	\bar{\psi}\gamma^\mu\psi}
+	\]
+	The interacting term can be rewritten in morden normalization as:
+	\[
+	\mathcal{L}_{\text{int}}=-ej^\mu A_\mu=-ej^\mu\frac{A_\mu^{\prime}}{e}=\boxed{-j^\mu A_\mu^{\prime}},
+	\]
+	It is clear the result does not contain any $e$.
+\end{solution}
+\begin{problem}
+    \textbf{Beta function for \(e\) vs beta function for \(1/e^2\).} Assume \(\beta(e)=b\,e^3\) at one loop in 4D. Compute
+    \[
+        \mu\frac{d}{d\mu}\Bigl(\frac{1}{e^{2}}\Bigr)
+    \]
+    and show it is proportional to a constant (independent of \(e\)) at one loop.
+\end{problem}
+\begin{solution}[22.4]
+	Using the definition $\beta(e):=\mu\frac{de}{d\mu}$, we have:
+	\[
+	\mu\frac{d}{d\mu}\left(\frac{1}{e^2}\right)=-\frac{2}{e^3}\mu\frac{de}{d\mu}=-\frac{2}{e^3}\beta(e)=-2b
+	\]
+	It is clear that it is proportional to a constant $b$ at one loop.
+\end{solution}
+\begin{problem}
+    \textbf{Vacuum polarization and running in the modern normalization.} Explain why in the modern normalization the renormalization of the Maxwell term can be interpreted as the running of \(1/e^2(\mu)\). State the sign of the running in QED and its physical meaning.
+\end{problem}
+\begin{solution}[22.5]
+	Consider the 1PI diagram of photon propagator, $i\Pi^{\mu\nu}(q)$. The only tensors that can appear in $\Pi^{\mu\nu}(q)$ are $g^{\mu\nu}$ and $q^\mu q^\nu.$ The Ward identity, however, tells us that $q_\mu \Pi ^{\mu \nu }( q) = 0.$ This implies that $\Pi^\mu\nu(q)$ is proportional to the projector $(g^\mu\nu-q^\mu q^\nu/q^2)$. It is therefore convenient to extract the tensor structure from $\Pi^{\mu\nu}$ in the following way:
+	\[
+	\Pi^{\mu\nu}(q)=(q^2g^{\mu\nu}-q^\mu q^\nu)\Pi(q^2)
+	\]
+	Using this notation, the exact photon two-point function is:
+	\[
+	\begin{aligned}\mathbf{\Delta}^{\mu\nu}(q)&=\frac{-ig_{\mu\nu}}{q^{2}}+\frac{-ig_{\mu\rho}}{q^{2}}\left(\delta_{\nu}^{\rho}-\frac{q^{\rho}q_{\nu}}{q^{2}}\right)\left(\Pi(q^{2})+\Pi^{2}(q^{2})+\cdots\right)\\&=\frac{-i}{q^{2}\left(1-\Pi(q^{2})\right)}\left(g_{\mu\nu}-\frac{q_{\mu}q_{\nu}}{q^{2}}\right)+\frac{-i}{q^{2}}\left(\frac{q_{\mu}q_{\nu}}{q^{2}}\right).\end{aligned}
+	\]
+	According to the Ward identity, term propotional to $q$ will not contibute to the S-matrix, so we can conclude:
+	\[
+	\boxed{
+	\mathbf{\Delta}^{\mu\nu}(q)=\frac{-ig_{\mu\nu}}{q^2\left(1-\Pi(q^2)\right)}
+	},
+	\]
+	which implies the mass of photon will never be corrected in quantum level, but the electriv chage will run. Because the residue of the $q^2=0$ pole is
+	$$\frac1{1-\Pi(0)}\equiv Z_3.$$
+	The amplitude for any low-$q^2$ scattering process will be shifted by this factor,
+	relative to the tree-level approximation:
+	\[
+	\cdots\frac{e^2g_{\mu\nu}}{q^2}\cdots\longrightarrow\cdots\frac{Z_3e^2g_{\mu\nu}}{q^2}\cdots
+	\]
+	Since a factor of $e$ lies at each end of the photon propagator, we can conveniently account for this shift by making the replacement $e\to\sqrt Z_3e.$ This renlacement is called charge renormalization.
+	
+	In the modern normalization this point is more transparent, because
+	\[
+	\mathcal{L}_{\text{modern}}^{\text{ren}} \supset -\frac{Z_3}{4e^2}\,F'_{\mu\nu}F'^{\mu\nu}
+	= -\frac{1}{4e(\mu)^2}\,F'_{\mu\nu}F'^{\mu\nu},
+	\]
+	where \(e(\mu)=e/\sqrt{Z_3}\). The beta function of QED at 1-loop is:
+	\[
+	\beta(e)\equiv\mu\frac{de}{d\mu}=\frac{e^3}{12\pi^2}+\cdots\mathrm{~>~}0
+	\]
+	Therefore, the sign of the running in QED is \textbf{negative}:
+	\[
+	\boxed{\mu\frac{d}{d\mu}{\left(\frac{1}{e^2(\mu)}\right)}<0}
+	\]
+	\textbf{The physical meaning is that} vacuum polarization polarizes the vacuum as if it were a medium, producing a screening effect. 
+	At low energies (long distances), one observes a smaller effective charge that is screened by the surrounding electron--positron cloud. 
+	When probing shorter distances (larger $\mu$ or larger $q^2$), one penetrates the screening more deeply and sees a more ``bare'' charge, so the effective coupling increases.
+\end{solution}
+\begin{problem}
+    \textbf{Landau pole in terms of \(1/e^2\).} If \(1/e^2(\mu)=1/e^2(\mu_0)-k\ln(\mu/\mu_0)\), solve for the scale \(\Lambda_{\text{Landau}}\) where \(e(\mu)\) diverges.
+\end{problem}
+\begin{solution}[22.6]
+	As $e^2(\Lambda_{\text{Landau}})$ goes to infinity, we have:
+	\[
+	1/e^2(\mu_0)-k\ln(\Lambda_{\text{Landau}}/\mu_0)=0
+	\]
+	So, \textbf{MY FINAL ANSWER IS}
+	\[
+	\boxed{
+	\Lambda_{\text{Landau}}=\mu_0\exp\left(\frac{1}{ke^2(\mu_0)}\right)
+	}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Dimensional analysis in \(D\neq4\).} In \(D\) spacetime dimensions, determine the mass dimension of \(e\). Show that in \(D=4-\epsilon\) the classical contribution to \(\beta(e)\) is \(\beta(e)=(D-4)e/2\).
+\end{problem}
+\begin{solution}[22.7]
+	In $D$ spacetime dimensions (with $\hbar=c=1$), the action is dimensionless, so the Lagrangian density has mass dimension
+	\[
+	[\mathcal L]=D,\qquad [\partial_\mu]=1.
+	\]
+	
+	\paragraph{Mass dimension of $e$.}
+	From the Maxwell term
+	\[
+	\mathcal L \supset -\frac14 F_{\mu\nu}F^{\mu\nu},\qquad F_{\mu\nu}\sim \partial_\mu A_\nu,
+	\]
+	we obtain
+	\[
+	[F_{\mu\nu}]=1+[A],\qquad [F^2]=2(1+[A])=D
+	\quad\Rightarrow\quad
+	[A]=\frac{D-2}{2}.
+	\]
+	From the Dirac kinetic term
+	\[
+	\mathcal L \supset \bar\psi\, i\gamma^\mu\partial_\mu \psi,
+	\]
+	it follows that
+	\[
+	[\bar\psi]+1+[\psi]=D,\qquad [\bar\psi]=[\psi]
+	\quad\Rightarrow\quad
+	[\psi]=\frac{D-1}{2}.
+	\]
+	Using the interaction term
+	\[
+	\mathcal L_{\text{int}}=-e\,\bar\psi\gamma^\mu A_\mu\psi,
+	\]
+	we require
+	\[
+	[e]+[\bar\psi]+[A]+[\psi]=D,
+	\]
+	hence
+	\[
+	[e]=D-2[\psi]-[A]
+	= D-(D-1)-\frac{D-2}{2}
+	=\frac{4-D}{2}.
+	\]
+	Therefore
+	\[
+	\boxed{
+	[e]=\frac{4-D}{2}.
+}
+	\]
+	
+	\paragraph{Classical contribution to $\beta(e)$.}
+	From the above dimensional analysis, we have:
+	\[
+	e_0=\mu^{\frac{4-D}{2}}\,e(\mu),
+	\]
+	Since the bare coupling $e_0$ is $\mu$-independent, we have
+	\[
+	0=\mu\frac{d}{d\mu}\ln e_0
+	=\frac{4-D}{2}+\mu\frac{d}{d\mu}\ln e(\mu),
+	\]
+	which implies
+	\[
+	\boxed{
+	\beta_{\text{class}}(e)\equiv \mu\frac{de}{d\mu}
+	=\frac{D-4}{2}\,e}
+	\]
+\end{solution}

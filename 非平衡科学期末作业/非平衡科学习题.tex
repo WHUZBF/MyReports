@@ -1,0 +1,469 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=1.6cm}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{braket}
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[]{tikz}
+\usepackage{tikz-cd}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\begin{document}
+	\title{Solutions Manual for the Non-Equilibrium Physics Assignment}
+	\author{Bufan Zheng\\email: \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}}}
+	\date{}
+	\maketitle
+	
+	\textbf{Note}: \emph{The final answers are boxed}.
+	
+	\section{Problem 1}
+	Let us consider the following master equation
+	\begin{equation}
+		\partial_t p_X(x;t)
+		=
+		\sum_{x'=1}^{2}\sum_{\nu=1}^{2}
+		\Big[
+		W^{(\nu)}(x|x')\,p(x';t)
+		-
+		W^{(\nu)}(x'|x)\,p(x;t)
+		\Big]
+		\tag{1}
+	\end{equation}
+	where $x$, $x'$ and $\nu$ are binary states ($x \in \{1,2\}$  $x' \in \{1,2\}$   $\nu \in \{1,2\}$). Let $p(x;t)$ be the probability distribution at time $t \in \mathbb{R}$. The transition rate $W^{(\nu)}(x'|x)$ is positive, $W^{(\nu)}(x'|x) > 0$ if $x' \ne x$, and satisfies $\sum_{x'} W^{(\nu)}(x'|x) = 0$. The transition rate does not depend on time,$\frac{\partial W^{(\nu)}(x'|x)}{\partial t} = 0$. Let $p^{\mathrm{st}}(x)$ be the steady-state distribution. Let $\sigma(t)$ be the entropy production rate at time $t$. Let $\sigma^{\mathrm{st}}$ be the entropy production rate in the steady-state
+	
+	\begin{itemize}
+		\item \textbf{1.1}
+		\emph{Find} $p^{\mathrm{st}}(x)$, in terms of $W^{(\nu)}(x'|x)$
+		
+		\item\textbf{1.2}
+		\emph{Find} $\sigma(t)$, in terms of $p(x;t)$ and $W^{(\nu)}(x'|x)$
+		
+		\item\textbf{1.3}
+		\emph{Find} $\sigma^{\mathrm{st}}$, in terms of $W^{(\nu)}(x'|x)$
+		
+		\item\textbf{1.4}
+		\emph{Rewrite} the master equation (1) using the incidence matrix $B_{x\rho}$, where $x$ denotes the state and $\rho$ denotes the transition
+		
+		\item\textbf{1.5}
+		\emph{Discuss} a relationship between $\sigma^{\mathrm{st}}$ and the kernel of the incidence matrix $\mathrm{Ker}[B]$.
+	\end{itemize}
+	\section*{Solution 1}
+	\subsection*{1.1}
+	By definition, $\partial_t p^{st}=0$, we have:
+	\[
+	\sum_{x'=1}^{2}\sum_{\nu=1}^{2}
+	\Big[
+	W^{(\nu)}(x|x')\,p^{st}(x';t)
+	-
+	W^{(\nu)}(x'|x)p^{st}(x;t)\Big]=0
+	\]
+	There is only one independent equation, which can be obtained by choosing $x=1$:
+	\[
+	\left[W^{(2)}(1|2)+W^{(1)}(1|2)\right]p^{st}(2;t)-\left[W^{(1)}(2|1)+W^{(2)}(2|1)\right]p^{st}(1;t)=0
+	\]
+	
+	We also have the following equation from normalization:
+	\[
+	p^{st}(1;t)+p^{st}(2;t)=1
+	\]
+	Solving these equations, \textbf{we obtain}:
+	\[
+	\boxed{
+		\begin{aligned}
+			p^{st}(1;t)&=\frac{W^{(1)}(1|2)+W^{(2)}(1|2)}{W^{(1)}(1|2)+W^{(2)}(1|2)+W^{(1)}(2|1)+W^{(2)}(2|1)}\\
+			p^{st}(2;t)&=\frac{W^{(1)}(2|1)+W^{(2)}(2|1)}{W^{(1)}(1|2)+W^{(2)}(1|2)+W^{(1)}(2|1)+W^{(2)}(2|1)}
+		\end{aligned}
+	}
+	\]
+	\subsection*{1.2}
+	
+In what follows, we use $\rho$ to denote $(x,x',\nu)$ and $\rho\in\mathcal{E}$ means $x>x'$.  In this way, any physical quantity $A^{(\nu)}(x|x';t)$ can be abbreviated as $A_\rho(t)$. Define the current and thermodynamic force as:
+	\[
+	\begin{aligned}
+		J_\rho(t):=& W^{(\nu)}(x|x';t)p(x';t)-W^{(\nu)}(x'|x;t)p(x;t)\\
+		J_\rho(t)^+:=& W^{(\nu)}(x|x';t)p(x';t)\\
+		J_\rho(t)^-:=& W^{(\nu)}(x'|x;t)p(x;t)\\
+		F_\rho(t):=&\ln\frac{J^+_\rho(t)}{J_\rho^-(t)}
+	\end{aligned}
+	\]
+	By definition, the entropy production rate is:
+	\[
+	\sigma(t):=\sum_{\rho \in\mathcal{E}}J_\rho(t) F_\rho(t) = J^{(1)}(2|1;t)F^{(1)}(2|1;t)+J^{(2)}(2|1;t)F^{(2)}(2|1;t)
+	\]
+	\textbf{The answer is}
+	\[
+	\boxed{
+		\begin{aligned}
+			\sigma(t)=&\left[W^{(1)}(2|1)p(1;t)-W^{(1)}(1|2)p(2;t)\right]\ln\frac{W^{(1)}(2|1)p(1;t)}{W^{(1)}(1|2)p(2;t)}
+			\\&+\left[W^{(2)}(2|1)p(1;t)-W^{(2)}(1|2)p(2;t)\right]\ln\frac{W^{(2)}(2|1)p(1;t)}{W^{(2)}(1|2)p(2;t)}
+		\end{aligned}
+	}
+	\]
+	\subsection*{1.3}
+	Using the answer of last question, \textbf{we obtain}:
+	\[
+	\begin{aligned}
+		\sigma^{st}(t)=&\left[\frac{\left(W^{(1)}(1|2)+W^{(2)}(1|2)\right)W^{(1)}(2|1)-\left(W^{(1)}(2|1)+W^{(2)}(2|1)\right)W^{(1)}(1|2)}{W^{(1)}(1|2)+W^{(2)}(1|2)+W^{(1)}(2|1)+W^{(2)}(2|1)}\right]\\
+		&\times\ln\frac{W^{(1)}(2|1)\left(W^{(1)}(1|2)+W^{(2)}(1|2)\right)}{W^{(1)}(1|2)\left(W^{(1)}(2|1)+W^{(2)}(2|1)\right)}
+		\\&+\left[\frac{\left(W^{(1)}(1|2)+W^{(2)}(1|2)\right)W^{(2)}(2|1)-\left(W^{(1)}(2|1)+W^{(2)}(2|1)\right)W^{(2)}(1|2)}{W^{(1)}(1|2)+W^{(2)}(1|2)+W^{(1)}(2|1)+W^{(2)}(2|1)}\right]\\
+		&\quad\times\ln\frac{W^{(2)}(2|1)\left(W^{(1)}(1|2)+W^{(2)}(1|2)\right)}{W^{(2)}(1|2)\left(W^{(1)}(2|1)+W^{(2)}(2|1)\right)}\\
+		=&\boxed{
+			\frac{W^{(2)}(1|2)W^{(1)}(2|1)-W^{(2)}(2|1)W^{(1)}(1|2)}{W^{(1)}(1|2)+W^{(2)}(1|2)+W^{(1)}(2|1)+W^{(2)}(2|1)}\ln\frac{W^{(1)}(2|1)W^{(2)}(1|2)}{W^{(1)}(1|2)W^{(2)}(2|1)}
+		}
+	\end{aligned}
+	\]
+	\subsection*{1.4}
+	The network looks like the following picture, which implies the incidence matrix $\mathbf{B}$:
+	\[
+		\begin{tikzcd}
+		{\tikz[baseline=(X.base)] \node[draw,circle,inner sep=3pt,minimum size=16pt] (X) {2};} \\
+		{\tikz[baseline=(X.base)] \node[draw,circle,inner sep=3pt,minimum size=16pt] (X) {1};} 
+		\arrow["{e_1}", bend left=30, from=2-1, to=1-1]
+		\arrow["{e_2}"', bend right=30, from=2-1, to=1-1]
+	\end{tikzcd}\quad\iff\quad
+	\mathbf{B}=\begin{pmatrix}
+		-1&-1\\
+		+1&+1
+	\end{pmatrix}
+	\]
+	Hence, the master equation \textbf{can be rewritten as}:
+	\[
+	\boxed{
+		\partial_t\mathbf{p}(t)=\mathbf{B}\cdot\mathbf{J}(t)=\begin{pmatrix}
+			-1&-1\\
+			+1&+1
+		\end{pmatrix}\begin{pmatrix}
+			W^{(1)}(2|1;t)p(1;t)-W^{(1)}(1|2;t)p(2;t)\\
+			W^{(2)}(2|1;t)p(1;t)-W^{(2)}(1|2;t)p(2;t)
+		\end{pmatrix}
+	}
+	\]
+	\subsection*{1.5}
+	From the master equation, we know that $\mathbf{B}\cdot \mathbf{J}^{st}=0$, i.e. $\mathbf{J}^{st}\in\ker \mathbf{B}$. From graph theory, the kernel of incidence matrix can be spanned by cycles in the graph:
+	\[
+	\mathcal{S}_\rho (\mathcal{C})=\begin{cases}
+		1,&\rho \in\mathcal{C}\\
+		-1,&\rho \in\mathcal{C}\\
+		0,&\text{otherwise}
+	\end{cases}
+	\]
+	This means that the total space decomposes as $\ker{\mathbf{B}}\oplus\operatorname{im}\mathbf{B}$, but only the kernel space can contribute to the entropy production rate of steady states:
+	\[
+	\sigma^{st}={\mathcal{J}^{st}}^T\mathcal{S}^T\mathbf{F}^{st}
+	\]
+	Recall that $\dim\ker\mathbf{B}= \# \text{~cycles}$, in our case, there is only one cycle and $\mathcal{S}=\begin{pmatrix}1\\-1\end{pmatrix}$. Although we have two edges, it turns out that only one linear combination of them will contribute to $\sigma^{st}$. If we consider the extremal case, whose network is a tree, i.e. $\# \text{~cycles}=0$, then $\mathbf{J}^{st}=0$ and $\sigma^{st}$ must vanish.
+	\bigskip\hrule\bigskip
+	\section{Problem 2}
+	Let us consider the following Fokker–Planck equation, $x \in \mathbb{R}$
+	\begin{equation}
+		\partial_t P(x;t) = -\partial_x\big[\nu(x;t)P(x;t)\big]
+		\tag{2}
+	\end{equation}
+	\begin{equation}
+		\nu(x;t) = -\partial_x\big[U(x) + T\ln P(x;t)\big]
+		\tag{3}
+	\end{equation}
+	\begin{equation}
+		U(x) = \frac{1}{2}k(x-a)^2
+		\tag{4}
+	\end{equation}
+	where $P(x;t)$ is the probability distribution at time $t \in \mathbb{R}$. The temperature $T(>0)$ and the spring constant $k(>0)$ are positive constants, and $a$ is a constan. At time $t$, the probability distribution is given by the Gaussian distribution
+	\begin{equation}
+		P(x;t)=\frac{1}{\sqrt{2\pi\,\mathrm{Var}_t[x]}}
+		\exp\left[-\frac{(x-\mathbb{E}_t[x])^2}{2\,\mathrm{Var}_t[x]}\right]
+		\tag{5}
+	\end{equation}
+	where $\mathbb{E}_t[x]$ is the mean at time $t$, and $\mathrm{Var}_t[x]$ is the variance at time $t$. The equilibrium distribution is given by
+	\begin{equation}
+		P_{\mathrm{eq}}(x)=
+		\frac{\exp[-\beta U(x)]}{\int dx\,\exp[-\beta U(x)]}
+		\tag{6}
+	\end{equation}
+	\begin{itemize}
+		\item\textbf{2.1}
+		\emph{Find} $\partial_t\mathbb{E}_t[x]$ in terms of $\mathbb{E}_t[x]$ and $\mathrm{Var}_t[x]$
+		\item\textbf{2.2}
+		\emph{Find} $\partial_t\mathrm{Var}_t[x]$ in terms of $\mathbb{E}_t[x]$ and $\mathrm{Var}_t[x]$
+		\item\textbf{2.3}
+		\emph{Find} the Kullback–Leibler divergence
+		\begin{equation}
+			D_{\mathrm{KL}}(P(t)\Vert P_{\mathrm{eq}})
+			=
+			\int dx\,P(x;t)\ln\frac{P(x;t)}{P_{\mathrm{eq}}(x)}
+			\tag{7}
+		\end{equation}
+		in terms of $\mathbb{E}_t[x]$ and $\mathrm{Var}_t[x]$
+		\item\textbf{2.4}
+		\emph{Find} the entropy production rate $\sigma(t)$ at time $t$, in terms of $\mathbb{E}_t[x]$ and $\mathrm{Var}_t[x]$
+		\item\textbf{2.5}
+		\emph{Prove} that the entropy production rate $\sigma(t)$ is non-negative
+		\item\textbf{2.6}
+		\emph{Discuss} a relationship between the Kullback–Leibler divergence (7) and the entropy production rate $\sigma(t)$
+	\end{itemize}
+	\section*{Solution 2}
+	\subsection*{2.1}
+	Rewrite the Fokker--Planck equation as:
+	\[
+	\begin{aligned}
+		\partial_t P(x;t) &= \partial_x\left[\partial_x\left[U(x) + T\ln P(x;t)\right]P(x;t)\right]=\partial_x\left[k(x-a)P(x;t)+T\partial_xP(x;t)\right]\\
+		&=kP(x;t)+k(x-a)\partial_xP(x;t)+T\partial_x^2P(x;t)
+	\end{aligned}
+	\]
+Then the time derivative of the expectation value can be \textbf{computed as}:
+	\[
+	\begin{aligned}
+		\partial_t\mathbb{E}_t[x]:=&\partial_t\int dx xP(x;t)=\int dx x\partial_t P(x;t)\\
+		=&\int dx kxP(x;t)+\int dx k(x-a)x\partial_x P(x;t)+T\int dx x\partial^2_x P(x;t)\\
+		=&k\mathbb{E}_t[x]-k\int dx\left(2x-a\right)P(x;t)-T\int dx\partial_xP(x;t)\\
+		=&k\mathbb{E}_t[x]-k\left(2\mathbb{E}_t[x]-a\right)-0\\
+		=&\boxed{-k\mathbb{E}_t[x]+ka}
+	\end{aligned}
+	\]
+	
+	\subsection*{2.2}
+	
+Similarly, we first compute $\partial_t\langle x^2\rangle_t$:
+	\[
+	\begin{aligned}
+		\partial_t\braket{x^2}_t:=&\partial_t\int dx x^2P(x;t)=\int dx x^2 \partial_tP(x;t)\\
+		=&\int dx kx^2P(x;t)+\int dx k(x-a)x^2\partial_x P(x;t)+T\int dx x^2\partial^2_x P(x;t)\\
+		=&k\braket{x^2}_t-k\int dx (3x^2-2a x) P(x;t)+2T\int dx  P(x;t)\\
+		=&k\braket{x^2}_t-3k\braket{x^2}_t+2ka\mathbb{E}_t[x]+2T\\
+		=&-2k\braket{x^2}_t+2ka\mathbb{E}_t[x]+2T
+	\end{aligned}
+	\]
+By definition, $\mathrm{Var}_t[x]:=\langle x^2\rangle_t-(\mathbb{E}_t[x])^2$. Therefore, the time derivative of the variance can be derived as:
+	\[
+	\begin{aligned}
+		&\partial_{t}\mathrm{Var}_t[x]+\partial_t(\mathbb{E}_t[x])^2=-2k(\mathbb{E}_t[x])^2-2k\mathrm{Var}_t[x]+2ka\mathbb{E}_t[x]+2T\\
+		\Rightarrow&
+			\partial_t\mathrm{Var}_t[x]=-2k(\mathbb{E}_t[x])^2-2k\mathrm{Var}_t[x]+2ka\mathbb{E}_t[x]+2T-2\mathbb{E}_t[x]\partial_t\mathbb{E}_t[x]
+	\end{aligned}
+	\]
+	Substituting the previously obtained expression for $\partial_t \mathbb{E}_t[x]$, we obtain \textbf{the final result}.
+	
+	\[
+	\boxed{\partial_t\mathrm{~Var}_t[x]=-2k\operatorname{Var}_t[x]+2T}
+	\]
+	\subsection*{2.3}
+\textbf{From now on, we choose units such that ${\color{red} k_B=1}$, so that $\color{red}\beta=1/T$.} Therefore, we can compute $P_{\mathrm{eq}}$ explicitly:
+	\[
+	P_{\mathrm{eq}}(x)=
+	\frac{\exp[-\beta U(x)]}{\int dx\,\exp[-\beta U(x)]}=\frac{\exp\left[-\frac{k}{2T}\left(x-a\right)^2\right]}{\int dx \exp\left[-\frac{k}{2T}\left(x-a\right)^2\right]}=\sqrt{\frac{k}{2\pi T}}\exp\left[-\frac{k}{2T}\left(x-a\right)^2\right]
+	\]
+	Plug it into (7), \textbf{we obtain the KL divergence}
+	\[
+	\begin{aligned}
+		D_{KL}(P(t)||P_{eq})=&\int dx  P(x;t)\ln\left[{\sqrt\frac{T}{k\,\mathrm{Var}_t[x]}}
+		\exp\left[-\frac{(x-\mathbb{E}_t[x])^2}{2\,\mathrm{Var}_t[x]}+\frac{k}{2T}(x-a)^2\right]\right]\\
+		=&\int dx P(x;t)\left[\ln {\sqrt\frac{T}{k\,\mathrm{Var}_t[x]}}-\frac{(x-\mathbb{E}_t[x])^2}{2\,\mathrm{Var}_t[x]}+\frac{k}{2T}(x-a)^2\right]\\
+		=&\ln\sqrt{\frac{T}{k\,\mathrm{Var}_t[x]}}-\frac{\mathrm{Var}_t[x]}{2\mathrm{Var}_t[x]}+\frac{k}{2T}\left(\braket{x}^2-2a\mathbb{E}_t[x]+a^2\right)\\
+		=&\boxed{
+			\frac{k}{2T}\left(\mathrm{Var}_t[x]+\left(\mathbb{E}_t[x]\right)^2\right)-\frac{ka}{T}\mathbb{E}_t[x]+\ln\sqrt{\frac{T}{k\,\mathrm{Var}_t[x]}}+\frac{ka^2-T}{2T}
+		}
+	\end{aligned}
+	\]
+	
+	\subsection*{2.4}
+	
+The entropy production rate is defined as:
+	\[
+	\sigma(t)=\frac{d\mathcal{H}(x;t)}{dt}-\frac{1}{T}\frac{\delta\mathcal{Q}}{\delta t}
+	\]
+	where
+	\[
+	\begin{aligned}
+		\frac{\delta\mathcal{Q}}{\delta t}(t):=&\int dx U(x)\left(\partial_t P(x;t)\right)\\
+		=&\int dx \frac{1}{2}k(x-a)^2\left(kP(x;t)+k(x-a)\partial_xP(x;t)+T\partial_x^2P(x;t)\right)\\
+		=&\frac{k^2}{2}\int dx (x-a)^2 P(x;t)-\frac32 k^2\int dx (x-a)^2 P(x;t)+kT\int dx P(x;t)\\
+		=&-k^2\int dx (x-a)^2P(x;t)+kT\\
+		=&-k^2\left(\braket{x^2}-2a\mathbb{E}_t[x]+a^2\right)+kT\\
+		=&-k^2\mathrm{Var}_t[x]-k^2(\mathbb{E}_t[x]-a)^2+kT
+	\end{aligned}
+	\]
+	And the Shannon entropy is given by:
+	\[
+	\begin{aligned}
+		\mathcal{H}(x;t):=-&\int dx P(x;t)\ln P(x;t)\\
+		=&-\int dx P(x;t)\ln\left[\frac{1}{\sqrt{2\pi\,\mathrm{Var}_t[x]}}
+		\exp\left[-\frac{(x-\mathbb{E}_t[x])^2}{2\,\mathrm{Var}_t[x]}\right]\right]\\
+		=&\ln\sqrt{2\pi\mathrm{Var}_t[x]}+\int dx P(x;t)\frac{(x-\mathbb{E}_t[x])^2}{2\,\mathrm{Var}_t[x]}\\
+		=&\ln\sqrt{2\pi\mathrm{Var}_t[x]}+\frac{\mathrm{Var}_t[x]}{2\,\mathrm{Var}_t[x]}\\
+		=&\ln\sqrt{2\pi\mathrm{Var}_t[x]}+\frac{1}{2}
+	\end{aligned}
+	\]
+	Then the time derivative is given by:
+	\[
+	\begin{aligned}
+		\frac{d}{dt}\mathcal{H}(x;t):&=\partial_t\left[\ln\sqrt{2\pi\,\mathrm{Var}_t[x]}+\frac12\right]
+		=\partial_t\left[\frac12\ln\left(2\pi\,\mathrm{Var}_t[x]\right)+\frac12\right]\\
+		&=\frac12\,\partial_t\left[\ln\left(2\pi\,\mathrm{Var}_t[x]\right)\right]\\
+		&=\frac12\,\partial_t\left[\ln(2\pi)+\ln\left(\mathrm{Var}_t[x]\right)\right]\\
+		&=\frac12\cdot \frac{\partial_t\mathrm{Var}_t[x]}{\mathrm{Var}_t[x]}\\
+		&=\frac12\cdot \frac{-2k(\mathbb{E}_t[x])^2-2k\mathrm{Var}_t[x]+2ka\mathbb{E}_t[x]+2T-2\mathbb{E}_t[x]\partial_t\mathbb{E}_t[x]}{\mathrm{Var}_t[x]}\\
+		&=\frac12\cdot \frac{-2k(\mathbb{E}_t[x])^2-2k\mathrm{Var}_t[x]+2ka\mathbb{E}_t[x]+2T-2\mathbb{E}_t[x]\bigl(ka-k\mathbb{E}_t[x]\bigr)}{\mathrm{Var}_t[x]}\\
+		&=\frac12\cdot \frac{-2k\mathrm{Var}_t[x]+2T}{\mathrm{Var}_t[x]}\\
+		&=\frac{T-k\,\mathrm{Var}_t[x]}{\mathrm{Var}_t[x]}\\
+		&=\frac{T}{\mathrm{Var}_t[x]}-k.
+	\end{aligned}
+	\]
+	\textbf{Combining these two results, we have}:
+	\[
+	\boxed{
+		\sigma(t)=\frac{T}{\mathrm{Var}_t[x]}-2k+\frac{k^2}{T}\mathrm{Var}_t[x]+\frac{k^2}{T}(\mathbb{E}_t[x]-a)^2
+	}
+	\]
+	\subsection*{2.5}
+	
+	Recall the arithmetic–-geometric mean inequality:
+	\[
+	a+b\geq2\sqrt{ab}, \quad a,b\geq 0
+	\]
+	Therefore, we have:
+	\[
+	\frac{T}{\mathrm{Var}_t[x]}-2k+\frac{k^2}{T}\mathrm{Var}_t[x]\geq 2\sqrt{\frac{T}{\mathrm{Var}_t[x]}\cdot \frac{k^2}{T}\mathrm{Var}_t[x]}-2k\geq 0,
+	\]
+	Since, by definition, $\mathrm{Var}_t[x]\geq 0$ and $T,k\geq 0$, the last term in $\sigma(t)$, i.e. $\frac{k^2}{T}(\mathbb{E}_t[x]-a)^2$, is non-negative. Hence, we conclude that:
+	\[
+	\boxed{
+		\sigma(t)\geq 0
+	}
+	\]
+	\subsection*{2.6}
+	
+	After tedious but straightforward algebra, we obtain the time derivative of the KL divergence:
+	\[
+	\begin{aligned}
+		\partial_tD_{KL}(P(x;t)||P_{eq})&=\partial_t\left[\frac{k}{2T}\left(\mathrm{Var}_t[x]+\left(\mathbb{E}_t[x]\right)^2\right)-\frac{ka}{T}\mathbb{E}_t[x]+\ln\sqrt{\frac{T}{k\,\mathrm{Var}_t[x]}}+\frac{ka^2-T}{2T}\right]\\
+		&=\frac{k}{2T}\left(\partial_t\mathrm{Var}_t[x]+\partial_t\left(\mathbb{E}_t[x]\right)^2\right)-\frac{ka}{T}\partial_t\mathbb{E}_t[x]+\partial_t\left(\frac12\ln\frac{T}{k\,\mathrm{Var}_t[x]}\right)\\
+		&=\frac{k}{2T}\left(\partial_t\mathrm{Var}_t[x]+2\mathbb{E}_t[x]\partial_t\mathbb{E}_t[x]\right)-\frac{ka}{T}\partial_t\mathbb{E}_t[x]-\frac{1}{2}\frac{\partial_t\mathrm{Var}_t[x]}{\mathrm{Var}_t[x]}\\
+		&=\left(\frac{k}{2T}-\frac{1}{2\,\mathrm{Var}_t[x]}\right)\partial_t\mathrm{Var}_t[x]+\frac{k}{T}\bigl(\mathbb{E}_t[x]-a\bigr)\partial_t\mathbb{E}_t[x]\\
+		&=\left(\frac{k}{2T}-\frac{1}{2\,\mathrm{Var}_t[x]}\right)\Bigl(-2k(\mathbb{E}_t[x])^2-2k\mathrm{Var}_t[x]+2ka\mathbb{E}_t[x]+2T-2\mathbb{E}_t[x]\partial_t\mathbb{E}_t[x]\Bigr)\\
+		&\quad+\frac{k}{T}\bigl(\mathbb{E}_t[x]-a\bigr)\partial_t\mathbb{E}_t[x]\\
+		&=\left(\frac{k}{2T}-\frac{1}{2\,\mathrm{Var}_t[x]}\right)\Bigl(-2k(\mathbb{E}_t[x])^2-2k\mathrm{Var}_t[x]+2ka\mathbb{E}_t[x]+2T-2\mathbb{E}_t[x]\bigl(k a-k\mathbb{E}_t[x]\bigr)\Bigr)\\
+		&\quad+\frac{k}{T}\bigl(\mathbb{E}_t[x]-a\bigr)\bigl(k a-k\mathbb{E}_t[x]\bigr)\\
+		&=\left(\frac{k}{2T}-\frac{1}{2\,\mathrm{Var}_t[x]}\right)\Bigl(-2k\mathrm{Var}_t[x]+2T\Bigr)-\frac{k^2}{T}\bigl(\mathbb{E}_t[x]-a\bigr)^2\\
+		&=\left(\frac{k}{2T}-\frac{1}{2\,\mathrm{Var}_t[x]}\right)\cdot 2\bigl(T-k\,\mathrm{Var}_t[x]\bigr)-\frac{k^2}{T}\bigl(\mathbb{E}_t[x]-a\bigr)^2\\
+		&=\left(\frac{k}{T}-\frac{1}{\mathrm{Var}_t[x]}\right)\bigl(T-k\,\mathrm{Var}_t[x]\bigr)-\frac{k^2}{T}\bigl(\mathbb{E}_t[x]-a\bigr)^2\\
+		&=2k-\frac{k^2}{T}\mathrm{Var}_t[x]-\frac{T}{\mathrm{Var}_t[x]}-\frac{k^2}{T}\bigl(\mathbb{E}_t[x]-a\bigr)^2\\
+		&=2k-\frac{k^2}{T}\left(\mathrm{Var}_t[x]+\bigl(\mathbb{E}_t[x]-a\bigr)^2\right)-\frac{T}{\mathrm{Var}_t[x]}.
+	\end{aligned}
+	\]
+	\textbf{It is clear that}:
+	\[
+	\boxed{
+		\sigma(t)=-\partial_tD_{KL}(P(x;t)||P_{eq})
+	}
+	\]
+	Actually, this beautiful equation holds \textbf{because the equilibrium distribution is canonical distribution}, i.e. \textbf{the local detailed balance condition holds}.  This follows from our definition of the entropy production rate, $	\sigma(t)=\frac{d\mathcal{H}(x;t)}{dt}-\frac{1}{T}\frac{\delta\mathcal{Q}}{\delta t}$, rather than the expression $\sum_\rho J_\rho F_\rho$.
+		\bigskip\hrule\bigskip
+	\section{Problem 3}
+	
+	Please feel free to discuss
+	\begin{itemize}
+		\item 	\textbf{3.1}
+		\emph{Discuss} how non-equilibrium should be defined and which properties of non-equilibrium can yield non-trivial conclusions
+	\end{itemize}
+	
+	\section*{Solution 3}
+	\textit{How to define non-equilibrium?}
+	
+	For a Markov process, we can define non-equilibrium via its probability current. The system is in a non-equilibrium state if and only if there exist microscopic states $x$ and $x'$ such that $J(x|x';t)\neq 0$. Mathematically, this means that the detailed-balance condition does not hold, hence this Markov process is irreversible. For a more general process, I think an equilibrium state is a state with the largest entropy. Therefore, we can define non-equilibrium by requiring that the entropy production rate is positive, i.e. $\sigma(t)>0$. Moreover, if the local detailed-balance condition holds, the state with the largest entropy is the canonical distribution, i.e. $p^{\mathrm{eq}}\sim e^{-\beta E}$. Thus, when the local detailed-balance condition holds, a non-equilibrium state can also be thought of as a state that is not in the canonical distribution.
+	
+	
+	\textit{Which properties of non-equilibrium can yield non-trivial conclusions?}
+	
+	First, in this course, we define the entropy production rate as $\sigma(t)=\sum_{\rho\in\mathcal{E}}J_\rho(t)F_\rho(t)$. The analogue of the second law of thermodynamics is $\sigma\geq 0$. Equality holds if and only if the detailed balance condition holds, i.e. the system is in equilibrium. Moreover, if the local detailed-balance condition holds, it turns out that $\sigma$ coincides with the entropy change rate in classical thermodynamics, as we used in Problem 2.4. The most interesting point is that the entropy production rate can be rewritten in terms of the Kullback--Leibler divergence, as we mentioned in the last problem. The entropy production rate is defined in a physical context, but the Kullback--Leibler divergence is a purely information-theoretic quantity, which suggests that \textbf{information is physical}.
+	
+	
+	Second, for a general non-equilibrium state, I think the Jarzynski equality is one of the most non-trivial conclusions, which implies that $e^{-\beta \Delta F}=\braket{e^{-\beta \delta W}}$. Combining this with the Jensen inequality, $\braket{e^{-\beta\delta W}}\geq e^{-\beta \braket{\delta W}}$, we obtain the second law of thermodynamics as a corollary of Jarzynski equality: $\braket{\delta W}\geq \Delta F$. 
+	
+	Last but not least, in the near-equilibrium regime, one can treat steady states within the framework of linear response theory and assume a linear relation between probability currents and thermodynamic forces. This leads to the following Onsager reciprocal relations: $\frac{\partial\mathcal{J}_\mu^{\mathrm{st}}}{\partial\mathcal{F}_\nu^{\mathrm{st}}}=\frac{\partial\mathcal{J}_\nu^{\mathrm{st}}}{\partial\mathcal{F}_\mu^{\mathrm{st}}}$. At first glance, this equality may seem to be nothing more than a mathematically trivial consequence of the symmetry of a matrix, which can give the impression that it carries little physical significance. Indeed, the mathematical derivation is relatively straightforward. However, we should understand this relation physically, in different contexts, in order to uncover the rich physical interpretations it admits.
+	
+	From a more abstract perspective, the relation characterizes near-equilibrium linear irreversible thermodynamics. When we consider two distinct irreversible processes that are coupled to each other, each process has its own current $\mathcal{J}$ and thermodynamic force $\mathcal{F}$. The equality then tells us that the cross-coefficients for the two processes are identical. This may still sound somewhat abstract, so let us consider a concrete example: the Seebeck effect and the Peltier effect. The former is thermoelectric generation, where a temperature gradient drives an electric current, while the latter is the reverse process, where an electric current induces heat transport. Both processes can be described by linear relations, and the Onsager reciprocal relations tell us that the corresponding linear-response coefficients are in fact the same, leading to $\Pi = T S$.
+	
+	In this sense, although the Onsager reciprocal relations originate from a basic mathematical principle, the physical consequences they entail are remarkably rich.
+	
+	\bigskip\hrule\bigskip
+	\section{Challenging problem}
+	Let us consider the following Langevin equation
+	\begin{equation}
+		\dot{x}(t) = -k(x(t)-a) + (x(t))^2\circ \xi(t)
+		\tag{8}
+	\end{equation}
+	\begin{equation}
+		\langle \xi(t)\rangle = 0
+		\tag{9}
+	\end{equation}
+	\begin{equation}
+		\langle \xi(t)\xi(t')\rangle = 2T\,\delta(t-t')
+		\tag{10}
+	\end{equation}
+	
+	where $\circ$ stands for the Stratonovich integral. The temperature $T(>0)$ and the spring constant $k(>0)$ are positive constants, and $a$ is a constant. $\langle\cdot\rangle$ stands for the ensemble average.
+	\begin{itemize}
+			\item\emph{Find} the Fokker--Planck equation corresponding to this Langevin equation. \emph{Explain} why this Fokker–Planck equation is obtained
+	\end{itemize}
+	\section*{Solution}
+	In this course, we consider the following Fokker--Planck equation:
+	\[
+	\partial_tP_X(x;t)=-\partial_x[A^{(1)}(x;t)P_X(x;t)]+\frac{1}{2}(\partial_x)^2[A^{(2)}(x;t)P_X(x;t)]
+	\]
+	And we learned that the corresponding stochastic differential equation (SDE) is:
+	\[
+	\begin{aligned}
+		\dot{x}(t)&=A^{(1)}(x(t);t)+\sqrt{A^{(2)}(x(t);t)}\cdot\xi(t)\\
+		\braket{\xi(t)}&=0\\
+		\braket{\xi(t)\xi(t')}&=\delta(t-t')
+	\end{aligned}
+	\]
+	Note that we use the \textbf{Ito} integral here, because the Wiener process is \emph{non-differentiable}, so the definition of the stochastic integral matters. In this problem, we use the \textbf{Stratonovich integral} rather than the Ito integral. Indeed, there is a relation between these two integrals, which was derived in out course:
+	\[
+	f(x(t))\circ\xi(t)=f(x(t))\cdot\xi(t)+\frac{1}{2}\sqrt{A^{(2)}(x(t);t)}\partial_xf(x(t))
+	\]
+	However, we derived this equation under the normalization $\braket{\xi(t)\xi(t')}=\delta(t-t')$. In this problem, we use a different normalization, $\braket{\xi(t)\xi(t')}=2T\delta(t-t')$. In this normalization, we should replace $\xi(t)$ by $\sqrt{2T}\xi(t)$. Therefore, the same Fokker--Planck equation will give us the following SDE:
+	\begin{equation}
+		\begin{aligned}
+			\dot{x}(t)&=A^{(1)}(x(t);t)+\sqrt\frac{A^{(2)}(x(t);t)}{2T}\cdot\xi(t)\\
+			\braket{\xi(t)}&=0\\
+			\braket{\xi(t)\xi(t')}&=2T\delta(t-t')
+		\end{aligned}
+		\tag{11}
+	\end{equation}
+	And the relation between the Ito integral and the Stratonovich integral is given by:
+	\[
+	f(x(t))\circ\xi(t)=f(x(t))\cdot\xi(t)+\frac{1}{2}\sqrt{2TA^{(2)}(x(t);t)}\partial_xf(x(t))
+	\]
+	Next, we can convert the original SDE from the Stratonovich form to the Ito form as follows:
+	\[
+	\begin{aligned}
+		\dot{x}(t)& = -k(x(t)-a) + (x(t))^2\circ \xi(t)\\
+		&=-k(x(t)-a)+(x(t))^2\cdot\xi(t)+\frac12\sqrt{2TA^{(2)}(x(t);t)}\times2x(t)\\
+		&=-k(x(t)-a)+\sqrt{2TA^{(2)}(x(t);t)}x(t)+(x(t))^2\cdot\xi(t)
+	\end{aligned}
+	\]
+	Comparing with (11), we have:
+	\[
+	\begin{cases}
+		\sqrt\frac{A^{(2)}(x(t);t)}{2T}=(x(t))^2\\
+		A^{(1)}(x(t);t)=-k(x(t)-a)+\sqrt{2TA^{(2)}(x(t);t)}x(t)
+	\end{cases}
+	\Rightarrow
+	\begin{cases}
+		A^{(2)}(x(t);t)=2T(x(t))^4\\
+		A^{(1)}(x(t);t)=-k(x(t)-a)+2T(x(t))^3
+	\end{cases}
+	\]
+Hence, \textbf{we obtain the Fokker--Planck equation}:
+	\[
+	\boxed{
+		\partial_tP_X(x;t)=-\partial_x\left[\left(-k(x-a)+2Tx^3\right)P_X(x;t)\right]+T(\partial_x)^2[x^4P_X(x;t)]
+	}
+	\]
+\end{document}

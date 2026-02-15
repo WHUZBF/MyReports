@@ -1,0 +1,260 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage[]{cancel}
+\usepackage{tikz-feynman}
+\usepackage{slashed} % 用于 \not!
+\usepackage{simpler-wick}   % 绘制Wick收缩
+\usepackage{braket}
+% --- "Solution" environment (proof-style) ---
+\newenvironment{solution}[1][]{\begin{proof}[\textbf{Solution}]}{\end{proof}}
+% --- Rounded box style for each problem (whole statement) ---
+\tcbset{
+    problem/.style={
+        enhanced,
+        boxrule=0.7pt,
+        arc=3mm,
+        left=3mm,right=3mm,top=2mm,bottom=2mm,
+        colback=white,
+        colframe=black,
+        before skip=10pt,
+        after skip=6pt,
+    }
+}
+
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 12} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+
+
+
+\begin{tcolorbox}[problem]
+\textbf{1.} Verify directly from Grassmann rules that $$\int d\theta\,(a+b\theta)=b.$$
+\end{tcolorbox}
+\begin{solution}[12.1]
+	\textbf{MY FINAL ANSWER IS}:
+	\[
+	\int d\theta (a+ b\theta)= a\int d\theta 1+b\int{d\theta}\theta =0+b\cdot 1=b
+	\]
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{2.} For two Grassmann variables $\theta_1,\theta_2$, compute $$\int d\theta_2\,d\theta_1\,\theta_1\theta_2 \quad\text{and}\quad \int d\theta_2\,d\theta_1\,\theta_2\theta_1.$$ Explain the sign.
+\end{tcolorbox}
+\begin{solution}[12.2]
+	\textbf{MY FINAL ANSWER IS}:
+	\[
+	\int{d\theta_2}d\theta_1\theta_1\theta_2=-\int d\theta_2 d\theta_1\theta_2\theta_1=\int d\theta_2\theta_2\int d\theta_1\theta_1 = 1\cdot 1=\boxed{1}
+	\]
+	
+	\[
+	\int{d\theta_2}d\theta_1\theta_2\theta_1=-\int d\theta_2\theta_2 d\theta_1\theta_1=-\int d\theta_2\theta_2\int d\theta_1\theta_1 = -\left(1\cdot 1\right)=\boxed{-1}
+	\]
+	
+	They have different sign since $\theta_1\theta_2=-\theta_2\theta_1$.
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{3.} Prove $$\int d\psi^\dagger\,d\psi\,e^{\psi^\dagger A\psi}=\det A$$ in the $1\times 1$ and $2\times 2$ cases.
+\end{tcolorbox}
+\begin{solution}[12.3]
+	For the $1\times 1$ case:
+	\[
+	\begin{aligned}
+		\int d\psi^\dagger d\psi e^{\psi^\dagger A_{11}\psi}=	\int d\psi^\dagger d\psi \left(1+\psi^\dagger A_{11}\psi+0\right)
+		=\int d\psi^\dagger d\psi 1+\int d\psi^\dagger d\psi \psi^\dagger A_{11}\psi=-A_{11}=\boxed{-\det A}
+		\end{aligned}
+	\]
+		For the $2\times 2$ case:
+	$$
+	\begin{aligned}
+		&\int d\psi^\dagger d\psi e^{\psi^\dagger A_{11}\psi}=\int d\psi_2^\dagger\,d\psi_2\,d\psi_1^\dagger\,d\psi_1\,
+		\exp\!\Big(\psi_1^\dagger(A_{11}\psi_1+A_{12}\psi_2)+\psi_2^\dagger(A_{21}\psi_1+A_{22}\psi_2)\Big)\\
+		&=\int d\psi_2^\dagger\,d\psi_2\,d\psi_1^\dagger\,d\psi_1\,
+		\Bigg[1+\Big(\psi_1^\dagger(A_{11}\psi_1+A_{12}\psi_2)+\psi_2^\dagger(A_{21}\psi_1+A_{22}\psi_2)\Big)\\
+		&\quad+\frac12\Big(\psi_1^\dagger(A_{11}\psi_1+A_{12}\psi_2)+\psi_2^\dagger(A_{21}\psi_1+A_{22}\psi_2)\Big)^2\Bigg]\\
+		&=\frac12\int d\psi_2^\dagger\,d\psi_2\,d\psi_1^\dagger\,d\psi_1\,
+		\Big(A_{11}\psi_1^\dagger\psi_1+A_{12}\psi_1^\dagger\psi_2+A_{21}\psi_2^\dagger\psi_1+A_{22}\psi_2^\dagger\psi_2\Big)^2\\
+		&=\frac12\int d\psi_2^\dagger\,d\psi_2\,d\psi_1^\dagger\,d\psi_1\,
+		\Big(2A_{11}A_{22}\,\psi_1^\dagger\psi_1\psi_2^\dagger\psi_2+2A_{12}A_{21}\,\psi_1^\dagger\psi_2\psi_2^\dagger\psi_1\Big)\\
+		&=\int d\psi_2^\dagger\,d\psi_2\,d\psi_1^\dagger\,d\psi_1\,
+		\Big(A_{11}A_{22}\,\psi_1^\dagger\psi_1\psi_2^\dagger\psi_2-A_{12}A_{21}\,\psi_1^\dagger\psi_1\psi_2^\dagger\psi_2\Big)\\
+		&=(A_{11}A_{22}-A_{12}A_{21})\int d\psi_2^\dagger\,d\psi_2\,d\psi_1^\dagger\,d\psi_1\,\psi_1^\dagger\psi_1\psi_2^\dagger\psi_2\\
+		&=(A_{11}A_{22}-A_{12}A_{21})\Big(\int d\psi_1^\dagger\,d\psi_1\,\psi_1^\dagger\psi_1\Big)\Big(\int d\psi_2^\dagger\,d\psi_2\,\psi_2^\dagger\psi_2\Big)\\
+		&=(A_{11}A_{22}-A_{12}A_{21})\cdot -1\cdot -1
+		=A_{11}A_{22}-A_{12}A_{21}
+		=\boxed{\det A}.
+	\end{aligned}
+	$$
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{4.} For a real antisymmetric $2n\times 2n$ matrix $A$, show in the $2\times 2$ case that $$\int d^2\lambda\,\exp\!\left(\frac12\,\lambda^T A\lambda\right)=\mathrm{Pf}(A).$$
+\end{tcolorbox}
+\begin{solution}[12.4]
+	\textbf{MY FINIAL ANSWER IS}
+	\[
+	\begin{aligned}
+		\int d^2\lambda \exp\left(\frac{1}{2}\lambda^T A \lambda\right)
+		&= \int d\theta_2 d\theta_1 \exp\left[ \frac{1}{2} \begin{pmatrix} \theta_1 & \theta_2 \end{pmatrix} \begin{pmatrix} 0 & a \\ -a & 0 \end{pmatrix} \begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix} \right] \\
+		&= \int d\theta_2 d\theta_1 \exp\left[ \frac{1}{2} \left( a\theta_1\theta_2 - a\theta_2\theta_1 \right) \right] \\
+		&= \int d\theta_2 d\theta_1 \exp\left[ \frac{1}{2} \left( -a\theta_2\theta_1 - a\theta_2\theta_1 \right) \right] \quad (\because \theta_1\theta_2 = -\theta_2\theta_1) \\
+		&= \int d\theta_2 d\theta_1 \exp(-a\theta_2\theta_1) \\
+		&= \int d\theta_2 d\theta_1 \left( 1 - a\theta_2\theta_1 \right) \quad \\
+		&= \cancelto{0}{\int d\theta_2 d\theta_1 \cdot 1} - a \int d\theta_2 d\theta_1 \theta_2 \theta_1 \\
+		&= a \int d\theta_1 \left( \int d\theta_2 \theta_2 \right) \theta_1 \\
+		&= a \int d\theta_1 (1) \theta_1 \\
+		&= a \int d\theta_1 \theta_1 \\
+		&= \mathrm{Pf}(A)
+	\end{aligned}
+	\]
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{5.} Starting from the Dirac quadratic form $\bar\psi(i\gamma\cdot\partial-m)\psi$, derive $Z[\eta,\bar\eta]=Z[0]\exp(i\bar\eta S_F\eta)$.
+\end{tcolorbox}
+\begin{solution}[12.5]
+	\textbf{MY FINAL ANSWER IS}:
+	\[
+	\begin{aligned}
+		Z[\eta, \bar{\eta}] 
+		&= \int \mathcal{D}\bar{\psi}\mathcal{D}\psi \exp\left\{ i \int d^4x \left[ \bar{\psi}(x)(i\gamma\cdot\partial - m)\psi(x) + \bar{\eta}(x)\psi(x) + \bar{\psi}(x)\eta(x) \right] \right\} \\
+		&= \int \mathcal{D}\bar{\psi}\mathcal{D}\psi \exp\left\{ i \int d^4x \left[ \left(\bar{\psi} + \bar{\eta}(i\gamma\cdot\partial - m)^{-1}\right)(i\gamma\cdot\partial - m)\left(\psi + (i\gamma\cdot\partial - m)^{-1}\eta\right) - \bar{\eta}(i\gamma\cdot\partial - m)^{-1}\eta \right] \right\} \\
+		&= \underbrace{\int \mathcal{D}\bar{\psi}'\mathcal{D}\psi' \exp\left\{ i \int d^4x \, \bar{\psi}'(i\gamma\cdot\partial - m)\psi' \right\}}_{Z[0]} \cdot \exp\left\{ -i \int d^4x \, \bar{\eta}(x) (i\gamma\cdot\partial - m)^{-1} \eta(x) \right\} \\
+		&= Z[0] \exp\left\{ -i \int d^4x d^4y \, \bar{\eta}(x) \left[ - S_F(x-y) \right] \eta(y) \right\} \\
+		&= \boxed{Z[0] \exp\left\{ i \int d^4x di^4y \, \bar{\eta}(x) S_F(x-y) \eta(y) \right\}}
+	\end{aligned}
+	\]
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{6.} Show that $$S_F(p)=\frac{i}{\gamma\!\cdot\!p-m+i\epsilon}=\frac{i(\gamma\!\cdot\!p+m)}{p^2+m^2-i\epsilon}.$$
+\end{tcolorbox}
+\begin{solution}[12.6]
+We need to solve the following differential equation:
+\[
+(i\gamma\cdot\partial-m)S_F(x-y)=i\delta^4(x-y).
+\]
+Using the Fourier transfornamtion, we obtain
+\[
+(\gamma\cdot p - m)S_F(p)=i\Rightarrow S_F(p)=\frac{i}{\gamma\cdot p-m}
+\]
+Next, add the $i\epsilon$ by hand, so \textbf{MY FINAL ANSWER IS}:
+\[
+S_{F}(p)=\frac{i}{\gamma\cdot p-m+i\epsilon}=\frac{i(\gamma\cdotp+m)}{(\gamma\cdot p-m+i\epsilon)(\gamma\cdot p+m)}=\frac{i(\gamma\cdot p+m)}{(\gamma\cdot p)^2-m^2+i\epsilon(\ldots)}=\boxed{\frac{i(\gamma\cdot p+m)}{p^2-m^2+i\epsilon}}
+\]
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{7.} Compute $\langle 0|T\psi_\alpha(x)\bar\psi_\beta(y)|0\rangle$ from the generating functional by functional differentiation with Grassmann sources, carefully tracking signs.
+\end{tcolorbox}
+\begin{solution}[12.7]
+we need the following formulae:
+\[
+\langle0|\mathrm{T}\psi_{\alpha_1}(x_1)\cdots\overline{\psi}_{\beta_1}(y_1)\cdots|0\rangle=\frac{1}{Z[0]}\frac{1}{i}\left.\frac{\delta}{\delta\overline{\eta}_{\alpha_1}(x_1)}\right.\cdots i\left.\frac{\delta}{\delta\eta_{\beta_1}(y_1)}\right.\cdots\left.Z(\overline{\eta},\eta)\right|_{\eta=\overline{\eta}=0}
+\]
+
+For the 2-pt correlator, we have:
+\[
+\begin{aligned}
+\langle0|T\psi_\alpha(x)\bar{\psi}_\beta(y)|0\rangle&=\frac{1}{Z[0]}\frac 1i\frac{\delta}{\delta\overline{\eta}_{\alpha}(x)}\cdot i\frac{\delta}{\delta{\eta}_{\beta}(y)} Z[0] \exp\left[i\int d^4xd^4y\,\overline{\eta}(x)S_F(x-y)\eta(y)\right]\\
+&=\frac{\delta}{\delta\overline{\eta}_{\alpha}(x)}\frac{\delta}{\delta{\eta}_{\beta}(y)} \left(1+i\int d^4x'd^4y'\,\bar{\eta}_{\alpha'}(x') S_F^{\alpha'\beta'}(x'-y')\eta_{\beta'}(y')\right)\\
+&=- \left(i\int d^4x'd^4y'\,\frac{\delta}{\delta\overline{\eta}_{\alpha}(x)}\bar{\eta}_{\alpha'}(x') S_F^{\alpha'\beta'}(x'-y')\frac{\delta}{\delta{\eta}_{\beta}(y)}\eta_{\beta'}(y')\right)\\
+&=-i{S_F}_{\alpha\beta}(x-y)
+\end{aligned}
+\]
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{8.} Using Wick's theorem for fermions, show explicitly why a closed fermion loop produces an extra minus sign.
+\end{tcolorbox}
+\begin{solution}[12.8]
+		In complicated diagrams, one can often simplify the determination of the minus signs by noting that the product $(\bar{\psi}\psi)$, or any other pair of fermions, \textit{commutes} with any operator. Thus,
+	\[
+	\begin{aligned}
+		\cdots 
+		\wick{
+			({\bar{\psi}}\c1\psi)_x(\c2{\bar{\psi}}\c3\psi)_y(\c1{\bar{\psi}}\c2\psi)_z(\c3{\bar{\psi}}\psi)_w}
+		&= \cdots (+1) 
+		\wick{(\bar{\psi}\c\psi)_x(\c{\bar{\psi}}}\wick{\c\psi)_z
+			(\c{\bar{\psi}}}\wick{\c\psi)_y(\c{\bar{\psi}}\psi)_w}\cdots\\
+		&= \cdots S_F(x - z)S_F(z - y)S_F(y - w) \cdots.
+	\end{aligned}
+	\]
+	\noindent
+	But note that in a closed loop of $n$ fermion propagators we have (e.g. $n=4$)
+	\noindent
+\[
+\begin{aligned}
+	\vcenter{\hbox{$
+			\feynmandiagram [small] {
+				v1 -- [fermion, quarter right] v2
+				-- [fermion, quarter right] v4
+				-- [fermion, quarter right] v3
+				-- [fermion, quarter right] v1,
+				v1 -- [scalar, dashed] e1,
+				v2 -- [scalar, dashed] e2,
+				v3 -- [scalar, dashed] e3,
+				v4 -- [scalar, dashed] e4,
+			};
+			$}}\quad\quad
+	&=\wick{\c2{\bar\psi}\wick{\c\psi\c{\bar\psi}}\wick{\c\psi\c{\bar\psi}}\wick{\c\psi\c{\bar\psi}}\c2{\psi}}\\
+	&=(-1)\,\text{tr}\Big[
+	\wick{\c\psi\c{\bar{\psi}}}\wick{\c\psi\c{\bar{\psi}}}\wick{\c\psi\c{\bar{\psi}}}\wick{\c\psi\c{\bar{\psi}}}
+	\Big]\\
+	&=(-1)\,\text{tr}\!\left[S_F S_F S_F S_F\right]
+\end{aligned}
+\]
+	\noindent
+	A closed fermion loop always gives a factor of $-1$ and the \textit{trace} of a product of Dirac matrices.
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{9.} Explain briefly but precisely how the first-order time derivative in $i\psi^\dagger\dot\psi$ is tied to the canonical anticommutator $\{\psi,\psi^\dagger\}=1$ (give the chain of logic).
+\end{tcolorbox}
+\begin{solution}[12.9]
+\textbf{MY FINAL ANSWER IS}:
+$$
+\begin{aligned}
+	&L(\psi,\psi^\dagger)\supset i\psi^\dagger \dot\psi\Longrightarrow\ \pi_\psi:=\frac{\partial L}{\partial\dot\psi}=i\psi^\dagger,\ \pi_{\psi^\dagger}:=\frac{\partial L}{\partial\dot\psi^\dagger}=0\\
+	&\Longrightarrow\ \{\psi,\pi_\psi\}_P=1,\ \{\psi^\dagger,\pi_{\psi^\dagger}\}_P=1\ \text{(classical Poisson bracket)}\\
+	&\Longrightarrow\ \text{quantize by the rule }\{\cdot,\cdot\}_P\mapsto\frac{1}{i}\{\cdot,\cdot\}_D\ \Longrightarrow\ \boxed{\{\psi,\psi^\dagger\}_D=1}.
+\end{aligned}
+$$
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{10.} In Euclidean time, derive the anti-periodic boundary condition for fermions at finite temperature and show why the Matsubara frequencies are $\omega_n=(2n+1)\pi/\beta$.
+\end{tcolorbox}
+\begin{solution}[12.10]
+	Consider a general operator $\hat{A}$,
+	$$\hat A|i\rangle=|j\rangle A_{ji},$$
+	where $i,j$ run over $\downarrow$ and $\uparrow$. Then by expanding $\hat{A}|\psi\rangle$ in terms of the basis states one finds
+	$$\int d\psi\:\langle\psi|\hat{A}|\psi\rangle=A_{\downarrow\downarrow}-A_{\uparrow\uparrow}=\mathrm{Tr}\Big[(-1)^{\hat{F}}\hat{A}\Big]$$
+	where the fermion number $\hat{F}$ has been defined to be even for $|\downarrow\rangle$ and odd
+	for $|\uparrow\rangle$. We used $\braket{\psi|\downarrow}=\psi,\braket{\psi|\uparrow}=-1$. In particular,
+	$$\int d\psi\left\langle\psi,T|\psi,0\right\rangle=\mathrm{Tr}\left[(-1)^{\hat{F}}\exp(-i\hat{H}T)\right]\:.$$
+	In contrast to the bosonic results, the \textit{periodic} pathintegral gives the trace weighted by $(-1)^{\hat{F}}$ and the \textit{antiperiodic} path integral gives the simple trace. Here, what we need is $\operatorname{Tr}(e^{-\beta \hat H})$, i.e. the simple trace, so we conclude that the boundary condition for fermions should be anti-periodic to obtain the simple trace.
+	
+	To obtain the Matsubara frequencies, we need to Fourier transform the $\psi$:
+	$$
+			\psi(\tau,x)=\frac1{\sqrt{\beta}}\sum_{n\in\mathbb Z}\psi_n(x)e^{-i\omega_n\tau}
+	$$
+	Next, by the boundary condition, \textbf{MY FINAL ANSWER IS}:
+	$$
+	\begin{aligned}
+	&\psi(\tau+\beta,x)=-\psi(\tau,x)
+		\Longrightarrow\ e^{-i\omega_n(\tau+\beta)}=-e^{-i\omega_n\tau}
+		\ \Longrightarrow\ e^{-i\omega_n\beta}=-1\\&
+		\ \Longrightarrow\ \omega_n\beta=(2n+1)\pi
+		\ \Longrightarrow\ \omega_n=\boxed{\frac{(2n+1)\pi}{\beta}}
+	\end{aligned}
+	$$
+	Here, $n\in\mathbb Z$.
+\end{solution}
+
+\end{document}

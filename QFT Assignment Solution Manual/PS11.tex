@@ -1,0 +1,448 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage[]{cancel}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+% --- Rounded box style for each problem (whole statement) ---
+\tcbset{
+	problem/.style={
+		enhanced,
+		boxrule=0.7pt,
+		arc=3mm,
+		left=3mm,right=3mm,top=2mm,bottom=2mm,
+		colback=white,
+		colframe=black,
+		before skip=10pt,
+		after skip=6pt,
+	}
+}
+
+% --- "Solution" environment (proof-style) ---
+\newenvironment{solution}[1][]{\begin{proof}[\textbf{Solution}]}{\end{proof}}
+
+
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 11} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+	\begin{tcolorbox}[problem]
+		\textbf{1.} Starting from \(Z_0[J] = \exp\!\left(\frac{i}{2}\int J\,\Delta_F\,J\right)\), show that
+		\(\langle 0|T\,\phi(x)\phi(y)|0\rangle_0=\Delta_F(x-y)\) by functional differentiation.
+	\end{tcolorbox}
+	\begin{solution}[11.1]
+		\[
+		\begin{aligned}
+			\langle 0|T\phi(x)\phi(y)|0\rangle_0
+			&=\left.\frac{1}{Z_0[J]}\frac{\delta}{i\delta J(x)}\frac{\delta}{i\delta J(y)}\,Z_0[J]\right|_{J=0} \\
+			&=\left.\frac{1}{Z_0[J]}\frac{\delta}{i\delta J(x)}\frac{\delta}{i\delta J(y)}
+			\exp\!\left[\frac{i}{2}\int d^4z\,d^4w\,J(z)\,\Delta_F(z-w)\,J(w)\right]\right|_{J=0} \\
+			&=\left.\frac{1}{Z_0[J]}\frac{\delta}{i\delta J(x)}
+			\left(\int d^4z\,\Delta_F(z-y)\,J(z)\,Z_0[J]\right)\right|_{J=0} \\
+			&=\left.-i\,\frac{1}{\cancel{Z_0[J]}}\,\Delta_F(x-y)\,\cancel{Z_0[J]}\right|_{J=0}
+			+\left.\frac{1}{Z_0[J]}
+			\cancelto{0}{\left(\int d^4z\,\Delta_F(z-y)\,J(z)\right)^{2}} Z_0[J]\right|_{J=0} \\
+			&=-i\,\Delta_F(x-y).
+		\end{aligned}
+		\]
+		So \textbf{MY FINAL ANSWER IS}:
+		\[
+		\boxed{
+		i\langle 0|T\,\phi(x)\phi(y)|0\rangle_0=\Delta_F(x-y)
+		}
+		\]
+	\end{solution}
+	
+	\begin{tcolorbox}[problem]
+		\textbf{2.} In \(\phi^4\) theory with \(\mathcal L_{\text{int}}=-\frac{\lambda}{4!}\phi^4\), expand \(Z[J]\) to first order in \(\lambda\) and identify the term that produces the ``figure-8'' vacuum bubble.
+	\end{tcolorbox}
+	\begin{solution}[11.2]
+		\[
+		\begin{aligned}
+			Z[J]=&\int\mathcal{D}\phi e^{i\int d^d x\left[\mathcal{L}_0+\mathcal{L}\_1+J\phi\right]}=e^{i\int d^d x\mathcal{L}_1\left(\frac{\delta}{i\delta J(x)}\right)}\int \mathcal{D}\phi e^{i\int d^d x\left[\mathcal{L}_0+J\phi\right]}\\
+			=&\large e^{\large i\int d^dx\left.\mathcal{L}_1\left(\frac{1}{i}\frac{\delta}{\delta J(x)}\right)\right.}Z_0(J)=\exp\left[-\frac{i\lambda}{4!}\int d^dx\left(\frac{1}{i}\frac{\delta}{\delta J(x)}\right)^4\right]Z_0(J)\\
+			=&Z_0[J]-\left[\frac{i\lambda}{4!}\int d^dx\left(\frac{1}{i}\frac{\delta}{\delta J(x)}\right)^4\right]Z_0(J)+\mathcal{O}(\lambda^2)
+		\end{aligned}
+		\]
+	\end{solution}
+	from last problem we know that:
+	\[
+	\frac 1i\frac{\delta}{\delta J(x)}Z_0[J]=\int d^d z\Delta_F(z-x)J(z)Z_0[J]
+	\]
+	Therefore, we have:
+	% (若要显示被划掉的那一项，请在导言区加 \usepackage{cancel})
+	\[
+	\begin{aligned}
+		\left(\frac{\delta}{i\,\delta J(x)}\right)^{4} Z_0[J]
+		&=\left(\frac{\delta}{i\,\delta J(x)}\right)^{3}\int d^{4}z_{1}\,\Delta_{F}(z_{1}-x)\,J(z_{1})\,Z_{0}[J] \\
+		&=\left(\frac{\delta}{i\,\delta J(x)}\right)^{2}\Bigl(\Delta_{F}(0)\,Z_{0}[J]
+		+\int d^{4}z_{1}\,d^{4}z_{2}\,\Delta_{F}(z_{1}-x)\Delta_{F}(z_{2}-x)\,J(z_{1})J(z_{2})\,Z_{0}[J]\Bigr) \\
+		&=\left(\frac{\delta}{i\,\delta J(x)}\right)\Bigl(\Delta_{F}(0)\int d^{4}z_{1}\,\Delta_{F}(z_{1}-x)J(z_1)\,Z_{0}[J]
+		+2\int d^{4}z_{1}\,\Delta_{F}(z_{1}-x)\,\Delta_{F}(0)\,J(z_{1})\,Z_{0}[J] \\
+		&\hspace{3.6em}
+		+\int d^{4}z_{1}\,d^{4}z_{2}\,d^{4}z_{3}\,\Delta_{F}(z_{1}-x)\Delta_{F}(z_{2}-x)\Delta_{F}(z_{3}-x)\,
+		J(z_{1})J(z_{2})J(z_{3})\,Z_{0}[J]\Bigr) \\
+		&=\Delta_{F}^{2}(0)\,Z_{0}[J]
+		+\Delta_{F}(0)\int d^{4}z_{1}\,d^{4}z_{2}\,\Delta_{F}(z_{1}-x)\Delta_{F}(z_{2}-x)\,J(z_{1})J(z_{2})\,Z_{0}[J] \\
+		&\quad
+		+2\int d^{4}z_{1}\,d^{4}z_{2}\,\Delta_{F}(z_{1}-x)\Delta_{F}(z_{2}-x)\,\Delta_{F}(0)\,J(z_{1})J(z_{2})\,Z_{0}[J] \\
+		&\quad
+		+2\Delta_{F}^{2}(0)\,Z_{0}[J]		+3\int d^{4}z_{1}\,d^{4}z_{2}\,\Delta_{F}(z_{1}-x)\Delta_{F}(z_{2}-x)\,J(z_{1})J(z_{2})\,\Delta_{F}(0)\,Z_{0}[J]  \\
+		&\quad
+		+\int d^{4}z_{1}\,d^{4}z_{2}\,d^{4}z_{3}\,d^{4}z_{4}\,
+		\Delta_{F}(z_{1}-x)\Delta_{F}(z_{2}-x)\Delta_{F}(z_{3}-x)\Delta_{F}(z_{4}-x)\,
+		J(z_{1})J(z_{2})J(z_{3})J(z_{4})\,Z_{0}[J]\\
+		&=Z_{0}[J]\Bigl(3\Delta_{F}^{2}(0)
+		+6\Delta_{F}(0)\int d^{4}z_{1}\,d^{4}z_{2}\,\Delta_{F}(z_{1}-x)\Delta_{F}(z_{2}-x)\,J(z_{1})J(z_{2}) \\
+		&\quad
+		+\int d^{4}z_{1}\,d^{4}z_{2}\,d^{4}z_{3}\,d^{4}z_{4}\,
+		\Delta_{F}(z_{1}-x)\Delta_{F}(z_{2}-x)\Delta_{F}(z_{3}-x)\Delta_{F}(z_{4}-x)\,
+		J(z_{1})J(z_{2})J(z_{3})J(z_{4})\Bigr).
+	\end{aligned}
+	\]
+	For the vacuume diagram, we can set $J=0$:
+	\[
+	Z[0]=1-i\frac{\lambda}{8}\int d^4x\Delta_F^2(0)+\mathcal{O}(\lambda^2)
+	\]
+	Hence, \textbf{MY FINAL ANSWER IS}:
+\[
+\boxed{
+\tikz[baseline={(v.base)}, line width=0.9pt]{
+	\coordinate (v) at (0,0);
+	\draw (v) .. controls (-1, 1) and (-1,-1) .. (v);
+	\draw (v) .. controls ( 1, 1) and ( 1,-1) .. (v);
+	\fill (v) circle (1.2pt);
+}
+\;=\;
+\frac{1}{8}\cdot\left(-i\lambda\right)\cdot\int d^4x\,\Delta_F(0)^2
+}
+\]
+
+	
+	\begin{tcolorbox}[problem]
+		\textbf{3.} Derive the momentum-space propagator
+		\(\Delta_F(p)=\dfrac{i}{p^2+m^2-i\epsilon}\)
+		from the quadratic action by Fourier transform and inversion.
+	\end{tcolorbox}
+	\begin{solution}[11.3]
+		From the Lagrangian, we know that:
+		\[
+		\mathcal{L_0}=\frac12\partial^\mu\phi\partial_\mu\phi+\frac12m^2\phi^2\sim\frac12\phi^2(-\partial^2+m^2)\phi^2
+		\]
+		It means  we need to solve the following equation to find the Green function:
+		\[
+		(-\partial^2+m^2-i\epsilon)\Delta_F(x-y)=i\mathrm{~}\delta^{(4)}(x-y)
+		\]
+		Using the Fourier transformation, we have:
+		\[
+		(p^2+m^2-i\epsilon)\Delta_F(p)=i\
+		\]
+			Hence, \textbf{MY FINAL ANSWER IS}:
+		\[
+		\boxed{
+		\Delta_F(p)=\frac{i}{p^2+m^2-i\epsilon}
+	}
+		\]
+	\end{solution}
+
+	\begin{tcolorbox}[problem]
+		\textbf{4.} Using the path-integral expansion, explain why the \(\phi^4\) vertex factor is \(-i\lambda\) and why a
+		\((2\pi)^D\delta^{(D)}\!\left(\sum p\right)\) appears.
+	\end{tcolorbox}
+	\begin{solution}[11.4]
+		We can use the calculations in problem 2. There is a term in $Z[J]$:
+		\[
+		Z[J]\supset -\frac{i\lambda}{4!}\int d^4x\int d^{4}z_{1}\,d^{4}z_{2}\,d^{4}z_{3}\,d^{4}z_{4}\,
+		\Delta_{F}(z_{1}-x)\Delta_{F}(z_{2}-x)\Delta_{F}(z_{3}-x)\Delta_{F}(z_{4}-x)\,
+		J(z_{1})J(z_{2})J(z_{3})J(z_{4})
+		\]
+		To get the Feynman rule for $\phi^4$ vertex factor, we need to  apply $\Pi_{i=1}^4 \frac{\delta}{i\delta J(z_i)}$ on it. It is clear there are $4!$ different way, which will cancel the front factor $\frac{1}{4!}$. Then, we obtain the vertex in coordinate space:
+		\[
+		V({z_1,z_2,z_3,z_4})= - i\lambda \int d^4x \Delta_F(z_1-x)\Delta_F(z_2-x)\Delta_F(z_3-x)\Delta_F(z_4-x)
+		\]
+		Next, do the Fourie transformation to work in momentum space:
+		\[
+		\begin{aligned}
+		V({p_1,p_2,p_3,p_4})&= - i\lambda\int d^4z_1 d^4z_2 d^4z_3d^4z_4 e^{ip_1\cdot z_1}e^{ip_2\cdot z_2}e^{ip_3\cdot z_3}e^{ip_4\cdot z_4}\int d^4x \Delta_F(z_1-x)\Delta_F(z_2-x)\Delta_F(z_3-x)\Delta_F(z_4-x)\\
+		&=-i\lambda\cdot \Delta_F(p_1)\Delta_F(p_2) \Delta_F(p_3) \Delta_F(p_4)  \cdot\int d^4 x e^{ix\cdot\sum p}\\
+				&=-i\lambda\cdot \Delta_F(p_1)\Delta_F(p_2) \Delta_F(p_3) \Delta_F(p_4)  \cdot(2\pi)^4\delta^{4}(\sum p)
+		\end{aligned}
+		\]
+		 You can see the $-i\lambda$ and ${(2\pi)^D\delta^{(D)}(\sum p)}$ appear. Here, I just set $D=4$. Now, we can get rid of four external legs, i.e. $\Delta_F(p_i)$. So, \textbf{MY FINAL ANSWER IS}:
+		 \[
+		 \boxed{
+		 	V({p_1,p_2,p_3,p_4})= - i\lambda\cdot{(2\pi)^D\delta^{(D)}(\sum p)}
+		 }
+		 \]
+	\end{solution}
+	
+	\begin{tcolorbox}[problem]
+		\textbf{5.} Compute the symmetry factor of the one-loop correction to the 2-point function (``tadpole'') in \(\phi^4\) theory.
+	\end{tcolorbox}
+		\begin{solution}[11.5]
+	For the one-loop correction to the 2-point function with a single \(\phi^4\) vertex, two legs of the vertex attach to the two external points \(x\) and \(y\), and the remaining two legs contract with each other to form the loop.
+	
+	Counting Wick contractions:
+	\begin{enumerate}
+		\item Choose which leg of the 4-legged vertex connects to the external point \(x\): \(4\) choices.
+		\item Choose which remaining leg connects to the external point \(y\): \(3\) choices.
+		\item The two leftover legs must contract with each other to make the loop: \(1\) choice.
+	\end{enumerate}
+	So the number of distinct contractions is \(4\times 3\). The vertex from the interaction brings the factor \(1/4!\), hence the overall combinatorial factor is
+	\[
+	\frac{4\times 3}{4!}=\frac{12}{24}=\frac{1}{2}.
+	\]
+	Therefore the symmetry factor is \(S=2\). So, \textbf{MY FINAL ANSWER IS}:
+		\[
+		\boxed{
+		\tikz[baseline={(v.base)}, line width=0.9pt]{
+			\coordinate (v) at (0,0);
+			
+			% external legs
+			\draw (-1,0) -- (v);
+			\draw (v) -- (1,0);
+			
+			% loop attached to the same vertex
+			\draw (v) .. controls (-0.9,1.2) and (0.9,1.2) .. (v);
+			
+			% vertex dot
+			\fill (v) circle (1.2pt);
+			
+			% optional labels (remove if you do not want them)
+			\node[left]  at (-1,0) {$x$};
+			\node[right] at ( 1,0) {$y$};
+		}
+		\quad \Rightarrow\quad S=\frac{1}{2}
+	}
+		\]
+	\end{solution}
+	
+	\begin{tcolorbox}[problem]
+		\textbf{6.} In scalar QED, expand \(|D_\mu\phi|^2\) and explicitly list the interaction terms proportional to \(e\) and \(e^2\).
+		Identify which term gives the ``seagull'' vertex.
+	\end{tcolorbox}
+	\begin{solution}[11.6]
+	\[
+	|D_\mu\phi|^2
+	=(\partial_\mu\phi^\ast-i e A_\mu\phi^\ast)(\partial^\mu\phi+i e A^\mu\phi)
+	=\partial_\mu\phi^\ast\,\partial^\mu\phi
+	+i e\,A^\mu\bigl(\phi\,\partial_\mu\phi^\ast-\phi^\ast\,\partial_\mu\phi\bigr)
+	+e^2\,A_\mu A^\mu\,\phi^\ast\phi
+	\]
+	\textbf{MY FINAL ANSWER IS}:
+	\begin{itemize}
+		\item $\propto e$, $\mathcal L_{\text{int}}^{(e)}
+		= i e\,A^\mu\bigl(\phi\,\partial_\mu\phi^\ast-\phi^\ast\,\partial_\mu\phi\bigr)$:
+		\[
+		\feynmandiagram [baseline=(v.base), horizontal=a to b] {
+			a [particle=\(\phi(p)\)] -- [charged scalar,momentum=\(p\)] v -- [charged scalar,momentum=\(p'\)] b [particle=\(\phi(p')\)],
+			v -- [photon] c [particle=\(A_\mu(q)\)],
+		};
+		\qquad\Rightarrow\qquad
+		V^\mu(p',p)= i e\,(p'+p)^\mu
+		\]
+		\item $\propto e^2$, $\mathcal L_{\text{int}}^{(e^2)}
+		= 2e^2\cdot\frac12 A_\mu A^\mu\,\phi^\ast\phi$ (seagull)
+		\[
+		\feynmandiagram [baseline=(v.base), horizontal=a to b] {
+			a [particle=\(\phi(p)\)] -- [scalar] v -- [scalar] b [particle=\(\phi(p')\)],
+			v -- [photon] c [particle=\(A_\mu\)],
+			v -- [photon] d [particle=\(A_\nu\)],
+		};
+		\qquad\Rightarrow\qquad
+		V^{\mu\nu}= 2 i e^2\,g^{\mu\nu}
+		\quad\text{(seagull)}
+		\]
+	\end{itemize}
+	\end{solution}
+	
+	\begin{tcolorbox}[problem]
+		\textbf{7.} Starting from \(\mathcal L_{\text{gf}}=-\dfrac{1}{2\xi}(\partial\cdot A)^2\), derive the photon propagator in covariant \(\xi\) gauge.
+	\end{tcolorbox}
+	\begin{solution}[11.7]
+		We consider the following Lagrangian of QED:
+		\[
+		\mathcal L
+		=-\frac14 F_{\mu\nu}F^{\mu\nu}-\frac{1}{2\xi}(\partial\!\cdot\!A)^2
+		,\qquad
+		F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu
+		\]
+		Up to a total derivative, this Lagrangian can be rewritten as:
+		\[
+		\mathcal L
+		\sim\frac12\,A_\mu
+		\Bigl[g^{\mu\nu}\partial^2-\Bigl(1-\frac{1}{\xi}\Bigr)\partial^\mu\partial^\nu\Bigr]
+		A_\nu
+		\]
+		Next, as we did in problem 3, we need to solve the following equation:
+		\[
+		\Bigl[g^{\mu\nu}\partial^2-\Bigl(1-\frac{1}{\xi}\Bigr)\partial^\mu\partial^\nu\Bigr]D_{\nu\rho}(x-y)=i\,\delta^\mu_{\ \rho}\,\delta^{(4)}(x-y)
+		\]
+		By the Fourier transformation, $\partial_\mu\to i p_\mu$. So we have:
+		\[
+		\left[-p^2 g^{\mu\nu}
+		+\Bigl(1-\frac{1}{\xi}\Bigr)p^\mu p^\nu\right]D_{\nu\rho}(p)=i\delta^{\mu}_{\nu}
+		\]
+		Inverse it, one can check it like following:
+\[
+\begin{aligned}
+	&\left[-p^2 g^{\mu\nu}
+	+\Bigl(1-\frac{1}{\xi}\Bigr)p^\mu p^\nu\right]D_{\nu\rho}(p)
+	=\left[-p^2 g^{\mu\nu}
+	+\Bigl(1-\frac{1}{\xi}\Bigr)p^\mu p^\nu\right]
+	\frac{-i}{p^2}\left(g_{\nu\rho}-(1-\xi)\frac{p_\nu p_\rho}{p^2}\right)
+	\\
+	=&\frac{-i}{p^2}\Biggl[
+	-p^2 g^{\mu\nu}g_{\nu\rho}
+	+p^2(1-\xi)g^{\mu\nu}\frac{p_\nu p_\rho}{p^2}
+	+\Bigl(1-\frac{1}{\xi}\Bigr)p^\mu p^\nu g_{\nu\rho}
+	-\Bigl(1-\frac{1}{\xi}\Bigr)(1-\xi)p^\mu p^\nu\frac{p_\nu p_\rho}{p^2}
+	\Biggr]
+	\\
+	=&\frac{-i}{p^2}\Biggl[
+	-p^2\delta^\mu_{\ \rho}
+	+(1-\xi)p^\mu p_\rho
+	+\Bigl(1-\frac{1}{\xi}\Bigr)p^\mu p_\rho
+	-\Bigl(1-\frac{1}{\xi}\Bigr)(1-\xi)p^\mu p_\rho
+	\Biggr]
+	\\
+	=&\frac{-i}{p^2}\Biggl[
+	-p^2\delta^\mu_{\ \rho}
+	+\Bigl((1-\xi)+\Bigl(1-\frac{1}{\xi}\Bigr)-\Bigl(1-\frac{1}{\xi}\Bigr)(1-\xi)\Bigr)p^\mu p_\rho
+	\Biggr]
+	\\
+	=&\frac{-i}{p^2}\Biggl[
+	-p^2\delta^\mu_{\ \rho}
+	+\Bigl(1-\xi+1-\frac{1}{\xi}-\Bigl(1-\xi-\frac{1}{\xi}+1\Bigr)\Bigr)p^\mu p_\rho
+	\Biggr]
+	\\
+	=&\frac{-i}{p^2}\Bigl[-p^2\delta^\mu_{\ \rho}\Bigr]
+	=i\,\delta^\mu_{\ \rho}\,.
+\end{aligned}
+\]
+
+		We can add the regulator $i\epsilon$ by hand. So 	\textbf{MY FINAL ANSWER IS}:
+				\[
+		\boxed{
+			D_{\mu\nu}(p)
+			=\frac{-i}{p^2+i\epsilon}
+			\left(
+			g_{\mu\nu}-(1-\xi)\frac{p_\mu p_\nu}{p^2}
+			\right)
+		}
+		\]
+	\end{solution}
+	
+	\begin{tcolorbox}[problem]
+		\textbf{8.} Show explicitly that the \(\xi\)-dependent part of the photon propagator drops out of a tree-level amplitude with conserved external current \(q_\mu J^\mu=0\).
+	\end{tcolorbox}
+	\begin{solution}[11.8]
+		The Noether current of global $U(1)$ symmetry is:
+		\[
+		j^\mu=i\left(\phi^*\partial^\mu\phi-(\partial^\mu\phi^*)\phi\right)
+		\]
+		The classical (tree-level) conservation law is:
+		\[
+		\partial_\mu j^\mu=0
+		\]
+		In the momentum space, it can be showed diagrammatically:
+		\[
+		\feynmandiagram [baseline=(v.base), horizontal=a to b] {
+			a [particle=\(\phi(p)\)] -- [charged scalar,momentum=\(p\)] v -- [charged scalar,momentum=\(p'\)] b [particle=\(\phi(p')\)],
+			v -- [photon, momentum=$q$] c [particle=\(A_\mu(q)\)],
+		};
+		\quad \partial_\mu J^\mu=0\quad\Rightarrow\quad q^\mu V_\mu(p,p')\sim q^\mu(p+p^{\prime})_\mu\overset{\text{OS}}{=}p^{\prime2}-p^2
+		\]
+		At tree level, the photon propagator always comes together with the \(A\phi\phi^*\) vertex above, and the two scalar fields are external on-shell legs. The Ward identity written above shows that, when combined with the vertex, the terms in \(D_{\mu\nu}(q)\) proportional to \(q^\mu\) do not contribute to the amplitude. We also see that the \(\xi\)-dependent term in the photon propagator is precisely \((1-\xi)\frac{q_\mu q_\nu}{q^2}\propto q^\mu\). Therefore this part (at least at tree level) gives no contribution to the amplitude, and the tree-level scattering amplitude is \(\xi\)-independent.
+	\end{solution}
+	
+	\begin{tcolorbox}[problem]
+		\textbf{9.} Derive the scalar-QED 3-point vertex rule \(ie(p+p')_\mu\) with a clear momentum-flow convention.
+	\end{tcolorbox}
+	\begin{solution}[11.9]
+		Almost all the works have done in problem 6. There, we derived the related Lagrangian is given by:
+		$$\mathcal L_{\text{int}}^{(e)}
+		= i e\,A^\mu\bigl(\phi\,\partial_\mu\phi^\ast-\phi^\ast\,\partial_\mu\phi\bigr)$$
+		Next, we only need to note that if $|k\rangle$ is an incoming selectron state, then $\langle0|\varphi(x)|k\rangle=e^{ikx}$ and $\langle0|\varphi^\dagger(x)|k\rangle=0;$ and if $\langle k^\prime|$ is an outgoing selectron state, then $\langle k^\prime|\varphi^\dagger(x)|0\rangle=e^{-ik^{\prime}x}$ and $\langle0|\varphi(x)|k\rangle=0.$ Therefore, in free-field theory
+		\[\langle k^{\prime}|(\partial_\mu\varphi^\dagger)\varphi|k\rangle=-ik_\mu^{\prime}e^{-i(k^{\prime}-k)x},\quad\langle k^{\prime}|\varphi^\dagger\partial_\mu\varphi|k\rangle=+ik_\mu e^{-i(k^{\prime}-k)x}
+		\]
+		This implies that the vertex factor  is given by $i(ie)[(-ik_\mu^{\prime})-(ik_\mu)]=ie(k+k^{\prime})_\mu$. 
+		
+		So, \textbf{MY FINAL ANSWER IS}:
+				\[
+				\boxed{
+		\feynmandiagram [baseline=(v.base), horizontal=a to b] {
+			a [particle=\(\phi(k)\)] -- [charged scalar,momentum=\(k\)] v -- [charged scalar,momentum=\(k'\)] b [particle=\(\phi(k')\)],
+			v -- [photon] c [particle=\(A_\mu(q)\)],
+		};
+		\qquad\Rightarrow\qquad
+		V^\mu(k',k)= i e\,(k'+k)^\mu}
+		\]
+	\end{solution}
+	
+	\begin{tcolorbox}[problem]
+		\textbf{10.} Consider scalar QED scattering \(\phi\phi^*\to\phi\phi^*\) via one-photon exchange.
+		Compute the tree-level amplitude in general \(\xi\) gauge and show the physical result is \(\xi\)-independent (use current conservation).
+	\end{tcolorbox}
+	\begin{solution}[11.10]
+		We have the following two diagrams:
+			\[
+				\feynmandiagram [baseline=(current bounding box.center),horizontal=a to b] {
+					i1 [particle=$\phi$] -- [charged scalar, momentum'=$p_1$] a
+					-- [charged scalar, rmomentum'=$p_2$] i2 [particle=$\phi^*$],
+					a -- [photon, edge label'=$\gamma$] b,
+					f1 [particle=$\phi^*$] -- [charged scalar, rmomentum'=$p_4$] b
+					-- [charged scalar,momentum'=$p_3$] f2 [particle=$\phi$],
+				};
+				\quad 
+				\begin{aligned}
+					i\mathcal{M}_{s}=& ie(p_1-p_2)^\mu\times\left[\frac{-i}{(p_1+p_2)^2+i\epsilon}\left(g_{\mu\nu}-(1-\xi)\frac{(p_1+p_2)_\mu(p_1+p_2)^\nu)}{(p_1+p_2)^2}\right)\right]\\
+					&\times ie(p_3-p_4)^\nu
+				\end{aligned}
+			\]
+			\[
+			% t-channel
+				\feynmandiagram [baseline=(current bounding box.center),horizontal=i1 to f1, vertical=a to b] {
+					i1 [particle=$\phi$] -- [charged scalar,momentum'=$p_1$] a -- [charged scalar,momentum'=$p_3$] f1 [particle=$\phi$],
+					i2 [particle=$\phi^*$] -- [anti charged scalar, momentum=$p_2$] b -- [anti charged scalar,momentum=$p_4$] f2 [particle=$\phi^*$],
+					a -- [photon, edge label=$\gamma$] b,
+				};
+				\quad
+				\begin{aligned}
+					i\mathcal{M}_{t}=& ie(p_1+p_3)^\mu\times\left[\frac{-i}{(p_1-p_3)^2+i\epsilon}\left(g_{\mu\nu}-(1-\xi)\frac{(p_1-p_3)_\mu(p_1-p_3)^\nu)}{(p_1-p_3)^2}\right)\right]\\
+					&\times ie(p_2+p_4)^\nu
+				\end{aligned}
+			\]
+			As we saw in the last problem, by current conservation:
+			\[
+			\begin{aligned}
+				i\mathcal{M}_{s}&\supset (\cdots)\times (1-\xi)(p_1-p_2)\cdot(p_1+p_2) = 0\\
+				i\mathcal{M}_{t}&\supset (\cdots)\times (1-\xi)(p_1+p_3)\cdot(p_1-p_3) = 0
+			\end{aligned}
+			\]
+			Therefore we can drop out the $\xi$--dependent terms, the final amplitude indenpend on $\xi$. So, \textbf{MY FINAL ANSWER IS}:
+			\[
+			\begin{aligned}
+				i\mathcal{M}&=i\mathcal{M}_s+\mathcal{M}_{t}\\
+				&=ie^2(p_1-p_2)\cdot(p_3-p_4)\frac{1}{(p_1+p_2)^2+i\epsilon}+ie^2(p_1+p_3)\cdot(p_2+p_4)\frac{1}{(p_1-p_3)^2+i\epsilon}\\
+				&=\boxed{ie^2\left(\frac{u-t}{s}+\frac{s-u}{t}\right)}
+			\end{aligned}
+			\]
+			The last equality follows from the Mandelstam variables defined as follows.
+			\[
+			\begin{gathered}
+				s=(p_1+p_2)^2=(p_3+p_4)^2=2p_1\cdot p_2-2m^2=2p_3\cdot p_4-2m^2\\
+				t=(p_1-p_3)^2=(p_2-p_4)^2=-2p_1\cdot p_3-2m^2=-2p_2\cdot p_4-2m^2\\
+				u=(p_1-p_4)^2=(p_2-p_3)^2=-2p_1\cdot p_4-2m^2=-2p_2\cdot p_3-2m^2
+			\end{gathered}
+			\]
+			It is clear $\mathcal{M}$ is $\xi$--independent.
+	\end{solution}
+	
+\end{document}

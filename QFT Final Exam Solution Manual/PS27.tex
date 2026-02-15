@@ -1,0 +1,217 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 27} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\begin{problem}
+    \textbf{Weyl scaling of the metric.} Under \(g_{\mu\nu}\to e^{2\sigma(x)}g_{\mu\nu}\), compute how \(\sqrt{-g}\) and \(g^{\mu\nu}\) transform to first order in \(\sigma\).
+\end{problem}
+\begin{solution}[27.1]
+	\[
+	g^{\mu\alpha}g_{\alpha\nu}={\delta^\mu}_\nu\Rightarrow g^{\mu\nu}\to e^{-2\sigma}g^{\mu\nu}=\left(1-2\sigma\right)g^{\mu\nu}+O(\sigma^2)
+	\Rightarrow \boxed{\delta g^{\mu\nu}=-2\sigma\mathrm{~}g^{\mu\nu}}
+	\]
+	\[
+	\det g_{\mu\nu}:=g\to e^{2D\sigma}g\Rightarrow\sqrt{-g}\to e^{D\sigma}\sqrt{-g}=(1+D\sigma)\sqrt{-g}+O(\sigma^2)\Rightarrow\boxed{\delta\sqrt{-g}=D\sigma\sqrt{-g}.}
+	\]
+	Where $D$ is the dimension of the spacetime.
+\end{solution}
+\begin{problem}
+    \textbf{Weyl weight of a scalar kinetic term.} For \(S=\int d^Dx\,\sqrt{-g}\,\frac{1}{2}g^{\mu\nu}\partial_\mu\varphi\,\partial_\nu\varphi\), choose a Weyl transformation \(\varphi\to e^{w\sigma}\varphi\) and determine \(w\) so that the kinetic term is Weyl invariant for a global rescaling \(\sigma=\text{const}\).
+\end{problem}
+\begin{solution}[27.2]
+	From the discussion in the last problem, we know that
+	\[
+	\sqrt{-g}\rightarrow e^{D\sigma}\sqrt{-g},\quad g^{\mu\nu}\rightarrow e^{-2\sigma}g^{\mu\nu},\quad\partial\varphi\partial\varphi\rightarrow e^{2w\sigma}\partial\varphi\partial\varphi
+	\]
+	which implies:
+	\[
+	S\rightarrow e^{(D-2+2w)\sigma} S
+	\]
+	To be Weyl invariant, $D-2+2w$ should vanish, so \textbf{MY FINAL ANSWER IS}:
+	\[
+	\boxed{
+	w=\frac{2-D}{2}
+}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Conformal coupling constant.} Include \(\xi R\varphi^2\). For \(m=0\), determine \(\xi\) such that the full action is Weyl invariant up to total derivatives in flat space, and hence the improved stress tensor is traceless classically.
+\end{problem}
+\begin{solution}[27.3]
+	Using the result in the last problem, we choose $w=1-\frac{D}{2}$. However, here we don't assume $\sigma$ is a constant, then we find the variation of kinematic term:
+$$
+\begin{aligned}
+	\tilde{\mathcal L}_{\mathrm{kin}}
+	&= \sqrt{-\tilde g}\,\frac12\,\tilde g^{\mu\nu}\,\partial_\mu\tilde\varphi\,\partial_\nu\tilde\varphi\\
+	&= \sqrt{-g}\,e^{D\sigma}\,\frac12\,e^{-2\sigma}g^{\mu\nu}\,\partial_\mu\!\big(e^{w\sigma}\varphi\big)\,\partial_\nu\!\big(e^{w\sigma}\varphi\big)\\
+	&= \sqrt{-g}\,\frac12\,e^{(D-2)\sigma}g^{\mu\nu}\,
+	\big(e^{w\sigma}(\partial_\mu\varphi+w\varphi\,\partial_\mu\sigma)\big)\,
+	\big(e^{w\sigma}(\partial_\nu\varphi+w\varphi\,\partial_\nu\sigma)\big)\\
+	&= \sqrt{-g}\,\frac12\,e^{(D-2+2w)\sigma}\,g^{\mu\nu}\,
+	(\partial_\mu\varphi+w\varphi\,\partial_\mu\sigma)(\partial_\nu\varphi+w\varphi\,\partial_\nu\sigma)\\
+	&= \sqrt{-g}\,\frac12\,e^{(D-2+2w)\sigma}\Big((\partial\varphi)^2+2w\varphi\,\partial^\mu\sigma\,\partial_\mu\varphi+w^2\varphi^2(\partial\sigma)^2\Big)\\
+	&\xrightarrow{\,w=\frac{2-D}{2}\,}
+	\sqrt{-g}\,\frac12\Big((\partial\varphi)^2+(2-D)\varphi\,\partial^\mu\sigma\,\partial_\mu\varphi+\frac{(D-2)^2}{4}\varphi^2(\partial\sigma)^2\Big)
+\end{aligned}
+$$
+To continnue, we need the following weyl transformation formula of Ricci scalar:
+\[
+\begin{aligned}
+	\tilde\Gamma^{\rho}{}_{\mu\nu}
+	&=\frac12\tilde g^{\rho\lambda}\Big(\partial_\mu\tilde g_{\lambda\nu}+\partial_\nu\tilde g_{\lambda\mu}-\partial_\lambda\tilde g_{\mu\nu}\Big)\\
+	&=\frac12 e^{-2\sigma} g^{\rho\lambda}\Big(\partial_\mu(e^{2\sigma}g_{\lambda\nu})+\partial_\nu(e^{2\sigma}g_{\lambda\mu})-\partial_\lambda(e^{2\sigma}g_{\mu\nu})\Big)\\
+	&=\frac12 g^{\rho\lambda}\Big(\partial_\mu g_{\lambda\nu}+\partial_\nu g_{\lambda\mu}-\partial_\lambda g_{\mu\nu}\Big)
+	+g^{\rho\lambda}\Big(g_{\lambda\nu}\partial_\mu\sigma+g_{\lambda\mu}\partial_\nu\sigma-g_{\mu\nu}\partial_\lambda\sigma\Big)\\
+	&=\Gamma^{\rho}{}_{\mu\nu}+\delta^\rho_\mu\partial_\nu\sigma+\delta^\rho_\nu\partial_\mu\sigma-g_{\mu\nu}\partial^\rho\sigma
+	\equiv \Gamma^{\rho}{}_{\mu\nu}+C^{\rho}{}_{\mu\nu}
+\end{aligned}
+\]
+$$
+\begin{aligned}
+	\tilde R
+	&= \tilde g^{\mu\nu}\Big(\partial_\rho \tilde\Gamma^{\rho}{}_{\mu\nu}-\partial_\nu \tilde\Gamma^{\rho}{}_{\mu\rho}
+	+\tilde\Gamma^{\rho}{}_{\rho\lambda}\tilde\Gamma^{\lambda}{}_{\mu\nu}
+	-\tilde\Gamma^{\rho}{}_{\nu\lambda}\tilde\Gamma^{\lambda}{}_{\mu\rho}\Big)\\
+	&= e^{-2\sigma}g^{\mu\nu}\Big(\partial_\rho \tilde\Gamma^{\rho}{}_{\mu\nu}-\partial_\nu \tilde\Gamma^{\rho}{}_{\mu\rho}
+	+\tilde\Gamma^{\rho}{}_{\rho\lambda}\tilde\Gamma^{\lambda}{}_{\mu\nu}
+	-\tilde\Gamma^{\rho}{}_{\nu\lambda}\tilde\Gamma^{\lambda}{}_{\mu\rho}\Big)\\
+	&
+	= e^{-2\sigma}g^{\mu\nu}\Big(\partial_\rho(\Gamma^{\rho}{}_{\mu\nu}+C^{\rho}{}_{\mu\nu})
+	-\partial_\nu(\Gamma^{\rho}{}_{\mu\rho}+C^{\rho}{}_{\mu\rho})\\
+	&\qquad\qquad\qquad\qquad
+	+(\Gamma^{\rho}{}_{\rho\lambda}+C^{\rho}{}_{\rho\lambda})(\Gamma^{\lambda}{}_{\mu\nu}+C^{\lambda}{}_{\mu\nu})
+	-(\Gamma^{\rho}{}_{\nu\lambda}+C^{\rho}{}_{\nu\lambda})(\Gamma^{\lambda}{}_{\mu\rho}+C^{\lambda}{}_{\mu\rho})\Big)\\
+	&= e^{-2\sigma}\Big(R
+	+g^{\mu\nu}(\nabla_\rho C^{\rho}{}_{\mu\nu}-\nabla_\nu C^{\rho}{}_{\mu\rho})
+	+g^{\mu\nu}(C^{\rho}{}_{\rho\lambda}C^{\lambda}{}_{\mu\nu}-C^{\rho}{}_{\nu\lambda}C^{\lambda}{}_{\mu\rho})\Big)\\
+	&= e^{-2\sigma}\Big(R
+	+\nabla_\rho(g^{\mu\nu}C^{\rho}{}_{\mu\nu})-\nabla_\nu(g^{\mu\nu}C^{\rho}{}_{\mu\rho})
+	+g^{\mu\nu}(C^{\rho}{}_{\rho\lambda}C^{\lambda}{}_{\mu\nu}-C^{\rho}{}_{\nu\lambda}C^{\lambda}{}_{\mu\rho})\Big)\\
+	&= e^{-2\sigma}\Big(R
+	+\nabla_\rho\big(g^{\mu\nu}(\delta^\rho_\mu\partial_\nu\sigma+\delta^\rho_\nu\partial_\mu\sigma-g_{\mu\nu}\partial^\rho\sigma)\big)
+	-\nabla_\nu\big(g^{\mu\nu}(D\partial_\mu\sigma)\big)\\
+	&\qquad\qquad\qquad\qquad
+	+g^{\mu\nu}(D\partial_\lambda\sigma)C^{\lambda}{}_{\mu\nu}
+	-g^{\mu\nu}C^{\rho}{}_{\nu\lambda}C^{\lambda}{}_{\mu\rho}\Big)\\
+	&= e^{-2\sigma}\Big(R
+	+\nabla_\rho\big((2-D)\partial^\rho\sigma\big)-D\nabla^2\sigma
+	+D\partial_\lambda\sigma\,(2-D)\partial^\lambda\sigma-(2-D)(\partial\sigma)^2\Big)\\
+	&= e^{-2\sigma}\Big(R-2(D-1)\nabla^2\sigma-(D-1)(D-2)(\nabla\sigma)^2\Big)
+\end{aligned}
+$$
+Therefore, we have:
+$$
+\begin{aligned}
+	\tilde{\mathcal L}_\xi
+	&=\sqrt{-\tilde g}\,\xi\,\tilde R\,\tilde\varphi^{2}\\
+	&=\sqrt{-g}\,e^{D\sigma}\,\xi\,
+	\Big(e^{-2\sigma}\big(R-2(D-1)\nabla^{2}\sigma-(D-1)(D-2)(\nabla\sigma)^{2}\big)\Big)\,
+	\big(e^{2w\sigma}\varphi^{2}\big)\\
+	&=\sqrt{-g}\,\xi\,e^{(D-2+2w)\sigma}\,
+	\big(R-2(D-1)\nabla^{2}\sigma-(D-1)(D-2)(\nabla\sigma)^{2}\big)\,
+	\varphi^{2}\\
+	&\xrightarrow{\,w=\frac{2-D}{2}\,}\sqrt{-g}\,\xi\,
+	\big(R-2(D-1)\nabla^{2}\sigma-(D-1)(D-2)(\nabla\sigma)^{2}\big)\,
+	\varphi^{2}
+\end{aligned}
+$$
+Using
+\[
+\sqrt{-g}\varphi\partial^\mu \sigma\partial_\mu\varphi=\frac12\sqrt{-g}\nabla_\mu \left(\varphi^2\nabla^\mu\sigma\right)-\frac12\sqrt{-g}\varphi^2\nabla^2\sigma,
+\]
+we have:
+\[
+\begin{aligned}
+	\tilde{\mathcal{L}}_\text{total}-\tilde{\mathcal{L}}=&\sqrt{-g}\varphi^2\left[
+	\nabla^2\sigma\left(-2\xi(D-1)-\frac{2-D}{4}\right)
+	+(\nabla\sigma)^2\left(-(D-1)(D-2)\xi+\frac{(D-2)^2}{8}\right)\right]
+	\\&+\frac{2-D}{4}\sqrt{-g}\nabla_\mu\left(\varphi^2\nabla^\mu\sigma\right)
+\end{aligned}
+\]
+To leave only a total derivative:
+\[
+\begin{cases}
+	-\frac{2-D}{4}-2\xi(D-1)=0&\\
+	-(D-1)(D-2)\xi+\frac{(D-2)^2}{8}=0&
+\end{cases}
+\]
+which implies:
+\[
+\boxed{
+\xi=\frac{D-2}{8(D-1)}
+}
+\]
+\end{solution}
+\begin{problem}
+    \textbf{Conformal Killing vectors.} In flat space, \(\delta g_{\mu\nu}=\partial_\mu\xi_\nu+\partial_\nu\xi_\mu\). Impose \(\delta g_{\mu\nu}=2\sigma\eta_{\mu\nu}\). Solve for \(\sigma=\frac{1}{D}\partial\cdot\xi\). Verify that dilations \(\xi^\mu=\lambda x^\mu\) satisfy this and compute \(\sigma\).
+\end{problem}
+\begin{solution}[27.4]
+	In flat spacetime, the conformal Killing equation is:
+	\[
+	\partial_\mu\xi_\nu+\partial_\nu\xi_\mu=2\sigma\eta_{\mu\nu}
+	\]
+	Contract both sides with $\eta^{\mu\nu}$
+	\[
+	\eta^{\mu\nu}(\partial_\mu\xi_\nu+\partial_\nu\xi_\mu)=2\sigma\eta^{\mu\nu}\eta_{\mu\nu}\Rightarrow2\partial_\mu\xi^\mu=2\sigma D\Rightarrow\boxed{\sigma=\frac{1}{D}\partial\cdot\xi}
+	\]
+	For dilation, we have:
+	\[
+	\partial_\mu\xi^\mu=\partial_\mu(\lambda x^\mu)=\lambda\delta^\mu{}_\mu=\lambda D\Rightarrow\boxed{\sigma=\frac{1}{D}(\partial\cdot\xi)=\lambda}
+	\]
+	Indeed, it satisfies the conformal Killing equation:
+	\[
+	\partial_\mu\xi_\nu+\partial_\nu\xi_\mu=\lambda(\eta_{\mu\nu}+\eta_{\nu\mu})=2\lambda\eta_{\mu\nu}=2\sigma\eta_{\mu\nu}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Conformal group dimension in \(D\).} Count generators of the conformal group in \(D\ge 3\): translations \(P\), Lorentz \(M\), dilations \(D\), special conformal \(K\). Give the total number as a function of \(D\).
+\end{problem}
+\begin{solution}[27.5]
+	\begin{itemize}
+		\item Translations $P_\mu$: \;$D$ generators.
+		\item Lorentz transformations $M_{\mu\nu}=-M_{\nu\mu}$: \;$\dfrac{D(D-1)}{2}$ generators.
+		\item Dilations $\mathfrak{D}$: \;$1$ generator.
+		\item Special conformal transformations $K_\mu$: \;$D$ generators.
+	\end{itemize}
+	There the total number is:
+	\[
+	\boxed{
+	\#=D+\frac{D(D-1)}{2}+1+D=\frac{(D+1)(D+2)}{2},\qquad D\ge 3}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Weyl as spurionic symmetry.} Treat couplings \(g_i\) as spacetime-dependent spurions with Weyl weights \(w_i\). For an operator \(\mathcal{O}_i\) of classical scaling dimension \(\Delta_i\), find \(w_i\) so that \(\int d^Dx\,\sqrt{-g}\,g_i\mathcal{O}_i\) is Weyl invariant in flat space.
+\end{problem}
+\begin{problem}
+    \textbf{Conformal as dynamical subgroup of \(\mathrm{Diff}\times\mathrm{Weyl}\).} In flat space, consider a diffeomorphism \(x\to x+\xi(x)\) combined with a Weyl rescaling \(\sigma(x)\). Demand the combined transformation preserves \(\eta_{\mu\nu}\). Derive \(\sigma=\frac{1}{D}\partial\cdot\xi\) and conclude the condition on \(\xi\) is the conformal Killing equation.
+\end{problem}
+\begin{solution}[27.7]
+	An infinitesimal diffeomorphism changes the metric by the Lie derivative, namely,
+	\[
+	\delta_\xi g_{\mu\nu}=\mathcal{L}_\xi g_{\mu\nu}=\xi^\rho\partial_\rho g_{\mu\nu}+(\partial_\mu\xi^\rho)g_{\rho\nu}+(\partial_\nu\xi^\rho)g_{\mu\rho}
+	\]
+	in flat spacetime, we have:
+	\[
+	\delta_\xi\eta_{\mu\nu}=\partial_\mu\xi_\nu+\partial_\nu\xi_\mu
+	\]
+	From Problem 1, we already know that the leading-order contribution to the metric under a Weyl transformation is
+	\[
+	\delta_\sigma\eta_{\mu\nu}=-2\sigma\eta_{\mu\nu}
+	\]
+	Combining these two facts, and requiring the two effects to cancel, we obtain
+	\[
+	\boxed{
+		\partial_\mu\xi_\nu+\partial_\nu\xi_\mu=2\sigma\eta_{\mu\nu}
+	}
+	\]
+	Which is exactly the conformal Killing equation. From the problem 5, we know the solution is:
+	\[
+	\boxed{
+	\sigma=\frac{1}{D}\partial\cdot\xi
+	}
+	\]
+\end{solution}

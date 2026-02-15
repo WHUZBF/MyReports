@@ -1,0 +1,232 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage[]{cancel}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+% --- "Solution" environment (proof-style) ---
+\newenvironment{solution}[1][]{\begin{proof}[\textbf{Solution}]}{\end{proof}}
+% --- Rounded box style for each problem (whole statement) ---
+\tcbset{
+    problem/.style={
+        enhanced,
+        boxrule=0.7pt,
+        arc=3mm,
+        left=3mm,right=3mm,top=2mm,bottom=2mm,
+        colback=white,
+        colframe=black,
+        before skip=10pt,
+        after skip=6pt,
+    }
+}
+
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 13} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+
+\begin{tcolorbox}[problem]
+\textbf{1.} Starting from $\{\gamma^\mu,\gamma^\nu\}=2g^{\mu\nu}$, show that $[\gamma^\mu,\gamma^\nu]$ generates a representation of the Lorentz algebra on spinors via $\Sigma^{\mu\nu}=\frac14[\gamma^\mu,\gamma^\nu]$.
+\end{tcolorbox}
+\begin{solution}[13.1]
+	\textbf{MY FINAL ANSWER IS}:
+$$
+\begin{aligned}
+	[\Sigma^{\mu\nu},\Sigma^{\rho\sigma}]
+	&=\Big[\tfrac14[\gamma^\mu,\gamma^\nu],\tfrac14[\gamma^\rho,\gamma^\sigma]\Big]
+	=\tfrac1{16}[[\gamma^\mu,\gamma^\nu],[\gamma^\rho,\gamma^\sigma]]\\
+	&=\tfrac1{16}\Big([[\,\gamma^\mu,\gamma^\nu\,],\gamma^\rho]\gamma^\sigma+\gamma^\rho[[\,\gamma^\mu,\gamma^\nu\,],\gamma^\sigma]-[[\,\gamma^\mu,\gamma^\nu\,],\gamma^\sigma]\gamma^\rho-\gamma^\sigma[[\,\gamma^\mu,\gamma^\nu\,],\gamma^\rho]\Big)\\
+	&=\tfrac1{16}\Big([\;[[\,\gamma^\mu,\gamma^\nu\,],\gamma^\rho]\;,\gamma^\sigma]-[\;[[\,\gamma^\mu,\gamma^\nu\,],\gamma^\sigma]\;,\gamma^\rho]\Big)\\
+	&=\tfrac1{16}\Big([\;\gamma^\mu\gamma^\nu\gamma^\rho-\gamma^\nu\gamma^\mu\gamma^\rho-\gamma^\rho\gamma^\mu\gamma^\nu+\gamma^\rho\gamma^\nu\gamma^\mu\;,\gamma^\sigma]-[\;\gamma^\mu\gamma^\nu\gamma^\sigma-\gamma^\nu\gamma^\mu\gamma^\sigma-\gamma^\sigma\gamma^\mu\gamma^\nu+\gamma^\sigma\gamma^\nu\gamma^\mu\;,\gamma^\rho]\Big)\\
+	&=\tfrac1{16}\Big([\;\gamma^\mu(2g^{\nu\rho}-\gamma^\rho\gamma^\nu)-\gamma^\nu(2g^{\mu\rho}-\gamma^\rho\gamma^\mu)-(2g^{\rho\mu}-\gamma^\mu\gamma^\rho)\gamma^\nu+(2g^{\rho\nu}-\gamma^\nu\gamma^\rho)\gamma^\mu\;,\gamma^\sigma]\\
+	&\qquad\qquad-[\;\gamma^\mu(2g^{\nu\sigma}-\gamma^\sigma\gamma^\nu)-\gamma^\nu(2g^{\mu\sigma}-\gamma^\sigma\gamma^\mu)-(2g^{\sigma\mu}-\gamma^\mu\gamma^\sigma)\gamma^\nu+(2g^{\sigma\nu}-\gamma^\nu\gamma^\sigma)\gamma^\mu\;,\gamma^\rho]\Big)\\
+	&=\tfrac1{16}\Big([\;4(g^{\nu\rho}\gamma^\mu-g^{\mu\rho}\gamma^\nu)\;,\gamma^\sigma]-[\;4(g^{\nu\sigma}\gamma^\mu-g^{\mu\sigma}\gamma^\nu)\;,\gamma^\rho]\Big)\\
+	&=\tfrac14\Big(g^{\nu\rho}[\gamma^\mu,\gamma^\sigma]-g^{\mu\rho}[\gamma^\nu,\gamma^\sigma]-g^{\nu\sigma}[\gamma^\mu,\gamma^\rho]+g^{\mu\sigma}[\gamma^\nu,\gamma^\rho]\Big)\\
+	&=g^{\nu\rho}\Sigma^{\mu\sigma}-g^{\mu\rho}\Sigma^{\nu\sigma}-g^{\nu\sigma}\Sigma^{\mu\rho}+g^{\mu\sigma}\Sigma^{\nu\rho}.
+\end{aligned}
+$$
+It is clear that this is the commutator in Lorentz algebra.
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{2.} Show that the Dirac Lagrangian $\bar\psi(i\gamma_\mu\partial^\mu-m)\psi$ is real (Hermitian action) given appropriate hermiticity properties of the $\gamma^\mu$.
+\end{tcolorbox}
+\begin{solution}[13.2]
+	$$
+	\begin{aligned}\left(\bar{\psi}\left(i\gamma_\mu\partial^\mu-m\right)\psi\right)^\dagger&=\left(i\left.\psi^\dagger\gamma^0\gamma_\mu\partial^\mu\psi-m\right.\psi^\dagger\gamma^0\psi\right)^{\dagger}\\&=-i\left(\partial^\mu\psi\right)^\dagger(\gamma_\mu)^\dagger(\gamma^0)^\dagger\psi-m\psi^\dagger(\gamma^0)\\&=-i\left.\partial^{\mu}\psi^{\dagger}(\gamma_{\mu})^{\dagger}\gamma^{0}\psi\right.-\left.m\psi^{\dagger}\gamma^{0}\psi\right.\\&=-i\partial^\mu\left(\psi^\dagger(\gamma_\mu)^\dagger\gamma^0\psi\right)+i\psi^\dagger(\gamma_\mu)^\dagger\gamma^0\partial^\mu\psi-m\psi^\dagger\gamma^0\psi
+\end{aligned}
+$$
+		If we have $(\gamma_\mu)^\dagger=\gamma^0\gamma_\mu\gamma^0$, then
+	$$
+		\begin{aligned}
+		\text{LHS}&=-\partial^{\mu}{\left(i\left.\psi^{\dagger}(\gamma_{\mu})^{\dagger}\gamma^{0}\psi\right)\right.}+\left.\psi^{\dagger}\gamma^{0}(i\gamma_{\mu}\partial^{\mu}-m)\psi\right.\\&=-\partial^\mu\left(i\bar{\psi}\gamma_\mu\psi\right)+\bar{\psi}(i\gamma_\mu\partial^\mu-m)\psi\\&=\bar{\psi}\left(i\gamma_\mu\partial^\mu-m\right)\psi-\partial^\mu\left(i\bar{\psi}\gamma_\mu\psi\right).\end{aligned}
+	$$
+	i.e. the Lagrangian is real up to a total derivative term. Therefore, we need the following hermiticity properties of the $\gamma^\mu$:
+	$$
+	\boxed{
+	(\gamma_\mu)^\dagger=\gamma^0\gamma_\mu\gamma^0\iff\bar{\gamma}_\mu=\gamma_\mu	}
+	$$
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{3.} In even $D$, define $\gamma_\ast$ and show that $P_{L/R}=\frac12(1\mp\gamma_\ast)$ are projectors.
+\end{tcolorbox}
+\begin{solution}[13.3] Fist, we can choose the following ansatz:
+	\[
+	\gamma_*\propto\gamma^0\gamma^1\cdots\gamma^{D-1}
+	\]
+	Next, we check some properties of $\gamma_*$:
+	$$
+	\begin{aligned}
+		\{\gamma_*,\gamma^\mu\}
+		&=\gamma_*\gamma^\mu+\gamma^\mu\gamma_*
+		=(\gamma^0\gamma^1\cdots\gamma^{D-1})\gamma^\mu+\gamma^\mu(\gamma^0\gamma^1\cdots\gamma^{D-1})\\
+		&=(\gamma^0\cdots\gamma^{D-1})\gamma^\mu+(-1)^{D-1}\gamma^0\cdots\gamma^{D-1}\gamma^\mu
+		=\bigl(1+(-1)^{D-1}\bigr)\gamma_*\gamma^\mu
+		=0\qquad(D\ \text{even}).
+	\end{aligned}
+	$$
+	$$
+		\gamma_*^2
+		=(\gamma^0\gamma^1\cdots\gamma^{D-1})(\gamma^0\gamma^1\cdots\gamma^{D-1})
+		=(-1)^{\frac{D(D-1)}{2}}\prod_{\mu=0}^{D-1}(\gamma^\mu)^2\\
+		=(-1)^{\frac{D(D-1)}{2}}\prod_{\mu=0}^{D-1}g^{\mu\mu}\,\mathbf 1=(-1)^{\frac{D(D-1)}{2}+1}\mathbf{1}
+	$$
+	we can choose the normalization such that $\gamma_*^2=1$. So, \textbf{MY FINAL ANSWER IS}
+	$$
+	\boxed{
+	\gamma_*=(-1)^{\frac{D(D-1)}{2}+1}\gamma^0\gamma^1\cdots\gamma^{D-1}
+}
+	$$
+	Next, we check $P_{L/R}^2=P_{L/R}$
+	$$
+	\begin{aligned}
+		P_L^2
+		&=\Big(\tfrac12(1-\gamma_*)\Big)^2
+		=\tfrac14(1-2\gamma_*+\gamma_*^2)
+		=\tfrac14(1-2\gamma_*+1)
+		=\tfrac12(1-\gamma_*)
+		=P_L.
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{aligned}
+		P_R^2
+		&=\Big(\tfrac12(1+\gamma_*)\Big)^2
+		=\tfrac14(1+2\gamma_*+\gamma_*^2)
+		=\tfrac14(1+2\gamma_*+1)
+		=\tfrac12(1+\gamma_*)
+		=P_R.
+	\end{aligned}
+	$$
+	
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{4.} State clearly what it means for a spinor representation to be real, complex, or quaternionic (pseudoreal) in this context.
+\end{tcolorbox}
+\begin{solution}[13.4]
+	Using the charge conjugation matrix \(C\), define \(\psi^c \equiv C\bar\psi^{\,T}\).
+	The spinor representation can be classified by whether one can impose a reality condition relating \(\psi\) and \(\psi^c\),
+	and by the sign obtained after applying charge conjugation twice.
+	\begin{itemize}
+		\item 	\textbf{Real (Majorana).}
+		One can consistently impose the Majorana condition \(\psi^c=\psi\), with the consistency requirement
+		\((\psi^c)^c=+\psi\).
+		\item	\textbf{Complex.}
+		The representation is not equivalent to its complex conjugate, so there is no compatible charge conjugation reality structure.
+		Hence no constraint of the form \(\psi^c=\pm\psi\) can be imposed, and \(\psi\) must be a Dirac spinor.
+		\item 	\textbf{Quaternionic / Pseudoreal.}
+		For a single spinor one has \((\psi^c)^c=-\psi\), so \(\psi^c=\psi\) is inconsistent.
+		Introducing an \(SU(2)\simeq Sp(1)\) doublet \(\psi^i\,(i=1,2)\), one can impose the symplectic Majorana condition
+		\((\psi^i)^c=\epsilon^{ij}\psi_j\) with \(\epsilon^{12}=1\), which is consistent and satisfies \(((\psi^i)^c)^c=+\psi^i\). (Problem 9 will give you an example)
+	\end{itemize}
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{5.} Using the rule $r=p-q\;(\mathrm{mod}\ 8)$, compute $r$ for Lorentzian mostly-plus signature in $D=2,3,4,6,10$.
+\end{tcolorbox}
+\begin{solution}[13.5]
+	mostly-plus signature means $(p,q)=(D-1,1)$, therefore, we have $r= D-2\quad(\mathrm{mod~}8)$. \textbf{MY FINAL ANSWER IS}
+	$$
+	\boxed{
+	\begin{aligned}D=2:&\quad r\equiv0\quad(\mathrm{mod~}8),\\D=3:&\quad r\equiv1\quad(\mathrm{mod~}8),\\D=4:&\quad r\equiv2\quad(\mathrm{mod~}8),\\D=6:&\quad r\equiv4\quad(\mathrm{mod~}8),\\D=10:&\quad r\equiv8\equiv0\quad(\mathrm{mod~}8).\end{aligned}
+}
+	$$
+	
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{6.} For each of the above $D$, state whether Majorana and/or Weyl conditions can be imposed.
+\end{tcolorbox}
+\begin{solution}[13.6]
+Here, we conclude the condition for Weyl and Majorana.
+
+\begin{itemize}
+	\item \textbf{Weyl (W):}A Weyl (chiral) condition exists iff $D$ is even.
+	\item\textbf{Majorana (M):}A (real) Majorana condition exists iff $r\equiv 0,1,2(\mathrm{mod}\ 8)$.
+	\item \textbf{Majorana--Weyl (MW):} MW requires Weyl plus a compatible reality condition, in Lorentzian signature this happens for $r\equiv 0\ (\mathrm{mod}\ 8)$.
+\end{itemize}
+	
+	\[
+	\begin{array}{c|c|c|c|c}
+		D & r\equiv D-2\ (\mathrm{mod}\ 8) & \mathrm{M} & \mathrm{W} & \mathrm{MW}\\
+		\hline
+		2  & 0 & \text{Yes} & \text{Yes} & \text{Yes}\\
+		3  & 1 & \text{Yes} & \text{No}  & \text{No}\\
+		4  & 2 & \text{Yes} & \text{Yes} & \text{No}\\
+		6  & 4 & \text{No} & \text{Yes} & \text{No}\\
+		10 & 0 & \text{Yes} & \text{Yes} & \text{Yes}
+	\end{array}
+	\]
+	
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{7.} In $D=4$, explain why charge conjugation flips chirality and why this prevents a purely chiral Majorana fermion.
+\end{tcolorbox}
+\begin{solution}[13.7]
+	For \(D=4\) Lorentzian, \(r=D-2=2\!\!\pmod{8}\), so the spinor representation is of real type and a Majorana condition can be imposed on a four-component spinor. Since \(D\) is even, one can also impose the Weyl (chirality) condition. However, these two conditions are not simultaneously compatible for a \emph{single} chiral spinor, because charge conjugation flips chirality. Concretely, with \(\psi^c \equiv C\bar\psi^{\,T}\) and chiral projectors \(P_{L,R}=\tfrac12(1\mp\gamma_5)\), one has \((P_L\psi)^c = P_R\psi^c\), hence \((\psi_L)^c\) is right-handed. Therefore the Majorana condition \(\psi^c=\psi\) cannot be imposed within a purely left-handed (or purely right-handed) Weyl subspace, it necessarily relates left- and right-handed components. This is why there is no Majorana--Weyl spinor in \(D=4\) Lorentzian signature.
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{8.} In $D=10$, explain why Majorana--Weyl is possible.
+\end{tcolorbox}
+\begin{solution}[13.8]
+	For $D=10:$
+	$$r=D-2=8\equiv0\pmod8,$$
+	It means in 10 dimension, the Clifford algebra is a real type one, hence Majorana possible, and $D$ even means Weyl possible. In
+	this case, one can impose both:
+	$$\psi=\psi^c,\quad\gamma_*\psi=\pm\psi,$$
+	so Majorana-Weyl spinors exist.
+\end{solution}
+
+\begin{tcolorbox}[problem]
+\textbf{9.} Give one example of a ``symplectic Majorana'' condition (conceptually), what extra index structure is needed and why?
+\end{tcolorbox}
+\begin{solution}[13.9]
+	In \(D=6\) Lorentzian signature,
+	define charge conjugation by \(\psi^c \equiv C\bar\psi^{\,T}\).
+	In this case one has \((\psi^c)^c=-\psi\), so imposing the usual Majorana condition \(\psi^c=\psi\) would immediately give
+	\(\psi=(\psi^c)^c=-\psi\), hence \(\psi=0\).
+	Therefore a single Majorana spinor does not exist.
+	
+	The remedy is to introduce an additional \(SU(2)\simeq Sp(1)\) index so that the fermions come as a doublet
+	\(\psi^i\,(i=1,2)\), and impose the symplectic Majorana condition
+	\((\psi^i)^c=\epsilon^{ij}\psi_j\) with \(\epsilon^{12}=1\).
+	The symplectic tensor \(\epsilon^{ij}\) supplies the extra minus sign needed so that applying charge conjugation twice gives back
+	\(+\psi^i\), making the constraint consistent.
+	
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{10.} Explain why Euclidean ``Majorana'' is subtle, what goes wrong with na\"ively demanding $\psi^\ast=\psi$ for Euclidean gamma matrices, and what is the usual practical workaround in path integrals?
+\end{tcolorbox}
+\begin{solution}
+	
+\end{solution}
+
+\end{document}

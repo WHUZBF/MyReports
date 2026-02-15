@@ -1,0 +1,78 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 32} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\begin{problem}
+    \textbf{One-loop running in QED.} Assume \(\beta(\alpha)=b\,\alpha^2\) with \(b>0\). Solve for \(\alpha(\mu)\) in terms of \(\alpha(\mu_0)\) and \(\mu/\mu_0\).
+\end{problem}
+\begin{solution}[32.1]
+	\[
+	\beta(\alpha)=\mu\frac{d\alpha}{d\mu}=b\,\alpha^2\Rightarrow
+	\frac{d\alpha}{\alpha^2}=b\,\frac{d\mu}{\mu}=b\,d\ln\mu
+	\Rightarrow 	\frac{1}{\alpha(\mu)}=\frac{1}{\alpha(\mu_0)}-b\ln\frac{\mu}{\mu_0}
+	\]
+    So, \textbf{MY FINAL ANSWER IS}
+	\[
+	\boxed{\alpha(\mu)=\frac{\alpha(\mu_0)}{1-b\,\alpha(\mu_0)\,\ln(\mu/\mu_0)}}.
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Landau pole scale.} Define the Landau pole \(\Lambda_{\text{Landau}}\) as the scale where \(\alpha(\mu)\) diverges in the one-loop solution. Express \(\Lambda_{\text{Landau}}\) in terms of \(\mu_0\) and \(\alpha(\mu_0)\).
+\end{problem}
+\begin{solution}[32.2]
+	The Landau pole \(\Lambda_{\rm Landau}\) is defined as the scale where the one-loop solution for \(\alpha(\mu)\) diverges, 
+	\[
+	1-b\,\alpha(\mu_0)\,\ln\frac{\Lambda_{\rm Landau}}{\mu_0}=0
+	\Rightarrow
+	\ln\frac{\Lambda_{\rm Landau}}{\mu_0}=\frac{1}{b\,\alpha(\mu_0)}.
+	\]
+	Hence, \textbf{MY FINAL ANSWER IS}
+	\[
+	\boxed{\Lambda_{\rm Landau}=\mu_0\,\exp\!\left(\frac{1}{b\,\alpha(\mu_0)}\right)}.
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Meaning of the Landau pole.} Explain why a Landau pole indicates the theory is not UV complete as a fundamental theory, but can still be predictive as an effective field theory at energies well below \(\Lambda_{\text{Landau}}\).
+\end{problem}
+\begin{solution}[32.3]
+	A Landau pole means the perturbative RG flow drives the coupling to infinity at a finite energy scale, so the theory cannot be consistently extrapolated to arbitrarily high energies as a fundamental UV-complete description without new physics entering before \(\Lambda_{\rm Landau}\). Nevertheless, for \(\mu\ll \Lambda_{\rm Landau}\) the coupling remains small and perturbation theory is reliable, so the theory can be predictive as an effective field theory at energies well below \(\Lambda_{\rm Landau}\), with UV-sensitive effects suppressed by powers of \(\mu/\Lambda_{\rm Landau}\).
+\end{solution}
+\begin{problem}
+    \textbf{Choosing an EFT cutoff below the pole.} Let \(m\) be a light mass scale in the EFT and define
+    \[
+        \Lambda_{\text{cutoff}}\equiv \sqrt{m\,\Lambda_{\text{Landau}}}.
+    \]
+    Show that \(m\ll \Lambda_{\text{cutoff}}\ll \Lambda_{\text{Landau}}\) when \(\Lambda_{\text{Landau}}\gg m\). Interpret this choice.
+\end{problem}
+\begin{solution}[32.4]
+	If \(\Lambda_{\rm Landau}\gg m\), then
+	\[
+	\frac{\Lambda_{\rm cutoff}}{m}=\sqrt{\frac{\Lambda_{\rm Landau}}{m}}\gg 1
+	\qquad\Longrightarrow\qquad
+	m\ll \Lambda_{\rm cutoff},
+	\]
+	and
+	\[
+	\frac{\Lambda_{\rm cutoff}}{\Lambda_{\rm Landau}}=\sqrt{\frac{m}{\Lambda_{\rm Landau}}}\ll 1
+	\qquad\Longrightarrow\qquad
+	\Lambda_{\rm cutoff}\ll \Lambda_{\rm Landau}.
+	\]
+	Hence
+	\[
+	\boxed{m\ll \Lambda_{\rm cutoff}\ll \Lambda_{\rm Landau}\quad\text{when}\quad \Lambda_{\rm Landau}\gg m.}
+	\]
+	This choice places the EFT cutoff parametrically below the Landau pole (so the coupling remains perturbative and unknown UV strong-coupling effects are excluded), while keeping it parametrically above the light scale \(m\) (so there is a wide window \(m\ll E\ll \Lambda_{\rm cutoff}\) where the EFT is valid and predictive).
+\end{solution}
+\begin{problem}
+    \textbf{Power-suppressed errors vs perturbative errors.} Assume you compute an observable \(\mathcal{O}\) to \(N\) loops, so the perturbative truncation error scales like \(\alpha(\mu)^{N+1}\). Meanwhile EFT cutoff effects scale like \((E/\Lambda_{\text{cutoff}})^p\) for some \(p>0\). Explain how choosing \(\Lambda_{\text{cutoff}}\) parametrically below \(\Lambda_{\text{Landau}}\) can make cutoff errors smaller than the perturbative truncation error at fixed \(N\).
+\end{problem}
+\begin{problem}
+    \textbf{Running-coupling estimate of EFT validity.} Take \(E\ll \Lambda_{\text{cutoff}}\). Using the one-loop running, estimate \(\alpha(E)\) and discuss why the EFT can remain weakly coupled even though \(\alpha(\mu)\) blows up at \(\Lambda_{\text{Landau}}\).
+\end{problem}
+\begin{problem}
+    \textbf{Interpretation: “asymptotic series plus EFT.”} Summarize the logic: (i) perturbation theory is an asymptotic expansion, (ii) EFT adds a controlled expansion in \(E/\Lambda_{\text{cutoff}}\), and (iii) the Landau pole does not obstruct predictivity at energies \(E\ll \Lambda_{\text{cutoff}}\).
+\end{problem}

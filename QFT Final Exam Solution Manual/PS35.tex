@@ -1,0 +1,176 @@
+% !TeX root = main.tex
+\resetproblem\textsf{\textsf{}}
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 35} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\noindent Let \(A_\mu=A_\mu^aT^a\) for \(SU(N)\) with \([T^a,T^b]=if^{abc}T^c\). For an infinitesimal gauge parameter \(\alpha=\alpha^aT^a\), take
+\[
+    \delta A_\mu=\partial_\mu\alpha+i[A_\mu,\alpha],
+\]
+which in components is \(\delta A_\mu^a=\partial_\mu\alpha^a+f^{abc}A_\mu^b\alpha^c\).
+
+\begin{problem}
+    \textbf{Variation of Lorenz gauge condition.} Take \(G^a=\partial^\mu A_\mu^a\). Compute \(\delta G^a\) under \(\delta A_\mu^a=\partial_\mu\alpha^a+f^{abc}A_\mu^b\alpha^c\). Write \(\delta G^a=M^{ab}\alpha^b\) and identify \(M^{ab}\).
+\end{problem}
+\begin{solution}[35.1]
+\[	
+	\begin{aligned}
+		\delta G^a
+		&= \partial^\mu \delta A_\mu^a
+		= \partial^\mu\Big(\partial_\mu\alpha^a + f^{abc}A_\mu^b\alpha^c\Big) \\
+		&= \Box\,\alpha^a + f^{abc}\,\partial^\mu(A_\mu^b\alpha^c) \\
+		&= \Box\,\alpha^a + f^{abc}(\partial^\mu A_\mu^b)\alpha^c + f^{abc}A_\mu^b\partial^\mu\alpha^c .
+	\end{aligned}\]
+	\textbf{MY FINAL ANSWER IS}
+	\[
+	\boxed{
+		M^{ab}(x,y) = \frac{\delta G^a(x)}{\alpha^b(y)}=\partial^\mu D_\mu^{ab}\delta(x-y), \quad
+		D_\mu^{ab} = \delta^{ab}\partial_\mu + f^{acb}A_\mu^c }
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{FP ghost action.} Show that the FP determinant \(\det M\) can be represented by ghosts \(c^a\) and antighosts \(b^a\) with action
+    \[
+        S_{\text{gh}}=\int d^Dx\, b^a\,M^{ab}\,c^b.
+    \]
+    Write \(S_{\text{gh}}\) explicitly and identify the ghost–gauge interaction term.
+\end{problem}
+\begin{solution}[35.2]
+	Recall the Gaussian integral of Grassmannian matrices:
+	\[
+		\det M \propto \int \mathcal Dc\,\mathcal Db\,
+		\exp\!\left(\int d^Dx\, b^a M^{ab} c^b\right),
+	\]
+	so that
+	\[
+		S_{\rm gh}=\int d^Dx\, b^a M^{ab} c^b
+		= \int d^Dx\, b^a\,\partial^\mu(D_\mu c)^a .
+	\]
+	
+	Using $(D_\mu c)^a=\partial_\mu c^a+f^{abc}A_\mu^b c^c$, one finds
+\[	\begin{aligned}
+		S_{\rm gh}
+		&= \int d^Dx\, b^a\,\partial^\mu\Big(\partial_\mu c^a+f^{abc}A_\mu^b c^c\Big) \\
+		&= \int d^Dx\Big[ b^a\Box c^a + f^{abc}b^a\partial^\mu(A_\mu^b c^c)\Big] \\
+		&= \int d^Dx\Big[ b^a\Box c^a
+		+ f^{abc}b^a(\partial^\mu A_\mu^b)c^c
+		+ f^{abc}b^aA_\mu^b\partial^\mu c^c\Big].
+	\end{aligned}\]
+	By integral by part, we can rewrite it as
+	\[
+	\boxed{
+	S_{\text{gh}}=\int d^Dx\left[-\partial^{\mu}b^{a}\partial_{\mu}c^{a}+gf^{abc}A_{\mu}^{c}\partial^{\mu}b^{a}c^{b}\right]
+}
+	\]
+	up to a total derivative.
+\end{solution}
+\begin{problem}
+    \textbf{Ghost coupling is unavoidable.} In any covariant \(\xi\)-gauge with \(G^a=\partial\cdot A^a\), show that \(M^{ab}\) contains a term linear in \(A\) and thus ghosts couple to \(A\) whenever \(f^{abc}\neq 0\).
+\end{problem}
+\begin{solution}[35.3]
+	In the previous Problem 1 we have already computed $M^{ab}$, and after dropping the annoying $\delta(x-y)$, it is not hard to see that
+	\[
+		\boxed{
+		M^{ab}
+		= \Box\,\delta^{ab} + f^{acb}(\partial^\mu A_\mu^c) + f^{acb}A_\mu^c\partial^\mu }
+	\]
+	The last term is linear in $A$ whenever $f^{abc}\neq 0$.
+	Hence the ghost action
+	$S_{\rm gh}=\int d^Dx\, b^a M^{ab}c^b$
+	necessarily contains a term linear in $A$, for example
+	$-f^{abc}(\partial^\mu b^a)A_\mu^b c^c$,
+	so ghosts couple to the gauge field in any such nonabelian gauge fixing.
+\end{solution}
+\begin{problem}
+    \textbf{BRST transformations.} Introduce the ghost \(c^a\), antighost \(b^a\), and Nakanishi–Lautrup field \(B^a\). Define BRST:
+    \[
+        Q_{\text{BRST}}A_\mu^a=(D_\mu c)^a,\qquad
+        Q_{\text{BRST}}c^a=-\frac{1}{2}f^{abc}c^b c^c,\qquad
+        Q_{\text{BRST}}b^a=B^a,\qquad
+        Q_{\text{BRST}}B^a=0,
+    \]
+    with \((D_\mu c)^a=\partial_\mu c^a+f^{abc}A_\mu^b c^c\). Verify \(Q_{\text{BRST}}^2A_\mu^a=0\) using the Jacobi identity.
+\end{problem}
+\begin{solution}[35.4]
+\[
+\begin{aligned}
+	Q_{\rm BRST}^2 A_\mu^a
+	&= Q_{\rm BRST}(D_\mu c)^a \\
+	&= \partial_\mu(Q_{\rm BRST}c^a)
+	+ f^{abc}(Q_{\rm BRST}A_\mu^b)c^c
+	+ f^{abc}A_\mu^b(Q_{\rm BRST}c^c) \\
+	&= -\frac12 f^{ade}\partial_\mu(c^d c^e)
+	+ f^{abc}(D_\mu c)^b c^c
+	-\frac12 f^{abc}A_\mu^b f^{cde}c^d c^e \\
+	&=-\frac{1}{2}f^{ade}\partial_{\mu}(c^{d}c^{e})+f^{abc}(D_{\mu}c)^{b}c^{c}-\frac{1}{2}f^{abc}A_{\mu}^{b}f^{cde}c^{d}c^{e} \\
+	&=-\frac{1}{2}f^{ade}\Big[(\partial_{\mu}c^{d})c^{e}+c^{d}(\partial_{\mu}c^{e})\Big]
+	+f^{abc}\Big[\partial_{\mu}c^{b}+f^{bde}A_{\mu}^{d}c^{e}\Big]c^{c}
+	-\frac{1}{2}f^{abc}A_{\mu}^{b}f^{cde}c^{d}c^{e} \\
+	&=\Big(-\frac{1}{2}f^{ade}(\partial_{\mu}c^{d})c^{e}-\frac{1}{2}f^{ade}c^{d}(\partial_{\mu}c^{e})+f^{abc}(\partial_{\mu}c^{b})c^{c}\Big)
+	+f^{abc}f^{bde}A_{\mu}^{d}c^{e}c^{c}
+	-\frac{1}{2}f^{abc}f^{cde}A_{\mu}^{b}c^{d}c^{e} \\
+	&=f^{abc}f^{bde}A_{\mu}^{d}c^{e}c^{c}-\frac{1}{2}f^{abc}f^{cde}A_{\mu}^{b}c^{d}c^{e} \\
+	&=-\frac{1}{2}\Big(f^{abm}f^{mcd}+f^{acm}f^{mdb}+f^{adm}f^{mbc}\Big)A_{\mu}^{b}c^{c}c^{d} \\
+	&=0
+\end{aligned}
+\]
+In the last step, we used the Jacobi identity.
+\end{solution}
+\begin{problem}
+    \textbf{Gauge-fixing as BRST-exact.} Take \(G^a=\partial\cdot A^a\). Show that the gauge-fixing plus ghost Lagrangian can be written (up to a total derivative) as
+    \[
+        \mathcal{L}_{\text{gf}}+\mathcal{L}_{\text{gh}}=Q_{\text{BRST}}\Bigl[b^a\Bigl(G^a-\frac{\xi}{2}B^a\Bigr)\Bigr].
+    \]
+    Work out the result explicitly and verify it contains: (i) a term \(B^aG^a\), (ii) a term \(-\frac{\xi}{2}B^aB^a\), and (iii) the ghost term \(b^aM^{ab}c^b\). (Optionally eliminate \(B^a\) to obtain \(\mathcal{L}_{\text{gf}}=-(2\xi)^{-1}(G^a)^2\).)
+\end{problem}
+\begin{solution}[35.5]
+	\[
+		\begin{aligned}
+		\mathcal L_{\rm gf}+\mathcal L_{\rm gh}
+		&= (Q_{\rm BRST}b^a)\left(G^a-\frac{\xi}{2}B^a\right)
+		+ b^a\left(Q_{\rm BRST}G^a-\frac{\xi}{2}Q_{\rm BRST}B^a\right) \\
+		&= B^a G^a - \frac{\xi}{2}B^a B^a + b^a\,Q_{\rm BRST}G^a .
+	\end{aligned}
+	\]
+	Since $Q_{\rm BRST}G^a=\partial^\mu(Q_{\rm BRST}A_\mu^a)=\partial^\mu(D_\mu c)^a \equiv M^{ab}c^b$, one gets
+	\[
+		\mathcal L_{\rm gf}+\mathcal L_{\rm gh}
+		= B^a G^a - \frac{\xi}{2}B^a B^a + b^a M^{ab}c^b,
+	\]
+	which contains (i) $B^aG^a$, (ii) $-\frac{\xi}{2}B^aB^a$, (iii) the ghost term $b^aM^{ab}c^b$. integrating out $B^a$ gives 
+	\[
+	\frac{\delta}{\delta B^a}\left(\mathcal{L}_{\text{gh}}+\mathcal{L}_{\text{gf}}\right)=G^a-\xi  B^a=0\Rightarrow B^a=\frac1\xi G^a
+	\]
+	plugging into $\mathcal{L}_{\text{gf}}$ gives:
+	\[
+ 		\mathcal L_{\rm gf} =\frac1\xi G^a G^a-\frac{1}{2\xi} G^a G^a= -\frac{1}{2\xi}(G^a)^2
+	\]
+	Which is the usual form we add in YM lagrangian as a gauge fixing term in $\xi$--gauge.
+\end{solution}
+\begin{problem}
+    \textbf{Propagators in \(\xi\)-gauge (free part).} Expand Yang–Mills around \(A=0\). Write the momentum-space propagators for \(A_\mu^a\) and for ghosts \(c^a,b^a\) including \(\xi\) dependence.
+\end{problem}
+\begin{problem}
+    \textbf{Check: abelian limit.} Set \(f^{abc}=0\). Show the ghost–gauge interaction vanishes and the ghost determinant reduces to \(\det(\partial^2)\). Compare with the abelian FP procedure.
+\end{problem}
+\begin{solution}[35.7]
+	Set $f^{abc}=0$.
+	Then the gauge variation becomes $\delta A_\mu^a=\partial_\mu\alpha^a$ and
+	\[
+		M^{ab}=\partial^\mu\partial_\mu\,\delta^{ab}=\partial^2\delta^{ab},
+	\]
+	which implies the FP determinant reduces to:
+	\[
+	\boxed{
+	\Delta_{\text{FP}}=\det M^{ab}=\det(\partial^2)^{\#{\text{ of color}}}\det(\delta^{ab})=\det(\partial^2)^{\#{\text{ of color}}}
+	}
+	\]
+	Therefore the ghost action reduces to a free quadratic form,
+	\[
+		S_{\rm gh}=\int d^Dx\, b^a\partial^2 c^a,
+	\]
+	and there is no ghost--gauge interaction term. This matches our previous result in Problem Set 33.
+\end{solution}

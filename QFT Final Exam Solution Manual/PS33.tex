@@ -1,0 +1,166 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 33} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\noindent Gauge field in modern convention: \(\mathcal{L}\supset-\frac{1}{4e^2}F^2\). Gauge transformation \(\delta A_\mu=-\partial_\mu\alpha\).
+
+\begin{problem}
+    \textbf{Lorenz gauge fixing term.} Add \(\mathcal{L}_{\text{gf}}=-\frac{1}{2\xi e^2}(\partial\cdot A)^2\). Derive the quadratic operator for \(A_\mu\) in momentum space and write the propagator \(\langle A_\mu A_\nu\rangle(p)\).
+\end{problem}
+\begin{solution}[33.1]
+	In problem 23.4 we derived a generalized result of propagator for massive vector fields in $R_\xi$. So here we just quote the result:
+	\[
+	D_{\mu\nu}(p)=- i e^2\left[\frac{\eta_{\mu\nu}-\dfrac{p_\mu p_\nu}{p^2}}{p^2-m_A^2}
+	+\frac{\xi\,\dfrac{p_\mu p_\nu}{p^2}}{p^2-\xi m_A^2}\right]
+	\]
+	Now, sending $m_A$ to $0$ and add the regulator by hand, \textbf{MY FINAL ANSWER IS}:
+	\[
+	\boxed{
+		D_{\mu\nu}(p)=\frac{i e^2}{p^2+i\epsilon}\left(\eta_{\mu\nu}-(1-\xi)\frac{p_\mu p_\nu}{p^2+i\epsilon}\right)
+	}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{FP determinant in abelian Lorenz gauge.} For gauge condition \(G(A)=\partial\cdot A\), compute \(\delta G/\delta\alpha\). Show the FP determinant is \(\det(\partial^2)\) and hence the ghost action is free:
+    \[
+        S_{\text{gh}}=\int d^Dx\, b\,(-\partial^2)\,c.
+    \]
+\end{problem}
+\begin{solution}[33.2]
+	For the abelian gauge condition \(G(A)=\partial\cdot A\) and gauge variation \(\delta_\alpha A_\mu=-\partial_\mu\alpha\),
+	\[
+	\delta_\alpha G=\partial^\mu\delta_\alpha A_\mu=-\partial^\mu\partial_\mu\alpha=-\partial^2\alpha,
+	\qquad\Rightarrow\qquad
+	\frac{\delta G}{\delta\alpha}=-\partial^2.
+	\]
+	Hence the FPdeterminant is
+	\[
+	\boxed{
+	\Delta_{\rm FP}=\det(-\partial^2)
+},
+	\]
+	Recall that for grassmannian number, we have:
+\[
+\int \prod_{i=1}^n d\bar\psi_i\, d\psi_i\;
+\exp\!\left(-\sum_{i,j=1}^n \bar\psi_i\,A_{ij}\,\psi_j\right)
+=\det A.
+\]
+	So the FP
+	determinant can be exponentiated by anticommuting ghosts \(b,c\) to give a free ghost action,
+	\[
+	\boxed{
+	S_{\rm gh}=\int d^D x\, b\,(-\partial^2)\,c}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Ghost decoupling in linear gauges.} Show explicitly that in abelian theory the ghost fields do not couple to \(A\) in any linear gauge \(G(A)=L^\mu A_\mu\). Identify the operator whose determinant appears.
+\end{problem}
+\begin{solution}[33.3]
+	In an abelian theory with a linear gauge condition \(G(A)=L^\mu A_\mu\), where \(L^\mu\) is a fixed (field-independent) linear differential operator, we only need to mimic the solution to the previous problem: 
+	\[
+	\delta_\alpha G=L^\mu\delta_\alpha A_\mu= -L^\mu\partial_\mu \alpha,
+	\qquad\Rightarrow\qquad
+	\frac{\delta G}{\delta\alpha}=-(L^\mu\partial_\mu).
+	\]
+	Therefore the FP determinant is
+	\[
+	\boxed{
+	\Delta_{\rm FP}=\det\!\bigl(-(L^\mu\partial_\mu)\bigr)},
+	\]
+	and the ghost action is
+	\[
+	S_{\rm gh}=\int d^D x\, b\,\bigl(-L^\mu\partial_\mu\bigr)\,c.
+	\]
+	Since \(L^\mu\partial_\mu\) does not depend on \(A_\mu\), the ghosts do not couple to \(A_\mu\) and hence decouple. Therefore, in QED, usually people just ignore ghost field, only the gauge fixing term left.
+\end{solution}
+\begin{problem}
+    \textbf{BRST transformations (abelian).} Introduce the ghost \(c\), antighost \(b\), and Nakanishi–Lautrup field \(B\). Define BRST variations
+    \[
+        Q_{\text{BRST}}A_\mu=-\partial_\mu c,\qquad
+        Q_{\text{BRST}}c=0,\qquad
+        Q_{\text{BRST}}b=B,\qquad
+        Q_{\text{BRST}}B=0.
+    \]
+    Verify \(Q_{\text{BRST}}^2=0\) on \(A_\mu,c,b,B\). After eliminating \(B\) using its algebraic equation of motion from
+    \[
+        \mathcal{L}_{\text{gf}}=\frac{1}{e^2}\left(\frac{\xi}{2}B^2-B\,\partial\cdot A\right),
+    \]
+    show \(B=\frac{1}{\xi}\partial\cdot A\) and hence (on-shell in \(B\)) \(Q_{\text{BRST}}b=\frac{1}{\xi}\partial\cdot A\).
+\end{problem}
+\begin{solution}[33.4]
+	Nilpotency follows immediately:
+	\[
+	Q_{\rm BRST}^2A_\mu= -\partial_\mu(Q_{\rm BRST}c)=0,\qquad
+	Q_{\rm BRST}^2c=0,\qquad
+	Q_{\rm BRST}^2b=Q_{\rm BRST}B=0,\qquad
+	Q_{\rm BRST}^2B=0.
+	\]
+	With
+	\[
+	\mathcal L_{\rm gf}=\frac{1}{e^2}\left(\frac{\xi}{2}B^2-B\,\partial\cdot A\right),
+	\]
+	the algebraic equation of motion for \(B\) is
+	\[
+	\frac{\partial\mathcal L_{\rm gf}}{\partial B}=\frac{1}{e^2}\bigl(\xi B-\partial\cdot A\bigr)=0
+	\qquad\Rightarrow\qquad
+	\boxed{B=\frac{1}{\xi}\,\partial\cdot A}.
+	\]
+	Therefore, on-shell in \(B\),
+	\[
+	\boxed{
+	Q_{\rm BRST}b=B=\frac{1}{\xi}\,\partial\cdot A}.
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Abelian Higgs in \(R_\xi\): ghost mass.} In the abelian Higgs model, take gauge fixing
+    \[
+        \mathcal{L}_{\text{gf}}=-\frac{1}{2\xi}\bigl(\partial\cdot A-\xi m_A\pi\bigr)^2,\qquad
+        m_A\equiv e v.
+    \]
+    Compute \(\delta G/\delta\alpha\) and show the ghosts acquire a mass
+    \[
+        m_{\text{gh}}^2=\xi m_A^2.
+    \]
+\end{problem}
+\begin{solution}[33.5]
+	In the abelian Higgs model, choose the \(R_\xi\) gauge condition
+	\[
+	G(A,\pi)=\partial\cdot A-\xi m_A \pi,
+	\qquad
+	\mathcal L_{\rm gf}=-\frac{1}{2\xi}\,G^2,
+	\qquad
+	m_A\equiv ev.
+	\]
+	Using \(\delta_\alpha A_\mu=-\partial_\mu\alpha\) and \(\delta_\alpha\pi=m_A\alpha\) (since $\delta\phi=ie\alpha$ and $ev=m_A$), one finds
+	\[
+	\delta_\alpha G
+	=\partial^\mu\delta_\alpha A_\mu-\xi m_A\,\delta_\alpha\pi
+	=-\partial^2\alpha-\xi m_A^2\alpha
+	=-(\partial^2+\xi m_A^2)\alpha,
+	\]
+	so
+	\[
+	\frac{\delta G}{\delta\alpha}=-(\partial^2+\xi m_A^2),
+	\qquad
+	\Delta_{\rm FP}=\det\!\bigl(\partial^2+\xi m_A^2\bigr).
+	\]
+	Exponentiating the determinant gives
+	\[
+	S_{\rm gh}=\int d^D x\, b\,\bigl(-\partial^2-\xi m_A^2\bigr)\,c,
+	\]
+	so the ghosts acquire a mass
+	\[
+	\boxed{
+	m_{\rm gh}^2=\xi m_A^2}.
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Unitary gauge FP determinant.} Unitary gauge is \(\pi=0\). Under an infinitesimal gauge transformation \(\delta\pi=v\alpha+\mathcal{O}(\pi)\). Compute the FP determinant at \(\pi=0\) and show it is field-independent at leading order.
+\end{problem}
+\begin{problem}
+    \textbf{Renormalizability signal (power counting).} In 4D abelian Higgs, compare propagator behavior in unitary gauge versus \(R_\xi\) gauge at large momentum. Show the \(R_\xi\) gauge propagator falls as \(1/p^2\) in all components, supporting power-counting renormalizability.
+\end{problem}

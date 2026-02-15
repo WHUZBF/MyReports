@@ -1,0 +1,125 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 30} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\begin{problem}
+    \(D=4\): Review the computation of the QED \(\beta\)-function. Show that for \(n_f\) Dirac fermions,
+    \[
+        \beta(e)\equiv \mu\frac{de}{d\mu}=\frac{e^3}{16\pi^2}\frac{4}{3}n_f.
+    \]
+\end{problem}
+\begin{problem}
+    \(D=4\): Show that the \(\beta\)-function for \(e^2\) is
+    \[
+        \beta(e^2)\equiv \mu\frac{de^2}{d\mu}=\frac{e^4}{16\pi^2}\frac{8}{3}n_f.
+    \]
+\end{problem}
+\begin{solution}[30.2]
+	\[
+	\beta(e^2)=\mu\frac{de^2}{d\mu}=\mu2e\frac{de}{d\mu}=\frac{e^4}{16\pi^2}\frac83 n_f
+	\]
+\end{solution}
+\begin{problem}
+    \(D=4\): Define \(\alpha\equiv e^2/(4\pi)\). Show that
+    \[
+        \beta(\alpha)\equiv \mu\frac{d\alpha}{d\mu}=\frac{2}{3\pi}n_f\,\alpha^2.
+    \]
+\end{problem}
+\begin{solution}[30.3]
+	\[
+		\beta(\alpha)=\mu\frac{d\alpha}{d\mu}=\frac{1}{4\pi}\cdot\mu\frac{de^2}{d\mu}=\frac{\beta(e^2)}{4\pi}=\frac{2}{3\pi}n_f\frac{e^4}{16\pi^2}=\frac{2}{3\pi}n_f\alpha^2
+	\]
+\end{solution}
+\begin{problem}
+    \(D=4\): In the modern normalization of the gauge field, the Lagrangian contains
+    \[
+        \mathcal{L}\supset -\frac{1}{4e^2}F^{\mu\nu}F_{\mu\nu}.
+    \]
+    Show that
+    \[
+        \mu\frac{d}{d\mu}\Bigl(\frac{1}{e^2}\Bigr)=-\frac{1}{16\pi^2}\frac{8}{3}n_f.
+    \]
+\end{problem}
+\begin{solution}[30.4]
+	\[
+	\mu\frac{d}{d\mu}\left(\frac{1}{e^2}\right)=	-\frac{1}{e^4}\cdot\mu\frac{de^2}{d\mu}=-\frac{\beta(e^2)}{e^4}=-\frac{1}{16\pi^2}\frac83 n_f
+	\]
+\end{solution}
+\begin{problem}
+    \(D=4-\epsilon\): Use dimensional analysis to show that classically
+    \[
+        \beta(e)=\frac{D-4}{2}\,e.
+    \]
+    Combine this with the one-loop term to write the full \(\beta\)-function to leading order in \(e\) and \(\epsilon\).
+\end{problem}
+\begin{solution}[30.5]
+	The derivation of $\beta_{\text{cl.}}(e)$ has been done in problem 22.7, so here we will skip the derivation and directly quote the result:
+	\[
+\beta_{\text{cl.}}(e)=\frac{D-4}{2}e
+	\]
+	Thus for $D=4-\epsilon$,
+	\[
+	  \beta_{\text{cl.}}(e)=-\frac{\epsilon}{2}e
+	\]
+	For QED with $n_f$ Dirac fermions, the one-loop contribution in four dimensions is
+	\[
+	\beta_{\text{1-loop}}(e)=\frac{n_f}{12\pi^2}\,e^3 .
+	\]
+	Keeping the leading terms in both $\epsilon$ and $e$ in $D=4-\epsilon$ gives
+	\[
+	\boxed{\beta(e)= -\frac{\epsilon}{2}\,e+\frac{n_f}{12\pi^2}\,e^3+\cdots}
+	\]
+\end{solution}
+\begin{problem}
+    \(D=4-\epsilon\): Define \(\hat e^2\equiv e^2\mu^{-\epsilon}\). Show that the \(\beta\)-function for \(\hat e^2\) takes the form
+    \[
+        \beta(\hat e^2)=-\epsilon\,\hat e^2+\frac{8}{3}\frac{n_f}{16\pi^2}\hat e^4.
+    \]
+    Find the nontrivial fixed point \(\hat e_*^2\) and determine whether it is IR or UV attractive.
+\end{problem}
+\begin{solution}[30.6]
+\[
+\begin{aligned}
+	\beta(\hat e^{\,2})
+	&=\mu\frac{d\hat e^{\,2}}{d\mu}
+	=\mu\frac{d}{d\mu}\!\left(e^2\mu^{-\epsilon}\right)
+	=\mu^{-\epsilon}\mu\frac{de^2}{d\mu}-\epsilon e^2\mu^{-\epsilon} \\
+	&=\mu^{-\epsilon}\beta(e^2)-\epsilon\hat e^{\,2}
+	=\mu^{-\epsilon}\bigl(2e\,\beta(e)\bigr)-\epsilon\hat e^{\,2}
+	=\mu^{-\epsilon}\left(2e\frac{n_f}{12\pi^2}e^3{\color{red}\mu^{-\epsilon}}\right)-\epsilon\hat e^{\,2} \\
+	&=-\epsilon\hat e^{\,2}+\frac{n_f}{6\pi^2}e^4\mu^{-2\epsilon}
+	=-\epsilon\hat e^{\,2}+\frac{n_f}{6\pi^2}(e^2\mu^{-\epsilon})^2
+	=-\epsilon\hat e^{\,2}+\frac{n_f}{6\pi^2}\hat e^{\,4} \\
+	&=-\epsilon\hat e^{\,2}+\frac{8}{3}\frac{n_f}{16\pi^2}\hat e^{\,4}.
+\end{aligned}
+\]
+	The \(\beta(e)\) we obtained earlier, in the notation used here, should actually be \(\beta(\hat e)\), i.e.\ the beta function of the dimensionless coupling. However, the \(\beta(e)\) we need to substitute above is the beta function of the dimensionful coupling. Since \([e]=\frac{\epsilon}{2}\), we multiply the previously obtained beta function by \(\mu^{-\epsilon}\) to supply the missing mass dimension. Solving $\beta(\hat{e}^2)=0$ yields
+	\[
+	\hat{e}^2_*=0,
+	\qquad
+	\hat{e}^2_*=\epsilon\left[\frac{8}{3}\frac{n_f}{16\pi^2}\right]^{-1}
+	=\boxed{\hat e_*^{\,2}=\frac{6\pi^2}{n_f}\,\epsilon.}
+	\]
+	We focus on the boxed non-trivial fixed point. Linearizing, $\beta(x)\simeq \beta'(x_*)(x-x_*)$ with
+	\[
+	\beta'(x)= -\epsilon+2\frac{8}{3}\frac{n_f}{16\pi^2}\,x.
+	\]
+	Hence
+	\[
+	\beta'(\hat e_*^{\,2})=-\epsilon+2\epsilon=+\epsilon>0 \quad\Rightarrow\quad \hat e^2=\hat e_*^{\,2}\ \text{is IR-attractive}.
+	\]
+	So we conclude
+	\[
+	\boxed{\text{For } \epsilon>0:\ \hat e_*^{\,2}=\frac{6\pi^2}{n_f}\epsilon\ \text{is IR-attractive.}}
+	\]
+\end{solution}
+\begin{problem}
+    \(D=4\): Suppose you have \(n_f\) Dirac fermions of charges \(q_i\) and \(n_s\) complex scalars of charges \(Q_a\). Show that the one-loop coefficient becomes
+    \[
+        \beta(e)=\frac{e^3}{16\pi^2}\left(\frac{4}{3}\sum_{i=1}^{n_f}q_i^2+\frac{1}{3}\sum_{a=1}^{n_s}Q_a^2\right).
+    \]
+\end{problem}

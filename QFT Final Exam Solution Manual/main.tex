@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+
+% --- 1. 基础宏包 ---
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\allowdisplaybreaks[4]
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+	colorlinks=true,      % 激活彩色链接
+	linkcolor=blue,       % 内部链接（如目录、公式）的颜色
+	filecolor=blue,       % 本地文件的链接颜色
+	urlcolor=blue,        % 网页 URL 的颜色
+	citecolor=blue,       % 参考文献引用的颜色
+}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+\usepackage{slashed}
+\usepackage{simpler-wick}
+\usepackage{braket}
+
+% --- 2. 整合专用设置 ---
+\usepackage{docmute}   % 自动忽略子文档的导言区
+\usepackage{tocloft}   
+\usepackage{totcount}  
+\usepackage{xparse}    
+
+% --- 3. 目录与样式设置 ---
+\newcommand{\listproblemname}{List of Solved Problems}
+\newlistof{myproblem}{los}{\listproblemname}
+\setlength{\cftbeforemyproblemskip}{5pt}
+
+\newcounter{numSolved}
+\regtotcounter{numSolved}
+\newcommand{\totalQuestions}{98}
+
+% --- 4. Solution 环境定义 (主文档逻辑) ---
+% 当整合编译时，使用这个带有计数和目录功能的定义
+\NewDocumentEnvironment{solution}{o}
+{
+	\begin{proof}[\textbf{Solution}]
+		\IfValueT{#1}{%
+			\stepcounter{numSolved}%
+			\phantomsection 
+			\addcontentsline{los}{myproblem}{Problem #1}%
+			\textbf{(#1) }
+		}
+	}
+	{
+	\end{proof}
+}
+
+% 保持子文档的题目框样式
+\tcbset{
+	problem/.style={
+		enhanced,
+		boxrule=0.7pt,
+		arc=3mm,
+		left=3mm,right=3mm,top=2mm,bottom=2mm,
+		colback=white,
+		colframe=black,
+		before skip=10pt,
+		after skip=6pt,
+	}
+}
+
+\newcounter{problem}
+\newcommand{\resetproblem}{\setcounter{problem}{0}}
+
+\newtcolorbox{problem}[1][]{
+	problem,
+	before upper={\stepcounter{problem}\textbf{\theproblem.}\ },
+	#1
+}
+
+\title{\Huge Solution Manual of QFT Assignments\\(Problem Set 22--35)}
+\author{Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} }
+
+\begin{document}
+	
+	\maketitle
+	
+	% 进度展示
+	\begin{center}
+		\Large\textbf{Total Progress: \total{numSolved} / \totalQuestions}
+	\end{center}
+	
+	% 目录
+	\listofmyproblem
+	
+	% --- 5. 导入子文档 ---
+	% 使用 clearpage 确保每个文档从新页面开始
+	\clearpage
+	\input{PS22.tex}
+	\clearpage
+	\input{PS23.tex}
+	\clearpage
+	\input{PS24.tex}
+	\clearpage
+	\input{PS25.tex}
+	\clearpage
+	\input{PS26.tex}
+	\clearpage
+	\input{PS27.tex}
+	\clearpage
+	\input{PS28.tex}
+	\clearpage
+	\input{PS29.tex}
+	\clearpage
+	\input{PS30.tex}	
+	\clearpage
+	\input{PS31.tex}
+	\clearpage
+	\input{PS32.tex}
+	\clearpage
+	\input{PS33.tex}
+	\clearpage
+	\input{PS34.tex}
+	\clearpage
+	\input{PS35.tex}
+\end{document}

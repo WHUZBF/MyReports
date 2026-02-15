@@ -1,0 +1,59 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 28} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\noindent Conventions: Lorentzian path integral \(Z[A]=\int D\Phi\,\exp(iS[\Phi;A])\) and \(W[A]=-i\ln Z[A]\). To avoid ambiguity in factors of \(i\), anomalies are stated below as variations of \(\ln Z\).
+
+\begin{problem}
+    \textbf{2d \(U(1)\) anomaly and large gauge transformations.} In two dimensions, suppose the quantum effective action has a gauge anomaly of the form
+    \[
+        \delta_\alpha\ln Z[A]=\frac{k}{2\pi}\int \alpha\,F
+    \]
+    for infinitesimal \(\alpha\), where \(F=dA\). Show that on a closed 2-manifold, consistency with large gauge transformations and flux quantization constrains \(k\).
+\end{problem}
+\begin{problem}
+    \textbf{Anomaly inflow (3d bulk cancels 2d boundary).} Consider a 3d bulk with action \(S_{\text{CS}}=\frac{k}{4\pi}\int A\wedge dA\). Show that under \(A\to A+d\alpha\) the bulk variation is a boundary term. Explain how this can cancel the 2d anomaly in Problem 1.
+\end{problem}
+\begin{problem}
+    \textbf{4d chiral anomaly: cubic charge constraint.} Consider a set of left-handed Weyl fermions of \(U(1)\) charges \(q_i\). Argue that the \(U(1)^3\) gauge anomaly coefficient is proportional to \(\sum_i q_i^3\). State the condition for gauge anomaly cancellation.
+\end{problem}
+\begin{solution}[28.4]
+	The general form of $D=4$ anomaly polynomial of abelian gauge theory is:
+	\[
+	I_6=\frac{k}{(2\pi)^3}\,F \wedge F \wedge F + \frac{\ell}{2\pi}\,F \wedge p_1(R)
+	\]
+	The first term is related to the pure gauge anomaly. This term is proportional to $\mathcal{F}^3$, which is just $\sum_i q_i^3$ in the abelian gauge theory. So we know that the condition for gauge anomaly cancellation is:
+	\[
+	\boxed{
+	\sum_i q_i^3=0
+}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Mixed gauge-gravitational anomaly (statement level).} For \(U(1)\) in 4d with chiral fermions, there is also a possible mixed gauge-gravitational anomaly proportional to \(\sum_i q_i\). State the corresponding cancellation condition and give a short interpretation.
+\end{problem}
+\begin{solution}[28.5]
+	The tern related to mixed gauge-gravitational anomaly is the second term in $I_6$, which is proportional to
+	\[
+	I_6\supset \frac{\ell}{2\pi}\,F \wedge p_1(R) \propto\sum_i q_i
+	\]
+	Therefore, the corresponding cancellation condition is:
+	\[
+	\boxed{
+	\sum_i q_i=0
+	}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{’t Hooft anomaly matching (conceptual).} Explain the meaning of an ’t Hooft anomaly for a global symmetry. Why must the anomaly match between UV and IR descriptions, even across strongly coupled RG flow?
+\end{problem}
+\begin{problem}
+    \textbf{Discrete remnant after Higgsing with an anomaly-free parent.} Suppose a \(U(1)\) gauge theory is Higgsed by a charge-\(N\) scalar, leaving a \(\mathbb{Z}_N\) remnant. Discuss when a \(\mathbb{Z}_N\) anomaly can appear, and how it is constrained by embedding into an anomaly-free \(U(1)\).
+\end{problem}
+\begin{problem}
+    \textbf{Background-field viewpoint.} Recast anomaly cancellation conditions in terms of background gauge invariance of \(Z[A]\). Explain why the anomaly coefficient is physical (scheme independent) for gauge symmetries.
+\end{problem}

@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage[]{cancel}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+\newenvironment{solution}[1][]{\begin{proof}[\textbf{Solution}]}{\end{proof}}
+% --- Rounded box style for each problem (whole statement) ---
+\tcbset{
+    problem/.style={
+        enhanced,
+        boxrule=0.7pt,
+        arc=3mm,
+        left=3mm,right=3mm,top=2mm,bottom=2mm,
+        colback=white,
+        colframe=black,
+        before skip=10pt,
+        after skip=6pt,
+    }
+}
+
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 18} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+
+\begin{tcolorbox}[problem]
+\textbf{1.} Explain what degeneracy the Lamb shift breaks in the hydrogen spectrum (which states and why they were degenerate in the Dirac theory).
+\end{tcolorbox}
+\begin{solution}[18.1]
+The hydrogen spectrum in Dirac theory can be solved exactly:
+\[
+E=\frac{mc^2}{\sqrt{1+\frac{\alpha^2}{\left(n-\left|j+\frac12\right|+\sqrt{(j+\frac12)^2-\alpha^2}\right)^2}}}
+\]
+This shows that the energy levels depend only on the principal quantum number $n$ and the total angular momentum quantum number $j$, and are independent of the orbital angular momentum quantum number $\ell$ and the magnetic quantum number $m_j$.
+
+$2S_{1/2}$ and $2P_{1/2}$ have the same $n$ and $j$, and differ only in the orbital angular momentum quantum number $\ell$. Therefore, in the Dirac theory these two levels should be degenerate. However, the Dirac theory is based on the Coulomb interaction, and in quantum field theory vertex corrections induce a modification to the Coulomb interaction. This correction breaks the degeneracy between these two levels, which constitutes part of the Lamb shift.
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{2.} Define the physical observable, energy difference $E(2S_{1/2})-E(2P_{1/2})$ (or equivalent). Explain why it is a non-scattering observable.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{3.} Identify the two main QED contributions at leading order, electron self-energy in the Coulomb field and vacuum polarization. State which dominates and why.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{4.} Explain the origin of the ``Bethe logarithm'' qualitatively, which range of virtual photon energies contributes and why a log appears.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{5.} Show (by dimensional analysis) why bound-state radiative corrections naturally involve $\ln(m/\alpha m)=\ln(1/\alpha)$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{6.} In dimensional regularization, explain how UV divergences in the self-energy are renormalized in the same way as in scattering, yet the finite remainder depends on the bound-state environment.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{7.} Explain why an effective field theory viewpoint (NRQED) is helpful, separate ``hard'' ($\sim m$), ``soft'' ($\sim \alpha m$), and ``ultrasoft'' ($\sim \alpha^2 m$) scales.
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{8.} Compute a simple toy version, for a contact perturbation $\delta V(r)=c\,\delta^{(3)}(r)$, show it shifts only S-wave states and estimate the scaling with principal quantum number $n$.
+\end{tcolorbox}
+\begin{solution}[18.8]
+	According to time-independent perturbation theory, the leading-order correction to the hydrogen energy levels is given by   
+	\[
+	\Delta E_{n\ell m}^{(1)}=\langle n\ell m|\delta V|n\ell m\rangle=c\int d^3r\left|\psi_{n\ell m}(\mathbf{r})\right|^2\delta^{(3)}(\mathbf{r})=c\left|\psi_{n\ell m}(0)\right|^2.
+	\]
+	The unperturbed hydrogen wavefunction is
+	\[
+	\psi_{n\ell m}=\sqrt{\left(\frac{2}{na}\right)^{3}\frac{(n-\ell-1)!}{2n\left(n+\ell\right)!}}e^{-r/na}\left(\frac{2r}{na}\right)^{\ell}\left[L_{n-\ell-1}^{2\ell+1}(2r/na)\right]Y_{\ell}^{m}(\theta,\phi)
+	\]
+	From this we obtain
+	\[
+	|\psi_{n00}(0)|^2=\frac{1}{\pi a_0^3}\frac{1}{n^3}
+	\]
+	Substituting this into the expression for the energy shift derived above, we find 
+	\[
+	\boxed{\Delta E_{nS}^{(1)}=c\left|\psi_{n00}(0)\right|^2=\frac{c}{\pi a_0^3}\frac{1}{n^3}\propto n^{-3}.}
+	\]
+\end{solution}
+\begin{tcolorbox}[problem]
+\textbf{9.} Discuss dimension dependence, if you formally considered ``hydrogen'' in $D\neq 4$, which parts of the Lamb-shift analysis would fail or change qualitatively? (Potential law, density of states, IR/UV behavior.)
+\end{tcolorbox}
+
+\begin{tcolorbox}[problem]
+\textbf{10.} Conceptual summary, explain in one paragraph why the Lamb shift is a triumph of QFT renormalization (local counterterms) yet produces a finite, physical, environment-dependent energy shift that cannot be removed by redefining parameters.
+\end{tcolorbox}
+
+
+\end{document}

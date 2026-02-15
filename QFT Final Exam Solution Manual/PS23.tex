@@ -1,0 +1,364 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 23} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\noindent Conventions: mostly-plus metric. Use modern gauge-field normalization \(\mathcal{L}\supset-\frac{1}{4e^2}F^2\) so that \(D_\mu=\partial_\mu+iA_\mu\) and \(A_\mu\to A_\mu-\partial_\mu\alpha\).
+
+\begin{problem}
+    \textbf{Higgs mechanism: vector mass.} Consider a complex scalar \(\Phi\) of charge \(1\) with
+    \[
+        \mathcal{L}=-\frac{1}{4e^2}F^2+|D_\mu\Phi|^2 - V(|\Phi|^2),\qquad
+        V(|\Phi|^2)=\lambda\Bigl(|\Phi|^2-\frac{v^2}{2}\Bigr)^2.
+    \]
+    Expand around \(\Phi=\frac{1}{\sqrt{2}}(v+h)e^{i\pi/v}\) and show the gauge boson mass is \(m_A=e\,v\).
+\end{problem}
+\begin{solution}[23.1]
+$$
+\begin{aligned}
+	\mathcal{L}
+	&= -\frac1{4e^2}F_{\mu\nu}F^{\mu\nu}+|D_\mu\Phi|^2-\lambda\Big(|\Phi|^2-\frac{v^2}2\Big)^2 \\
+	&= -\frac1{4e^2}F_{\mu\nu}F^{\mu\nu}
+	+\left|(\partial_\mu+iA_\mu)\frac1{\sqrt2}(v+h)e^{i\pi/v}\right|^2
+	-\lambda\left(\frac{(v+h)^2}{2}-\frac{v^2}{2}\right)^2 \\
+	&= -\frac1{4e^2}F_{\mu\nu}F^{\mu\nu}
+	+\frac12\left|\partial_\mu h+i(v+h)\left(A_\mu+\frac{\partial_\mu\pi}{v}\right)\right|^2
+	-\frac{\lambda}{4}\left((v+h)^2-v^2\right)^2 \\
+	&= -\frac1{4e^2}F_{\mu\nu}F^{\mu\nu}
+	+\frac12(\partial_\mu h)^2+\frac12(v+h)^2\left(A_\mu+\frac{\partial_\mu\pi}{v}\right)^2
+	-\frac{\lambda}{4}(2vh+h^2)^2 \\
+	&= -\frac1{4e^2}F_{\mu\nu}F^{\mu\nu}
+	+\frac12(\partial_\mu h)^2
+	+\frac12(v^2+2vh+h^2)\left(A_\mu A^\mu+\frac{2}{v}A^\mu\partial_\mu\pi+\frac1{v^2}(\partial_\mu\pi)^2\right)
+	-\lambda\left(v^2h^2+vh^3+\frac14h^4\right) \\
+	&= -\frac1{4e^2}F_{\mu\nu}F^{\mu\nu}
+	+\frac12(\partial_\mu h)^2
+	+\frac12v^2A_\mu A^\mu+vh\,A_\mu A^\mu+\frac12h^2A_\mu A^\mu
+	+vA^\mu\partial_\mu\pi+2hA^\mu\partial_\mu\pi+\frac{h^2}{v}A^\mu\partial_\mu\pi \\
+	&\quad +\frac12(\partial_\mu\pi)^2+\frac{h}{v}(\partial_\mu\pi)^2+\frac{h^2}{2v^2}(\partial_\mu\pi)^2
+	-\lambda v^2h^2-\lambda vh^3-\frac{\lambda}{4}h^4 \\
+	&= -\frac14F^{(c)}_{\mu\nu}F^{(c)\mu\nu}
+	+\frac12(\partial_\mu h)^2
+	+\frac12e^2v^2A^{(c)}_\mu A^{(c)\mu}+e^2vh\,A^{(c)}_\mu A^{(c)\mu}+\frac12e^2h^2A^{(c)}_\mu A^{(c)\mu} \\
+	&\quad +evA^{(c)\mu}\partial_\mu\pi+2ehA^{(c)\mu}\partial_\mu\pi+\frac{eh^2}{v}A^{(c)\mu}\partial_\mu\pi
+	+\frac12(\partial_\mu\pi)^2+\frac{h}{v}(\partial_\mu\pi)^2+\frac{h^2}{2v^2}(\partial_\mu\pi)^2
+	-\lambda v^2h^2-\lambda vh^3-\frac{\lambda}{4}h^4 \\
+	&\supset\ \frac12 m_A^2 A^{(c)}_\mu A^{(c)\mu}=\frac12 e^2v^2A^{(c)}_\mu A^{(c)\mu}\Rightarrow\boxed{ m_A=ev}
+\end{aligned}
+$$
+Where $\square^{(c)}$ means the old normalization.
+\end{solution}
+\begin{problem}
+    \textbf{Unitary gauge.} Perform a gauge transformation to set \(\pi=0\). Write the quadratic Lagrangian for \(A_\mu\) and \(h\) and identify all masses.
+\end{problem}
+\begin{solution}[23.2]
+	From the $U(1)$ gauge transformation,
+	\[
+			\Phi(x)\to \Phi'(x)=e^{-i\alpha(x)}\Phi(x),\quad 
+	A_\mu(x)\to A'_\mu(x)=A_\mu(x)+\partial_\mu\alpha(x)
+	\]
+	We can choose, $\alpha(x)=\pi(x)/v$, so taht
+	\[
+		\Phi'=\frac{1}{\sqrt2}(v+h),\quad 
+	A'_\mu=A_\mu+\frac{1}{v}\partial_\mu\pi
+	\]
+	\[
+	\begin{aligned}
+		\Rightarrow\ 
+		\mathcal{L}
+		&=-\frac1{4e^2}F_{\mu\nu}F^{\mu\nu}+|D_\mu\Phi|^2-\lambda\Big(|\Phi|^2-\frac{v^2}2\Big)^2 \\
+		&
+		=-\frac1{4e^2}F'_{\mu\nu}F'^{\mu\nu}
+		+\left|(\partial_\mu+iA'_\mu)\frac{1}{\sqrt2}(v+h)\right|^2
+		-\lambda\left(\frac{(v+h)^2}{2}-\frac{v^2}{2}\right)^2 \\
+		&=
+		-\frac1{4e^2}F'_{\mu\nu}F'^{\mu\nu}
+		+\frac12(\partial_\mu h)^2+\frac12(v+h)^2A'_\mu A'^{\mu}
+		-\frac{\lambda}{4}\left((v+h)^2-v^2\right)^2 \\
+		&=
+		-\frac1{4e^2}F'_{\mu\nu}F'^{\mu\nu}
+		+\frac12(\partial_\mu h)^2
+		+\frac12v^2A'_\mu A'^{\mu}
+		+vh\,A'_\mu A'^{\mu}
+		+\frac12h^2A'_\mu A'^{\mu}
+		-\lambda v^2h^2-\lambda vh^3-\frac{\lambda}{4}h^4\\
+		&= -\frac{1}{4e^{2}}\Bigl(\partial_\mu A'_\nu-\partial_\nu A'_\mu\Bigr)\Bigl(\partial^\mu A'^\nu-\partial^\nu A'^\mu\Bigr)
+		+\frac{1}{2}(\partial_{\mu}h)^{2}
+		+\left(\frac{1}{2}v^{2}+vh+\frac{1}{2}h^{2}\right)A_{\mu}^{\prime}A^{\prime\mu}
+		-\lambda v^{2}h^{2}-\lambda vh^{3}-\frac{\lambda}{4}h^{4} \\
+		&= -\frac{1}{4e^{2}}\Bigl(\partial_\mu(A_\nu+\tfrac{1}{v}\partial_\nu\pi)-\partial_\nu(A_\mu+\tfrac{1}{v}\partial_\mu\pi)\Bigr)
+		\Bigl(\partial^\mu(A^\nu+\tfrac{1}{v}\partial^\nu\pi)-\partial^\nu(A^\mu+\tfrac{1}{v}\partial^\mu\pi)\Bigr) \\
+		&\quad +\frac{1}{2}(\partial_{\mu}h)^{2}
+		+\left(\frac{1}{2}v^{2}+vh+\frac{1}{2}h^{2}\right)\left(A_\mu+\frac{1}{v}\partial_\mu\pi\right)\left(A^\mu+\frac{1}{v}\partial^\mu\pi\right)
+		-\lambda v^{2}h^{2}-\lambda vh^{3}-\frac{\lambda}{4}h^{4} \\
+		&= -\frac{1}{4e^{2}}\underbrace{(\partial_\mu A_\nu-\partial_\nu A_\mu)(\partial^\mu A^\nu-\partial^\nu A^\mu)}_{F_{\mu\nu}F^{\mu\nu}}
+		+\frac{1}{2}(\partial_{\mu}h)^{2}
+		+\frac{1}{2}v^{2}A_\mu A^\mu
+		+vA^\mu\partial_\mu\pi
+		+\frac{1}{2}(\partial_\mu\pi)^2 \\
+		&\quad +vh\,A_\mu A^\mu
+		+2hA^\mu\partial_\mu\pi
+		+\frac{h}{v}(\partial_\mu\pi)^2
+		+\frac{1}{2}h^{2}A_\mu A^\mu
+		+\frac{h^{2}}{v}A^\mu\partial_\mu\pi
+		+\frac{h^{2}}{2v^{2}}(\partial_\mu\pi)^2 \\
+		&\quad -\lambda v^{2}h^{2}-\lambda vh^{3}-\frac{\lambda}{4}h^{4}\\
+		&\supset 
+		\frac{1}{2}(\partial_{\mu}h)^{2}-\lambda v^2h^2
+		-\frac{1}{4e^2}F_{\mu\nu}F^{\mu\nu}+\frac{1}{2}v^{2}A_{\mu}A^{\mu}
+	\end{aligned}
+	\]
+	Although in the computation above we expanded the gauge field and it may look as if the final expression still contains terms involving $\pi$, note that all such terms can be absorbed into a gauge transformation of the gauge field. Therefore $\pi$ does not correspond to a physical degree of freedom.
+	Back to the old normalization, so the masses are
+	\[
+	\boxed{
+	m_A^2=e^2v^2\ \Rightarrow\ m_A=ev,\quad
+	\frac12m_h^2h^2=\lambda v^2h^2\ \Rightarrow\ m_h^2=2\lambda v^2\ \Rightarrow\ m_h=\sqrt{2\lambda}\,v}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{\(R_\xi\) gauge fixing.} Add
+    \[
+        \mathcal{L}_{\text{gf}}=-\frac{1}{2\xi}\bigl(\partial\cdot A-\xi m_A\pi\bigr)^2.
+    \]
+    Show the \(A_\mu\)–\(\pi\) mixing cancels and compute the \(\pi\) mass.
+\end{problem}
+\begin{solution}[23.3]
+	From the calculations in problem 1, we have:
+$$
+\begin{aligned}
+	\mathcal{L}_{\text{tot}}
+	&=\Bigl[-\frac{1}{4e^2}F_{\mu\nu}F^{\mu\nu}+\frac{1}{2}(\partial_\mu h)^2+\frac{1}{2}v^2A_\mu A^\mu+vhA_\mu A^\mu+\frac{1}{2}h^2A_\mu A^\mu+vA^\mu\partial_\mu\pi+2hA^\mu\partial_\mu\pi+\frac{h^2}{v}A^\mu\partial_\mu\pi \\
+	&\qquad\quad+\frac{1}{2}(\partial_\mu\pi)^2+\frac{h}{v}(\partial_\mu\pi)^2+\frac{h^2}{2v^2}(\partial_\mu\pi)^2-\lambda v^2h^2-\lambda vh^3-\frac{\lambda}{4}h^4\Bigr]
+	-\frac{1}{2\xi}\Bigl(\partial\cdot A-\xi m_A\pi\Bigr)^2 \\
+	&=-\frac{1}{4e^2}F_{\mu\nu}F^{\mu\nu}+\frac{1}{2}(\partial_\mu h)^2+\frac{1}{2}v^2A_\mu A^\mu+vhA_\mu A^\mu+\frac{1}{2}h^2A_\mu A^\mu+vA^\mu\partial_\mu\pi+2hA^\mu\partial_\mu\pi+\frac{h^2}{v}A^\mu\partial_\mu\pi \\
+	&\qquad\quad+\frac{1}{2}(\partial_\mu\pi)^2+\frac{h}{v}(\partial_\mu\pi)^2+\frac{h^2}{2v^2}(\partial_\mu\pi)^2-\lambda v^2h^2-\lambda vh^3-\frac{\lambda}{4}h^4
+	-\frac{1}{2\xi}(\partial\cdot A)^2+m_A\pi\,\partial\cdot A-\frac{\xi}{2}m_A^2\pi^2 \\
+	&=-\frac{1}{4e^2}F_{\mu\nu}F^{\mu\nu}-\frac{1}{2\xi}(\partial\cdot A)^2+\frac{1}{2}(\partial_\mu h)^2+\frac{1}{2}v^2A_\mu A^\mu+vhA_\mu A^\mu+\frac{1}{2}h^2A_\mu A^\mu \\
+	&\qquad\quad+\Bigl(v-m_A\Bigr)A^\mu\partial_\mu\pi+2hA^\mu\partial_\mu\pi+\frac{h^2}{v}A^\mu\partial_\mu\pi
+	+\frac{1}{2}(\partial_\mu\pi)^2+\frac{h}{v}(\partial_\mu\pi)^2+\frac{h^2}{2v^2}(\partial_\mu\pi)^2 \\
+	&\qquad\quad-\frac{\xi}{2}m_A^2\pi^2-\lambda v^2h^2-\lambda vh^3-\frac{\lambda}{4}h^4
+\end{aligned}
+$$
+In the computation above we used integration by parts, so the final result is understood to be equal up to a total-derivative term. 
+Notice that the $A_\mu$--$\pi$ mixing interaction term is
+\[
+\boxed{
+\mathcal{L}_{\text{tot}}\supset \left(v-m_{A}\right)A^{\mu}\partial_{\mu}\pi=0
+}
+\]
+This term vanishes because, from the result of the previous problem, in the modern normalization we have $m_A=v$. Now we look at the quadratic terms involving $\pi$. 
+\[
+\mathcal{L}_{\text{tot}}\supset \frac{1}{2}(\partial_\mu\pi)^2-\frac{\xi}{2}m_A^2\pi^2
+\]
+From these we obtain the $\pi$ mass as
+\[
+\boxed{
+m_\pi^2=\xi m_A^2=\xi v^2
+}
+\]
+\end{solution}
+\begin{problem}
+    \textbf{Propagators.} Compute the momentum-space propagator for \(A_\mu\) in \(R_\xi\) gauge. Show it behaves as \(1/p^2\) at large momentum for all components.
+\end{problem}
+\begin{solution}[23.4]
+	From the result in the last problem, only the following terms are relevent for the free $A_\mu$ propagator:
+	\[
+		\mathcal{L}_{\text{tot}}\supset -\frac{1}{4e^{2}}F_{\mu\nu}F^{\mu\nu}-\frac{1}{2\xi}(\partial\!\cdot\! A)^{2}
+		+\frac{1}{2}v^{2}A_{\mu}A^{\mu}
+		\sim\frac12\,A_\mu\left[\frac{1}{e^2}\Bigl(\eta^{\mu\nu}\Box-\partial^\mu\partial^\nu\Bigr)+\frac{1}{\xi}\partial^\mu\partial^\nu+v^2\eta^{\mu\nu}\right]A_\nu
+	\]
+	Fourier transforming $A_\mu$ gives
+	\[
+	\mathcal L_{A}
+	=\frac12\,A_\mu(-p)\,\Bigl[\frac{1}{e^2}\bigl(-p^2\eta^{\mu\nu}+p^\mu p^\nu\bigr)-\frac{1}{\xi}p^\mu p^\nu+v^2\eta^{\mu\nu}\Bigr]\,A_\nu(p).
+	\]
+	Introduce the transverse and longitudinal projectors
+	\[
+	P_T^{\mu\nu}=\eta^{\mu\nu}-\frac{p^\mu p^\nu}{p^2},\qquad
+	P_L^{\mu\nu}=\frac{p^\mu p^\nu}{p^2},\qquad
+	P_T^2=P_T,\ P_L^2=P_L,\ P_TP_L=0,\ P_T+P_L=\eta,
+	\]
+	then the inverse propagator decomposes as
+	\[
+	iD^{-1}_{\mu\nu}(p)
+	=\Bigl[\frac{1}{e^2}\bigl(-p^2\bigr)+v^2\Bigr]P_{T\,\mu\nu}
+	+\Bigl[v^2-\frac{p^2}{\xi}\Bigr]P_{L\,\mu\nu}.
+	\]
+	Inverting separately on the $P_T$ and $P_L$ subspaces (so that $P_{T/L}=P^{-1}_{T/L}$) yields the $R_\xi$-gauge propagator
+	\[
+	\boxed{
+	D_{\mu\nu}(p)
+	= -i\,\Biggl[
+	\frac{e^2}{p^2-e^2v^2}\,P_{T\,\mu\nu}
+	+\frac{e^2\xi}{p^2-\xi e^2v^2}\,P_{L\,\mu\nu}
+	\Biggr]
+	= -i\,e^2\Biggl[
+	\frac{\eta_{\mu\nu}-\frac{p_\mu p_\nu}{p^2}}{p^2-m_A^2}
+	+\frac{\xi\,\frac{p_\mu p_\nu}{p^2}}{p^2-\xi m_A^2}
+	\Biggr],
+	\qquad m_A\equiv ev
+}
+	\]
+	At large momentum $p^2\gg m_A^2$,
+	\[
+	D_{\mu\nu}(p)
+	\sim -i\,e^2\left[
+	\frac{\eta_{\mu\nu}-\frac{p_\mu p_\nu}{p^2}}{p^2}
+	+\frac{\xi\,\frac{p_\mu p_\nu}{p^2}}{p^2}
+	\right]
+	= -i\,e^2\,\frac{\eta_{\mu\nu}-(1-\xi)\frac{p_\mu p_\nu}{p^2}}{p^2},
+	\]
+	so every component scales as $1/p^2$ for $|p|\to\infty$.
+	
+\end{solution}
+\begin{problem}
+    \textbf{Goldstone equivalence (tree-level check).} At energies \(E\gg m_A\), argue that amplitudes with longitudinally polarized \(A_\mu\) are controlled by the Goldstone mode \(\pi\). Verify in a simple tree-level process of your choice.
+\end{problem}
+\begin{solution}[23.5]
+	Consider the Glashow–Weinberg–Salam (GWS) theory and focus on the following process:
+	\[
+	e^+e^-\to W_0^-W_0^+
+	\]
+	The Goldstone equivalence states that
+	\[
+	\mathcal{M}(e^+e^-\to W_0^-W_0^+)=\mathcal{M}(e^+e^-\to\pi^+\pi^-)\times(1+\mathcal{O}(m_W/E_W))
+	\]
+	Here, $W_0$ means the longitudinal polarization. The RHS is easier to compute, in tree-level, we have:
+	\[
+	\mathcal{M}(e^{+}_Le^{-}_R\rightarrow\pi^{+}\pi^{-})=-i(2E)\sqrt{2}\epsilon_+\cdot(k_--k_+)\cdot\frac{e^2}{2c_w^2}\frac{1}{s}
+	\]
+	\[
+	\mathcal{M}(e^{+}_Re^{-}_L\rightarrow\pi^{+}\pi^{-})=-i(2E)\sqrt{2}\epsilon_{-}\cdot(k_{-}-k_{+})\cdot\left(\frac{e^{2}}{4c_{w}^{2}}\frac{1}{s}+\frac{e^{2}}{4s_{w}^{2}}\frac{1}{s}\right)
+	\]
+	In fact, at leading order in the Standard Model, the LHS is the sum of 3 diagrams:
+\[
+\begin{aligned}
+	&\vcenter{\hbox{
+			\feynmandiagram [horizontal=a to b, inline=(a.base), small] {
+				i1 [particle=\(e^-\)] -- [fermion] a -- [fermion] i2 [particle=\(e^+\)],
+				a -- [photon, edge label'=\(\gamma\)] b,
+				o1 [particle=\(W^+\)] -- [boson] b -- [boson] o2 [particle=\(W^-\)],
+			};
+	}}
+	\qquad
+	\vcenter{\hbox{
+			\feynmandiagram [horizontal=a to b, inline=(a.base), small] {
+				i1 [particle=\(e^-\)] -- [fermion] a -- [fermion] i2 [particle=\(e^+\)],
+				a -- [boson, edge label'=\(Z\)] b,
+				o1 [particle=\(W^+\)] -- [boson] b -- [boson] o2 [particle=\(W^-\)],
+			};
+	}}
+	\qquad
+	\vcenter{\hbox{
+			\feynmandiagram [vertical=a to b, inline=(a.base), small] {
+				% left: leptons
+				i1 [particle=\(e^+\)] -- [fermion] a,
+				i2 [particle=\(e^-\)] -- [fermion] b,
+				% middle: neutrino propagator
+				a -- [fermion, edge label=\(\nu\)] b,
+				% right: W bosons
+				a -- [boson] o1 [particle=\(W^+\)],
+				b -- [boson] o2 [particle=\(W^-\)],
+			};
+	}}
+\end{aligned}
+\]
+Work this out carefully for $e_R^-e_L^+$,where the $\nu$ diagram isabsent:
+	\[
+	\begin{aligned}i\mathcal{M}&=(-ie)(ie)2E\sqrt{2}\epsilon_{+\mu}\left[\frac{-i}{s}+\frac{-s_w^2}{s_wc_w}\frac{c_w}{s_w}\frac{-i}{s-m_Z^2}\right]\\&\cdot\left\lfloor\epsilon_-^*\epsilon_+^*(k_--k_+)^\mu+\epsilon_-^{*\mu}(-q-k_-)\cdot\epsilon_+^*+\epsilon_+^{*\mu}(q+k_+)\cdot\epsilon_-^*\right\rfloor\end{aligned}
+	\]
+	where $q = k_- + k_+$ and, in the 2nd line, $\epsilon_-^{*}$ and $\epsilon_+^{*}$ are the $W$ polarizations. Send
+	$$
+	\epsilon_-^{*}\to \frac{k_-}{m_W},\qquad \epsilon_+^{*}\to \frac{k_+}{m_W}.
+	$$
+	Then the second term in brackets becomes
+	$$
+		\frac{1}{m_W^2}\Bigl[\,2k_-\!\cdot k_+\,(k_- - k_+)^\mu + k_-^\mu(-2k_-\!\cdot k_+) + k_+^\mu(2k_+\!\cdot k_-)\Bigr]
+		= -\frac{k_+\!\cdot k_-}{m_W^2}(k_- - k_+)^\mu 
+		= -\frac{s-2m_W^2}{2m_W^2}(k_- - k_+)^\mu .
+	$$
+	On the other hand, the first term in brackets becomes
+	\[
+\left[\frac{-i}{s}-\frac{-i}{s-m_Z^2}\right]=\frac{im_Z^2}{s(s-m_Z^2)}
+	\]
+	Using $m_Z^2/m_W^2=1/c_w^2$, we find
+	\[
+	i\mathcal{M}(e^{+}_Le^{-}_R\to W_{0}^{-}W_{0}^{+})=i(e^2)2E\sqrt{2}\epsilon_{+\mu}(k_--k_+)^\mu\left(\frac{1}{s(s-m_Z^2)}\right)\left(-\frac{s-2m_W^2}{2c_w^2}\right)
+	\]
+	which gives the predicted expression at high energy ($s\gg m^2_{W/Z}$). For $e^+_{R}e^{-}_L$, we must work a little harder.   The first two diagrams contribute 
+	\[
+	i\mathcal{M}=(-ie)(ie)2E\sqrt{2}\epsilon_{-\mu}\left[\frac{-i}{s}+\frac{(1/2-s_w^2)}{s_wc_w}\frac{c_w}{s_w}\frac{-i}{s-m_Z^2}\right]\cdot\left[\epsilon_-^*\epsilon_+^*(k_--k_+)^\mu+\epsilon_-^*\mu(-q-k_-)\cdot\epsilon_+^*+\epsilon_+^*\mu(q+k_+)\cdot\epsilon_-^*\right]
+	\] 
+	After the reductions described above, there is a term that does not cancel its high energy behavior
+	\[
+	\begin{aligned}i\mathcal{M}&\supset(-ie^2)2E\sqrt{2}\epsilon_{\large-\mu}\left[\frac{1}{2s_w^2}\frac{1}{s}\right](-\frac{s}{2m_W^2}(k_{\large-}-k_{\large+})^{\mu})\\&=(\frac{ie^2}{4s_w^2})2E\sqrt{2}\epsilon_{-\mu}\frac{1}{m_W^2}(k_--k_+)^\mu\end{aligned}
+	\]
+	However, now we must add the thrid diagram, which contributes 
+	\[
+	i\mathcal{M}_3=(i\frac{g}{\sqrt{2}})^2v_R^\dagger\overline{\sigma}\cdot\epsilon_+^*\frac{i\sigma\cdot(p-k_-)}{(p-k_-)^2}\overline{\sigma}\cdot\epsilon_-^*u_L(p)
+	\]
+	Substitute $\epsilon_-^*\to k_-/m_W$ (the reason can be found in problem 24.1) and simplify
+	\[
+	\frac{\sigma\cdot(p-k_-)}{(p-k_-)^2}\overline{\sigma}\cdot\frac{k_-}{m_W}u(p)=\frac{\sigma\cdot(p-k_-)}{(p-k_-)^2}\overline{\sigma}\cdot\frac{(k_--p)}{m_W}u(p)=-\frac{1}{m_W}u(p)
+	\]
+	Also $\epsilon_+^*\to k_+/m_W$ and $k_+=(k_+-k_-+(p+\overline{p}))/2$. So finally we find
+	\[
+	i\mathcal{M}_3=-i\frac{e^2}{2s_w^2}(2E)\sqrt{2}\epsilon_{-\mu}\frac{1}{2}(k_{-}-k_{+})^{\mu}\frac{1}{m_W^2}
+	\]
+	which indeed cancels the previous term. Thanks to \href{https://indico.mitp.uni-mainz.de/event/159/sessions/168/}{Peskin's lecture notes} from the MITP summer school for helping me understand this point.
+\end{solution}
+\begin{problem}
+    \textbf{Gauge invariance of physical masses.} Explain why the physical vector mass \(m_A\) is gauge-parameter independent, while the \(\pi\) mass depends on \(\xi\). Identify which poles in propagators correspond to physical particles.
+\end{problem}
+\begin{problem}
+    \textbf{Counting degrees of freedom.} Count degrees of freedom before and after Higgsing. Explain how the Goldstone mode is removed from the spectrum in unitary gauge and how it reappears as an unphysical mode in \(R_\xi\).
+\end{problem}
+\begin{solution}[23.7]
+	\paragraph{Before Higgsing.}
+	The massless gauge field $A_\mu$ has $4$ components, but gauge invariance and the constraint remove $2$ of them, leaving
+	\[
+	\# (A_\mu\ \text{massless})=2
+	\]
+   The complex scalar $\Phi$ contains two real scalars, so
+	\[
+	\#(\Phi)=2.
+	\]
+	Hence the total number of physical degrees of freedom is 4.
+	\paragraph{After Higgsing.}
+	The gauge boson acquires a mass, so a massive vector field in four dimensions has
+	\[
+\# (A_\mu\ \text{massive})=3
+	\]
+   The radial Higgs mode $h$ is one real scalar,
+	\[
+	\# (h)=1,
+	\]
+	It may seem that the Goldstone field $\pi$ should still contribute one degree of freedom, but in fact, as we learned from the analysis in Problem 2, it can be completely removed by a gauge transformation. In other words, the degree of freedom carried by $\pi$ is converted into the longitudinal degree of freedom of $A_\mu$.
+	Therefore the total number of physical degrees of freedom is 4, which matches the count before Higgsing.
+	
+	\paragraph{How the Goldstone mode disappears in unitary gauge.}
+	Under a local $U(1)$ transformation,
+	\[
+	\Phi(x)\to e^{-i\alpha(x)}\Phi(x),\qquad A_\mu(x)\to A_\mu(x)+\partial_\mu\alpha(x).
+	\]
+	Choosing $\alpha(x)=\pi(x)/v$ sets $\pi'=0$ and shifts the gauge field to
+	\[
+	\Phi'=\frac{1}{\sqrt2}(v+h),\qquad A'_\mu=A_\mu+\frac{1}{v}\partial_\mu\pi.
+	\]
+	Thus the Goldstone field is removed from the spectrum: it is not an independent physical excitation, but rather provides the longitudinal polarization of the now-massive vector boson.
+	
+	\paragraph{How it reappears as an unphysical mode in $R_\xi$.}
+	In $R_\xi$ gauge one adds the gauge-fixing term
+	\[
+	\mathcal L_{\rm gf}=-\frac{1}{2\xi}\bigl(\partial\!\cdot\!A-\xi m_A\pi\bigr)^2,
+	\]
+	As we see in problem 3, it cancels the quadratic $A$--$\pi$ mixing and gives the Goldstone field a gauge-dependent mass,
+	\[
+	m_\pi^2=\xi m_A^2.
+	\]
+	Because this mass depends on the gauge parameter $\xi$, $\pi$ does not correspond to a physical particle. It can propagate only as an internal (unphysical) mode, and all $\xi$-dependence cancels out of gauge-invariant observables.
+\end{solution}

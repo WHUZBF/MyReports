@@ -1,0 +1,149 @@
+% !TeX root = main.tex
+\resetproblem
+\begin{center}
+    {\LARGE \textbf{Solution Manual of Problem Set 34} \par}
+    \vspace{1em}
+    {\large Bufan Zheng\\ \href{mailto:bufan@g.ecc.u-tokyo.ac.jp}{\texttt{bufan@g.ecc.u-tokyo.ac.jp}} \par}
+\end{center}
+
+\noindent Let \(G=SU(N)\) with generators \(T^a\) in the fundamental, normalized by \(\operatorname{tr}(T^aT^b)=\frac{1}{2}\delta^{ab}\). Structure constants \([T^a,T^b]=if^{abc}T^c\).
+
+\begin{problem}
+    \textbf{Structure constants identity.} Show that \(f^{abc}\) are totally antisymmetric under the above normalization and compute \(f^{abc}f^{abd}\) in terms of \(N\) (i.e. \(C_A\)).
+\end{problem}
+\begin{solution}[34.1]
+	From our convention:
+	\[
+	f^{abc}=-2i\,\operatorname{tr} \bigl([T^a,T^b]\,T^c\bigr)
+	\]
+	so \(f^{abc}=-f^{bac}\). Using cyclicity and invariance of the trace,
+	\[
+	\operatorname{tr}\bigl([T^a,T^b]\,T^c\bigr)=\operatorname{tr}\bigl(T^a[T^b,T^c]\bigr),
+	\]
+	which implies total antisymmetry in \((a,b,c)\). For $SU(N)$ group, we have the following completeness relation:
+\[
+(T^c)_{ij}(T^c)_{kl}=\frac12\left(\delta_{il}\delta_{jk}-\frac1N\delta_{ij}\delta_{kl}\right)
+\quad\Longrightarrow\quad
+\sum_c T^cXT^c=\frac12\operatorname{tr}(X)\mathbf1-\frac1{2N}X,
+\quad
+\sum_c T^cT^c=\frac{N^2-1}{2N}\mathbf1
+\]
+which implies:
+\[
+\begin{aligned}
+	f^{abc}f^{abd}
+	&=f^{cab}f^{dab}
+	=-2\sum_a\operatorname{tr}\bigl([T^c,T^a][T^d,T^a]\bigr)\\
+	&=-2\sum_a\operatorname{tr} \bigl((T^cT^a-T^aT^c)(T^dT^a-T^aT^d)\bigr)\\
+	&=-2\Bigl(\operatorname{tr} \bigl(T^c(\sum_aT^aT^dT^a)\bigr)-\operatorname{tr} \bigl(T^c(\sum_aT^aT^a)T^d\bigr)-\operatorname{tr} \bigl(\sum_aT^a(T^cT^d)T^a\bigr)+\operatorname{tr} \bigl((\sum_aT^aT^cT^a)T^d\bigr)\Bigr)\\
+	&=-2\Bigl(\operatorname{tr} \bigl(T^c(-\tfrac1{2N}T^d)\bigr)-\operatorname{tr} \bigl(T^c(\tfrac{N^2-1}{2N}\mathbf1)T^d\bigr)-\operatorname{tr} \bigl(\tfrac12\operatorname{tr}(T^cT^d)\mathbf1-\tfrac1{2N}T^cT^d\bigr)+\operatorname{tr} \bigl((-\tfrac1{2N}T^c)T^d\bigr)\Bigr)\\
+	&=-2\Bigl(-\tfrac1{2N}\operatorname{tr}(T^cT^d)-\tfrac{N^2-1}{2N}\operatorname{tr}(T^cT^d)-\tfrac12\operatorname{tr}(T^cT^d)\operatorname{tr}(\mathbf1)+\tfrac1{2N}\operatorname{tr}(T^cT^d)-\tfrac1{2N}\operatorname{tr}(T^cT^d)\Bigr)\\
+	&=-2\Bigl(-\tfrac{N^2-1}{2N}\operatorname{tr}(T^cT^d)-\tfrac12\operatorname{tr}(T^cT^d)\,N\Bigr)
+	=-2\Bigl(-\tfrac{N^2}{2}\operatorname{tr}(T^cT^d)\Bigr)
+	=\boxed{N\delta^{cd}},
+\end{aligned}
+\]
+\end{solution}
+\begin{problem}
+    \textbf{Casimirs.} For \(SU(N)\), show \(T^aT^a=C_F\mathbf{1}\) in the fundamental and compute \(C_F=(N^2-1)/(2N)\). Also state \(C_A=N\) for the adjoint.
+\end{problem}
+\begin{solution}[34.2]
+	The generator in the adjoint representation can be written as:
+	\[
+	{T_A^{a}}_{bc}=if^{abc}
+	\]
+	Which implies:
+	\[
+	T_A^aT_A^a=-f^{acb}f^{abd}=f^{abc}f^{abd}=C_A\delta^{cd}
+	\]
+	In the last problem, we have computed $C_A=N$. To compute $C_F$, we can use the completeness relation:
+	\[
+	(T^c)_{ij}(T^c)_{jk}=\frac12\left(\delta_{ik}\delta_{jj}-\frac1N\delta_{ij}\delta_{jk}\right)=\frac12\left(N-\frac1N\right)\delta_{ik}=\frac{N^2-1}{2N}\delta_{ik}
+	\]
+	Hence
+	\[
+	\boxed{
+	C_F=\frac{N^2-1}{2N}
+	}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Classical nonabelian Noether current.} For a complex scalar \(\phi\) in the fundamental with Lagrangian \(\mathcal{L}=|\partial_\mu\phi|^2 - V(|\phi|^2)\), under global \(SU(N)\): \(\delta\phi=i\epsilon^a T^a\phi\), compute the Noether current \(j^{a\mu}\).
+\end{problem}
+\begin{solution}[34.3]
+The Noether current is
+	\[
+	j^{a\mu}
+	=\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\,\delta\phi
+	+\frac{\partial\mathcal L}{\partial(\partial_\mu\phi^*)}\,\delta\phi^*
+	=\partial^\mu\phi^*(i\epsilon^aT^a\phi)+\partial^\mu\phi(-i\epsilon^aT^a\phi^*).
+	\]
+	Removing the common factor \(\epsilon^a\) gives
+	\[
+	\boxed{j^{a\mu}= i\Bigl(\partial^\mu\phi^*\,T^a\phi-\phi^* T^a\,\partial^\mu\phi\Bigr).}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Nonabelian covariant derivative and field strength.} Define \(A_\mu=A_\mu^aT^a\) and \(D_\mu=\partial_\mu-iA_\mu\). Show \([D_\mu,D_\nu]=-iF_{\mu\nu}\) and derive
+    \[
+        F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu-i[A_\mu,A_\nu].
+    \]
+\end{problem}
+\begin{solution}[33.4]
+	For any test field \(\Psi\) one finds
+	\[
+	[D_\mu,D_\nu]\Psi
+	=(\partial_\mu-iA_\mu)(\partial_\nu-iA_\nu)\Psi-(\mu\leftrightarrow\nu)
+	=-i\Bigl(\partial_\mu A_\nu-\partial_\nu A_\mu-i[A_\mu,A_\nu]\Bigr)\Psi.
+	\]
+	Hence
+	\[
+	\boxed{[D_\mu,D_\nu]=-iF_{\mu\nu},}
+	\qquad
+	\boxed{F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu-i[A_\mu,A_\nu].}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{One-loop \(\beta\)-function sign in 4D.} In 4D, pure Yang–Mills has \(\beta(g)=-\frac{11}{3}\frac{C_A}{16\pi^2}g^3\). Show this implies asymptotic freedom. Solve for \(g^2(\mu)\) given \(g(\mu_0)\).
+\end{problem}
+\begin{solution}[34.5]
+	Starting from
+	\[
+	\mu\frac{dg}{d\mu}= -\frac{11}{3}\frac{C_A}{16\pi^2}\,g^3,
+	\]
+	the right-hand side is negative for \(g>0\), so \(g(\mu)\) decreases as \(\mu\) increases which means the pure YM theory is asymptotic freedom. Separating variables,
+	\[
+	\frac{dg}{g^3}=-\frac{11C_A}{48\pi^2}\,d\ln\mu.
+	\]
+	Integrating from \(\mu_0\) to \(\mu\),
+	\[
+	-\frac12\left(\frac{1}{g^2(\mu)}-\frac{1}{g^2(\mu_0)}\right)
+	=-\frac{11C_A}{48\pi^2}\ln\frac{\mu}{\mu_0},
+	\]
+	so \textbf{MY FINAL ANSWER IS}
+	\[
+	\boxed{\frac{1}{g^2(\mu)}=\frac{1}{g^2(\mu_0)}+\frac{11C_A}{24\pi^2}\ln\frac{\mu}{\mu_0}.}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Add matter in representations.} In 4D, include \(n_f\) Dirac fermions and \(n_s\) complex scalars in representation \(R\) with index \(T(R)\) defined by \(\mathrm{tr}_R(T^aT^b)=T(R)\delta^{ab}\). Write the one-loop coefficient \(b_0\) in
+    \[
+        \beta(g)=-\frac{b_0}{16\pi^2}g^3
+    \]
+    and specialize to \(R=\) fundamental of \(SU(N)\) with \(T(F)=1/2\).
+\end{problem}
+\begin{solution}[34.6]
+The one-loop beta function can be written as
+	\[
+	\beta(g)=-\frac{b_0}{16\pi^2}\,g^3,
+	\qquad
+	\boxed{b_0=\frac{11}{3}C_A-\frac{4}{3}n_f\,T(R)-\frac{1}{6}n_s\,T(R).}
+	\]
+	Specializing to \(R=F\), i.e. the fundamental of \(SU(N)\), with \(T(F)=\frac12\) and \(C_A=N\), one finds
+	\[
+	\boxed{b_0=\frac{11}{3}N-\frac{2}{3}n_f-\frac{1}{12}n_s.}
+	\]
+\end{solution}
+\begin{problem}
+    \textbf{Anomaly cancellation and mass terms (nonabelian).} In 4D, the \(SU(N)^3\) anomaly from left-handed Weyl fermions in reps \(R_i\) is proportional to \(\sum_i A(R_i)\) where \(A(R)\) is the cubic index. Explain quantitatively why a vectorlike pair \(R\oplus\bar R\) makes zero net contribution and can admit a gauge-invariant mass.
+\end{problem}
