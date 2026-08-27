@@ -1,0 +1,3 @@
+# Ohmori TQFT与Tensor Network集中讲义课后习题
+
+这是我去听Kantaro Ohmori讲TQFT与Tensor Network的集中讲义之后为了拿学分提交的课后习题解答，总共留了十多个课后习题，我这里摘录了几个相对容易的而且比较数学的来做。剩下的题目我就没有在这里展示了，毕竟版权是大森的。

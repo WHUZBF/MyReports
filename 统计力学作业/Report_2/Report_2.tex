@@ -1,0 +1,526 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{braket}
+\usepackage[]{cancel}
+\usepackage[]{tikz}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+% ---------- Page style ----------
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Advanced Statistical Mechanics / Statistical Mechanics I}
+\rhead{Solution Manual II}
+\cfoot{\thepage}
+
+% ---------- Hyperref ----------
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue,
+	citecolor=blue
+}
+
+% ---------- Counters ----------
+\newcounter{problem}
+\newcounter{saveequation}
+
+% Rounded box for each problem, with automatic numbering
+\newtcolorbox{problembox}{
+	enhanced,
+	breakable,
+	colback=white,
+	colframe=black,
+	boxrule=0.8pt,
+	arc=2.5mm,
+	left=2mm,
+	right=2mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	before upper={\refstepcounter{problem}\textbf{(\theproblem)}\quad\ignorespaces}
+}
+
+% Plain solution environment
+% Equations inside are numbered as problem.equation, e.g. 3.1, 3.2
+% Equation numbering outside remains unchanged
+\newenvironment{solution}
+{
+	\par
+	\setcounter{saveequation}{\value{equation}}
+	\begingroup
+	\setcounter{equation}{0}
+	\renewcommand{\theequation}{\arabic{problem}.\arabic{equation}}
+	\renewcommand{\theHequation}{sol.\arabic{problem}.\arabic{equation}}
+	\noindent\textbf{Solution.}\quad
+}
+{
+	\par
+	\endgroup
+	\setcounter{equation}{\value{saveequation}}
+}
+
+% Background matter box
+\definecolor{bgmatterback}{RGB}{245,248,252}
+\definecolor{bgmatterframe}{RGB}{120,140,170}
+\definecolor{bgmattertitle}{RGB}{70,92,125}
+
+\newtcolorbox{backgroundmatter}[1][]{
+	enhanced,
+	breakable,
+	colback=bgmatterback,
+	colframe=bgmatterframe,
+	coltitle=white,
+	colbacktitle=bgmattertitle,
+	boxrule=0.9pt,
+	arc=2.8mm,
+	left=2.5mm,
+	right=2.5mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	title=Background Matter,
+	fonttitle=\bfseries,
+	attach boxed title to top left={xshift=2mm,yshift=-2mm},
+	boxed title style={
+		arc=2mm,
+		boxrule=0pt,
+		left=1.5mm,
+		right=1.5mm,
+		top=0.8mm,
+		bottom=0.8mm
+	},
+	before upper={
+		\setlength{\parindent}{2em}
+		\setlength{\parskip}{0pt}
+	},
+	#1
+}
+
+% Final answer box
+\definecolor{finalansback}{RGB}{248,251,247}
+\definecolor{finalansframe}{RGB}{88,122,96}
+\definecolor{finalanstitle}{RGB}{63,96,70}
+
+\newtcolorbox{finalanswer}[1][]{
+	enhanced,
+	breakable,
+	colback=finalansback,
+	colframe=finalansframe,
+	coltitle=white,
+	colbacktitle=finalanstitle,
+	boxrule=1pt,
+	arc=2.8mm,
+	left=2.5mm,
+	right=2.5mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	title=Final Answer,
+	fonttitle=\bfseries,
+	attach boxed title to top left={xshift=2mm,yshift=-2mm},
+	boxed title style={
+		arc=2mm,
+		boxrule=0pt,
+		left=1.5mm,
+		right=1.5mm,
+		top=0.8mm,
+		bottom=0.8mm
+	},
+	#1
+}
+
+\title{\textbf{Report II}\\[0.4em]
+	\large Advanced Statistical Mechanics / Statistical Mechanics I}
+\author{Bufan Zheng\\[0.2em]\normalsize Student ID: 35-256419}
+\date{May 25, 2026}
+
+\begin{document}
+	
+	\maketitle
+	
+	The final results can be found in \eqref{fin:1}, \eqref{fin:2}, \eqref{fin:3}, \eqref{fin:4}, \eqref{fin:5}, \eqref{fin:6}, \eqref{fin:7} and \eqref{fin:8}.
+	
+	\section{Gaussian integral}
+	
+	Let $\boldsymbol{x} = (x_1,\cdots,x_N)$ be an $N$-dimensional real vector, and let $A$ be an $N\times N$ real, symmetric, and positive-definite matrix.
+	
+	\begin{problembox}
+		Calculate the Gaussian integral
+		\begin{equation}
+			\int_{-\infty}^{\infty} d^N x\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}}
+			\left(=
+			\int_{-\infty}^{\infty} dx_1\cdots\int_{-\infty}^{\infty} dx_N\,
+			e^{-\frac{1}{2}\sum_{i,j=1}^{N}x_iA_{ij}x_j}
+			\right).
+		\end{equation}
+	\end{problembox}
+	\begin{solution}
+		Since $A$ is a real symmetric $N\times N$ matrix, we can diagonalize it using an orthogonal matrix,
+		\begin{equation}
+			P^\mathrm{T} A P = \operatorname{diag}(a_1,a_2,\cdots,a_N),\quad P\in SO(N)
+		\end{equation}
+		Using the substitution $\mathbf{x}\to P\cdot\mathbf{x}$, we obtain
+		\begin{equation}
+				\int_{-\infty}^{\infty} d^N x\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}}
+				=
+				\frac{1}{\det P}
+				\int_{-\infty}^{\infty} dx_1\cdots\int_{-\infty}^{\infty} dx_N\,
+				e^{-\frac{1}{2}\sum_{i=1}^{N}a_i x_i^2}=\prod_{i=1}^{N}\int_{-\infty}^{\infty} dx_i e^{-\frac12 a_i x_i^2}
+		\end{equation}
+		Using the following formula,
+		\begin{equation}
+			\int_{-\infty}^{\infty}dx e^{-ax^2}=\sqrt{\frac\pi a}
+		\end{equation}
+		We obtain the final answer:
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:1}
+				\prod_{i=1}^{N}\sqrt{\frac{2\pi}{a_i}}=\sqrt{\frac{(2\pi)^{N}}{\det A}}
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+	
+	\begin{problembox}
+		For an $N$-dimensional real vector $\boldsymbol{b}=(b_1,\cdots,b_N)$, calculate the Gaussian integral
+		\begin{equation}
+			\int_{-\infty}^{\infty} d^N x\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}+\boldsymbol{b}^{\mathrm{T}}\boldsymbol{x}}.
+		\end{equation}
+	\end{problembox}
+	\begin{solution}
+		Diagonalizing $A$ as in the previous problem and denoting $P^\mathrm{T}\cdot\boldsymbol{b}$ by $(b'_1,\cdots,b'_N)$, we have
+		\begin{equation}
+			\begin{aligned}
+				\int_{-\infty}^{\infty} d^N x\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}+\boldsymbol{b}^{\mathrm{T}}\boldsymbol{x}}&=\int_{-\infty}^{\infty} dx_1\cdots\int_{-\infty}^{\infty} dx_N\,
+				e^{-\frac{1}{2}\sum_{i=1}^{N}a_i x_i^2+b'_i x_i}\\
+				&=\prod_{i=1}^{N}\int dx_i e^{-\frac12 a_i x_i^2+b'_i x_i}=\prod_{i=1}^{N}\int dx_i e^{-\frac12 a_i (x_i-\frac{b'_i}{a_i})^2}\cdot e^{\frac{{b'_i}^2}{2a_i}}\\
+				&=\sqrt{\frac{(2\pi)^{N}}{\det A}}\cdot e^{\sum_{i=1}^N\frac{{b'_i}^2}{2a_i}}
+			\end{aligned}
+		\end{equation}
+		Notice that
+		\begin{equation}
+			\sum_{i=1}^N\frac{{b'_i}^2}{2a_i}=\frac12 (P^\mathrm{T}\cdot\boldsymbol{b})^\mathrm{T}\cdot (P^\mathrm{T} A P)^{-1}\cdot P^\mathrm{T}\cdot\boldsymbol{b}=\frac12 \boldsymbol{b}^\mathrm{T} A^{-1} \boldsymbol{b}
+		\end{equation}
+		Then the final answer is:
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:2}
+				\sqrt{\frac{(2\pi)^{N}}{\det A}}\cdot e^{\frac12 \boldsymbol{b}^\mathrm{T} A^{-1} \boldsymbol{b}}
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+	
+	For a function $f(\boldsymbol{x})$ of the $N$-dimensional vector $\boldsymbol{x}$, we introduce the average over the Gaussian distribution:
+	\begin{equation}
+		\left\langle f(\boldsymbol{x}) \right\rangle :=
+		\frac{\displaystyle \int_{-\infty}^{\infty} d^N x\, f(\boldsymbol{x})\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}}}
+		{\displaystyle \int_{-\infty}^{\infty} d^N x\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}}}.
+	\end{equation}
+	
+	\begin{problembox}
+		Calculate $\left\langle x_i x_j \right\rangle$ $(i,j\in\{1,\cdots,N\})$.
+	\end{problembox}
+	\begin{solution}
+		With the following notation:
+		\begin{equation}
+			Z[\boldsymbol{b}]:=\int_{-\infty}^{\infty} d^N x\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}+\boldsymbol{b}^{\mathrm{T}}\boldsymbol{x}}
+		\end{equation}
+		It is easy to show that
+		\begin{equation}
+			\begin{aligned}
+				& \braket{x_i}:=\frac{\displaystyle \int_{-\infty}^{\infty} d^N x\, x_i\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}}}
+				{\displaystyle \int_{-\infty}^{\infty} d^N x\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}}}=\frac{1}{Z[0]}\left.\frac{\partial}{\partial b_i}Z[\boldsymbol{b}]\right|_{\boldsymbol{b}=0}\\
+				& \braket{x_ix_j}:=\frac{\displaystyle \int_{-\infty}^{\infty} d^N x\, x_ix_j\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}}}
+				{\displaystyle \int_{-\infty}^{\infty} d^N x\, 	e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}}}=\frac{1}{Z[0]}\left.\frac{\partial}{\partial b_i}\frac{\partial}{\partial b_j}Z[\boldsymbol{b}]\right|_{\boldsymbol{b}=0}\\
+				&\cdots\\
+				& \braket{x_{i_1}\cdots x_{i_n}}:=\frac{\displaystyle \int_{-\infty}^{\infty} d^N x\, x_{i_1}\cdots x_{i_n}\, e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}}}
+				{\displaystyle \int_{-\infty}^{\infty} d^N x\, 	e^{-\frac{1}{2}\boldsymbol{x}^{\mathrm{T}}A\boldsymbol{x}}}=\frac{1}{Z[0]}\left.\frac{\partial}{\partial b_{i_1}}\cdots\frac{\partial}{\partial b_{i_n}}Z[\boldsymbol{b}]\right|_{\boldsymbol{b}=0}\\
+			\end{aligned}
+		\end{equation}
+	Focusing on $\braket{x_ix_j}$ and using \eqref{fin:2}, we obtain:
+	\begin{equation}
+		\begin{aligned}
+			\braket{x_ix_j}&=\frac{1}{Z[0]}\left.\frac{\partial}{\partial b_i}\frac{\partial}{\partial b_j}Z[\boldsymbol{b}]\right|_{\boldsymbol{b}=0}=\cancelto{1}{\sqrt{\frac{(2\pi)^{N}}{\det A}}\frac{1}{Z[0]}}\left.\frac{\partial}{\partial b_i}\frac{\partial}{\partial b_j} e^{\frac12 \boldsymbol{b}^\mathrm{T} A^{-1} \boldsymbol{b}}\right|_{\boldsymbol{b}=0}\\
+			& =\left.e^{\frac12 \boldsymbol{b}^\mathrm{T} A^{-1} \boldsymbol{b}}\frac{\partial}{\partial b_i}\frac{\partial}{\partial b_j} \left({\frac12 \boldsymbol{b}^\mathrm{T} A^{-1} \boldsymbol{b}}\right)\right|_{\boldsymbol{b}=0}+
+			\cancelto{0}{\left[\left.\frac{\partial}{\partial b_i}e^{\frac12 \boldsymbol{b}^\mathrm{T} A^{-1} \boldsymbol{b}}\frac{\partial}{\partial b_j} \left({\frac12 \boldsymbol{b}^\mathrm{T} A^{-1} \boldsymbol{b}}\right)\right|_{\boldsymbol{b}=0}+(i\leftrightarrow j)\right]}\\
+			&= \frac{1}{2}\left(\left(A^{-1}\right)_{ij}+\left(A^{-1}\right)_{ji}\right)
+		\end{aligned}
+	\end{equation}
+	Since $A$ is symmetric, so is $A^{-1}$. Therefore, the final answer is:
+	\begin{finalanswer}
+		\begin{equation}
+		\label{fin:3}
+		\braket{x_ix_j}=\left(A^{-1}\right)_{ij}
+		\end{equation}
+	\end{finalanswer}
+	\end{solution}
+	\begin{problembox}
+		Show
+		\begin{equation}
+			\left\langle x_i x_j x_k x_l \right\rangle
+			= \left\langle x_i x_j \right\rangle \left\langle x_k x_l \right\rangle
+			+ \left\langle x_i x_k \right\rangle \left\langle x_j x_l \right\rangle
+			+ \left\langle x_i x_l \right\rangle \left\langle x_j x_k \right\rangle
+			\quad (i,j,k,l\in\{1,\cdots,N\}).
+		\end{equation}
+	\end{problembox}
+	\begin{solution}
+		The proof is straightforward by definition. Notice that the only contribution comes from the second-order term in the Taylor expansion of 
+		$e^{\frac12 \boldsymbol{b}^\mathrm{T} A^{-1} \boldsymbol{b}}$, which is the fourth-order term in $\boldsymbol{b}$.
+	\begin{finalanswer}
+				\begin{equation}
+				\label{fin:4}
+				\begin{aligned}
+					\braket{x_ix_jx_kx_l}
+					&=\frac{1}{Z[0]}
+					\left.
+					\frac{\partial}{\partial b_i}
+					\frac{\partial}{\partial b_j}
+					\frac{\partial}{\partial b_k}
+					\frac{\partial}{\partial b_l}
+					Z[\boldsymbol{b}]
+					\right|_{\boldsymbol{b}=0}\\
+					&=\cancelto{1}{\sqrt{\frac{(2\pi)^N}{\det A}}\frac{1}{Z[0]}}
+					\left.
+					\frac{\partial}{\partial b_i}
+					\frac{\partial}{\partial b_j}
+					\frac{\partial}{\partial b_k}
+					\frac{\partial}{\partial b_l}
+					e^{\frac12 \boldsymbol{b}^{\mathrm T}A^{-1}\boldsymbol{b}}
+					\right|_{\boldsymbol{b}=0}\\
+					&=
+					\left.
+					\frac{\partial}{\partial b_i}
+					\frac{\partial}{\partial b_j}
+					\frac{\partial}{\partial b_k}
+					\frac{\partial}{\partial b_l}
+					\left[
+					\frac{1}{2!}
+					\left(
+					\frac12 \boldsymbol{b}^{\mathrm T}A^{-1}\boldsymbol{b}
+					\right)^2
+					\right]
+					\right|_{\boldsymbol{b}=0}\\
+					&=
+					\left.
+					\frac{\partial}{\partial b_i}
+					\frac{\partial}{\partial b_j}
+					\frac{\partial}{\partial b_k}
+					\frac{\partial}{\partial b_l}
+					\left[
+					\frac18
+					\sum_{m,n,p,q=1}^{N}
+					\left(A^{-1}\right)_{mn}
+					\left(A^{-1}\right)_{pq}
+					b_m b_n b_p b_q
+					\right]
+					\right|_{\boldsymbol{b}=0}\\
+					&=
+					\frac18
+					\sum_{m,n,p,q=1}^{N}
+					\left(A^{-1}\right)_{mn}
+					\left(A^{-1}\right)_{pq}
+					\left.
+					\frac{\partial}{\partial b_i}
+					\frac{\partial}{\partial b_j}
+					\frac{\partial}{\partial b_k}
+					\frac{\partial}{\partial b_l}
+					b_m b_n b_p b_q
+					\right|_{\boldsymbol{b}=0}\\
+					&=
+					\frac18\cdot 8
+					\left[
+					\left(A^{-1}\right)_{ij}\left(A^{-1}\right)_{kl}
+					+
+					\left(A^{-1}\right)_{ik}\left(A^{-1}\right)_{jl}
+					+
+					\left(A^{-1}\right)_{il}\left(A^{-1}\right)_{jk}
+					\right]\\
+					&=
+					\left(A^{-1}\right)_{ij}\left(A^{-1}\right)_{kl}
+					+
+					\left(A^{-1}\right)_{ik}\left(A^{-1}\right)_{jl}
+					+
+					\left(A^{-1}\right)_{il}\left(A^{-1}\right)_{jk}\\
+					&=
+					\braket{x_ix_j}\braket{x_kx_l}
+					+
+					\braket{x_ix_k}\braket{x_jx_l}
+					+
+					\braket{x_ix_l}\braket{x_jx_k}.
+				\end{aligned}
+			\end{equation}
+	\end{finalanswer}
+	\end{solution}
+	
+	\section{Gaussian theory}
+	
+	Let us consider the Gaussian theory in $d < 4$ dimensions:
+	\begin{equation}
+		Z = \int \mathcal{D}\phi\, e^{-H[\phi]},
+	\end{equation}
+	\begin{equation}
+		H[\phi] = \int d^d r\left[\frac{1}{2}(\nabla\phi)^2 + t\phi^2\right]\qquad (t\in\mathbb{R}).
+	\end{equation}
+	
+	\begin{problembox}
+		Perform the Gaussian integral explicitly, and then write down the free energy density.
+		
+		[Note] You may focus solely on the most singular contribution to the free energy density and omit the $t$-independent constant term.
+	\end{problembox}
+	\begin{solution}
+		Integrating by parts, we have:
+		\begin{equation}
+			\label{eq:5.1}
+			Z = \int \mathcal{D}\phi\, e^{-H[\phi]}=\int \mathcal{D}\phi\, \exp\left[-\frac12\int \phi\left(-\nabla^2+2t\right)\phi\right]\propto \left[\det \left(-\nabla^2+2t\right)\right]^{-\frac12}
+		\end{equation}
+		By definition, and omitting the constant term, we obtain
+		\begin{equation}
+			F=-\frac{1}{\beta}\log Z=\frac{T}{2}\log\det  \left(-\nabla^2+2t\right)
+		\end{equation}
+		Since $e^{i\mathbf{k}\cdot\mathbf{r}}$ is an eigenvector of $\left(-\nabla^2+2t\right)$:
+		\begin{equation}
+			\left(-\nabla^2+2t\right)e^{i\mathbf{k}\cdot\mathbf{r}}=\left(\mathbf{k}^2+2t\right)e^{i\mathbf{k}\cdot\mathbf{r}}
+		\end{equation}
+		Therefore, 
+		\begin{equation}
+			\det \left(-\nabla^2+2t\right)=\prod_{\mathbf{k}\in\mathbb{R}^d}\left(\mathbf{k}^2+2t\right)
+		\end{equation}
+		The free energy density can be expressed as:
+		\begin{equation}
+			f:=\frac FV= \frac{T}{2V}\sum_{\mathbf{k}\in\mathbb{R}^d}\log\left(\mathbf{k}^2+2t\right)
+			\overset{V\to\infty}{\rightsquigarrow}\frac{T}{2\cancel{V}}\cdot\frac{\cancel{V}}{(2\pi)^d}\int d^d\mathbf{k} \log\left(\mathbf{k}^2+2t\right)
+		\end{equation}
+		To evaluate this integral, we first differentiate it:
+		\begin{equation}
+			\frac{\partial f}{\partial(2t)}
+			=
+			\frac T2\int \frac{d^d\mathbf{k}}{(2\pi)^d}\frac{1}{k^2+2t}
+			=
+			\frac T2\frac{1}{(4\pi)^{d/2}}
+			\Gamma\left(1-\frac d2\right)(2t)^{d/2-1}.
+		\end{equation}
+		Then, integrating both sides and dropping the constant term, we obtain the final result:
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:5}
+				f=-\frac{T}{2}\frac{1}{(4\pi)^{d/2}}\Gamma\left(-\frac d2\right)(2t)^{d/2}
+			\end{equation}
+		\end{finalanswer}
+	For odd dimensions, there is no singularity, but in even dimensions, such as $d=2$, we need to use dimensional regularization. Using the standard expansion:
+	\begin{equation}
+		\Gamma\left(-1+\frac\epsilon2\right)=-\left(\frac2\epsilon+1-\gamma+\mathcal{O}(\epsilon)\right),\quad \gamma =0.577216\cdots
+	\end{equation}
+	Setting $d=2-\epsilon$, we obtain the regularized free energy density in two dimensions:
+	\begin{equation}
+		f^\text{ren}_{d=2}=\frac T2\mu^\epsilon\left(\frac{t}{2\pi}\right)^{1-\epsilon/2}\left(\frac2\epsilon+1-\gamma+\mathcal{O}(\epsilon)\right)=
+		\frac{Tt}{4\pi}
+		\left[
+		\frac{2}{\epsilon}
+		+1-\gamma
+		+\log(4\pi)
+		+2\log\mu
+		-\log(2t)
+		\right]
+		+O(\epsilon)
+	\end{equation}
+	Here $\mu^\epsilon$ is the renormalization scale introduced to compensate for the dimension of $f$ in $2-\epsilon$ dimensions.
+	\end{solution}
+	\begin{problembox}
+		For $t > 0$, calculate the most singular contribution to the specific heat $c_+$ and obtain the critical exponent $\alpha_+$:
+		\begin{equation}
+			c_+ = a_+ t^{-\alpha_+}.
+		\end{equation}
+	\end{problembox}
+	\begin{solution}
+		We focus on the most singular term. Notice that $t=T-T_c$, therefore
+		\begin{equation}
+			\label{eq:6.1}
+			\begin{aligned}
+				c_+&=-T\frac{\partial^2}{\partial T^2}f\sim \frac{T_c^2}{2}\frac{1}{(4\pi)^{d/2}}\Gamma\left(-\frac d2\right) \frac{\partial}{\partial t^2} (2t)^{d/2}\\
+				&=\frac{T_c^2}{2}\frac{\Gamma{\left(2-\frac d2\right)}}{(2\pi)^{d/2}}t^{\frac d2-2}
+			\end{aligned}
+		\end{equation}
+		The critical exponent can be read off from the equation above:
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:6}
+				a_+=\frac{T_c^2}{2}\frac{\Gamma{\left(2-\frac d2\right)}}{(2\pi)^{d/2}},\quad \alpha_+=\frac{4-d}{2}
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+	
+	\begin{problembox}
+		For $t < 0$, the above Gaussian path integral becomes ill defined. To regularize the theory, let us introduce a stabilizing quartic interaction and analyze Gaussian fluctuations around a stationary configuration:
+		\begin{equation}
+			\label{eq:8}
+			H[\phi] = \int d^d r\left[\frac{1}{2}(\nabla\phi)^2 + t\phi^2 + u\phi^4\right]\qquad (u > 0).
+		\end{equation}
+		On the basis of the mean-field approximation, determine the stationary point $\phi = \phi_c$ and expand the Hamiltonian $H[\phi]$ around it to the quadratic order [i.e., up to $O((\phi-\phi_c)^2)$].
+	\end{problembox}
+	\begin{solution}
+	We decompose the quantum field into a mean-field part $\phi_c$ (with $\nabla\phi=0$) and a quantum fluctuation part $\eta$:
+	\begin{equation}
+		\phi(\mathbf{r})=\phi_c+\eta(\mathbf{r})
+	\end{equation}
+	From \eqref{eq:8}, the stationary point satisfies the equation:
+	\begin{equation}
+		-\nabla^2\phi+2t\phi+4u\phi^3=0
+	\end{equation}
+	For the mean field, this simplifies to:
+	\begin{equation}
+		2t\phi_c+4u\phi_c^3=0\Rightarrow\phi_c=0,\quad \phi_c^2=-\frac{t}{2u}
+	\end{equation}
+	It is easy to see that, for $t<0$, only the two solutions corresponding to the latter equation are stable stationary points, namely
+	\begin{equation}
+		\phi_c=\pm\sqrt{-\frac{t}{2u}}
+	\end{equation}
+	Substituting this into \eqref{eq:8} and expanding in $\eta$, we obtain:
+\begin{finalanswer}
+		\begin{equation}
+		\label{fin:7}
+		\begin{aligned}
+			H[\phi_c+\eta] = &\int d^d r\left[\frac{1}{2}(\cancelto{0}{\nabla\phi_c}+\nabla\eta)^2 + t(\phi_c+\eta)^2 + u(\phi_c+\eta)^4\right]\\
+			= &\int d^d r\left[\frac{1}{2}(\nabla\eta)^2 +\cancelto{ 0}{\left(2t\phi_c+4u\phi_c^3\right)}\eta+\frac12 \left(2t+12u\phi_c^2\right)\eta^2+\mathcal{O}(\eta^3)\right]\\
+			&+\int d^d{r~}\left(t\phi_c^2+u\phi_c^4\right)\\
+			=&\frac12 \int d^dr\eta\left(-\nabla^2-4t\right)\eta+\mathcal{O}\left((\phi-\phi_c)^3\right)+H_0
+		\end{aligned}
+	\end{equation}
+\end{finalanswer}
+	In the last step, we have used integration by parts.
+	\end{solution}
+	
+	\begin{problembox}
+		For $t < 0$, calculate the most singular contribution to the specific heat $c_-$ and obtain the critical exponent $\alpha_-$:
+		\begin{equation}
+			c_- = a_- (-t)^{-\alpha_-}.
+		\end{equation}
+		Additionally, calculate the ratio $a_+/a_-$.
+		
+		[Note] While the coefficients $a_\pm$ themselves are not universal, their ratio $a_+/a_-$ is universal.
+	\end{problembox}
+	\begin{solution}
+	Comparing \eqref{eq:5.1} with \eqref{fin:7}, we find that we only need to replace $t$ in \eqref{fin:6} by $-2t$ to obtain the free energy density under the new Hamiltonian:
+	\begin{equation}
+		f_-=-\frac T2\frac{1}{(4\pi)^{d/2}}\Gamma\left(-\frac d2\right)(-4t)^{d/2}
+	\end{equation}
+	Following the calculation in \eqref{eq:6.1}, we obtain:
+	\begin{equation}
+		\begin{aligned}
+			c_-&=-T\frac{\partial^2}{\partial T^2}f_-\sim \frac{T_c^2}{2}\frac{1}{(4\pi)^{d/2}}\Gamma\left(-\frac d2\right) \frac{\partial}{\partial (-t)^2} (-4t)^{d/2}\\
+			&=\frac{T_c^2}{2}\frac{\Gamma{\left(2-\frac d2\right)}}{(2\pi)^{d/2}}\cdot 2^{d/2}\cdot t^{\frac d2-2}
+		\end{aligned}
+	\end{equation}
+	Thus, we obtain the critical exponent:
+	\begin{finalanswer}
+		\begin{equation}
+			\label{fin:8}
+			\alpha_-=\frac{4-d}{2},\quad a_-\frac{T_c^2}{2}\frac{\Gamma{\left(2-\frac d2\right)}}{(2\pi)^{d/2}}\cdot 2^{d/2},\quad\frac{a_+}{a_-}=2^{-d/2}
+		\end{equation}
+	\end{finalanswer}
+\end{solution}
+\end{document}

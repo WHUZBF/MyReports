@@ -1,0 +1,1428 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{braket}
+\usepackage[]{cancel}
+\usepackage[]{tikz}
+\usepackage{xcolor}
+\usepackage{simpler-wick}
+\allowdisplaybreaks[4]
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\setlength{\headheight}{13.6pt}
+
+% ---------- Page style ----------
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Advanced Statistical Mechanics / Statistical Mechanics I}
+\rhead{Solution Manual III}
+\cfoot{\thepage}
+
+% ---------- Hyperref ----------
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue,
+	citecolor=blue
+}
+
+% ---------- Counters ----------
+\newcounter{problem}
+\newcounter{saveequation}
+
+% Rounded box for each problem, with automatic numbering
+\newtcolorbox{problembox}{
+	enhanced,
+	breakable,
+	colback=white,
+	colframe=black,
+	boxrule=0.8pt,
+	arc=2.5mm,
+	left=2mm,
+	right=2mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	before upper={\refstepcounter{problem}\textbf{(\theproblem)}\quad\ignorespaces}
+}
+
+% Plain solution environment
+% Equations inside are numbered as problem.equation, e.g. 3.1, 3.2
+% Equation numbering outside remains unchanged
+\newenvironment{solution}
+{
+	\par
+	\setcounter{saveequation}{\value{equation}}
+	\begingroup
+	\setcounter{equation}{0}
+	\renewcommand{\theequation}{\arabic{problem}.\arabic{equation}}
+	\renewcommand{\theHequation}{sol.\arabic{problem}.\arabic{equation}}
+	\noindent\textbf{Solution.}\quad
+}
+{
+	\par
+	\endgroup
+	\setcounter{equation}{\value{saveequation}}
+}
+
+% Background matter box
+\definecolor{bgmatterback}{RGB}{245,248,252}
+\definecolor{bgmatterframe}{RGB}{120,140,170}
+\definecolor{bgmattertitle}{RGB}{70,92,125}
+
+\newtcolorbox{backgroundmatter}[1][]{
+	enhanced,
+	breakable,
+	colback=bgmatterback,
+	colframe=bgmatterframe,
+	coltitle=white,
+	colbacktitle=bgmattertitle,
+	boxrule=0.9pt,
+	arc=2.8mm,
+	left=2.5mm,
+	right=2.5mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	title=Background Matter,
+	fonttitle=\bfseries,
+	attach boxed title to top left={xshift=2mm,yshift=-2mm},
+	boxed title style={
+		arc=2mm,
+		boxrule=0pt,
+		left=1.5mm,
+		right=1.5mm,
+		top=0.8mm,
+		bottom=0.8mm
+	},
+	before upper={
+		\setlength{\parindent}{2em}
+		\setlength{\parskip}{0pt}
+	},
+	#1
+}
+
+% Final answer box
+\definecolor{finalansback}{RGB}{248,251,247}
+\definecolor{finalansframe}{RGB}{88,122,96}
+\definecolor{finalanstitle}{RGB}{63,96,70}
+
+\newtcolorbox{finalanswer}[1][]{
+	enhanced,
+	breakable,
+	colback=finalansback,
+	colframe=finalansframe,
+	coltitle=white,
+	colbacktitle=finalanstitle,
+	boxrule=1pt,
+	arc=2.8mm,
+	left=2.5mm,
+	right=2.5mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	title=Final Answer,
+	fonttitle=\bfseries,
+	attach boxed title to top left={xshift=2mm,yshift=-2mm},
+	boxed title style={
+		arc=2mm,
+		boxrule=0pt,
+		left=1.5mm,
+		right=1.5mm,
+		top=0.8mm,
+		bottom=0.8mm
+	},
+	#1
+}
+
+\title{\textbf{Report III}\\[0.4em]
+	\large Advanced Statistical Mechanics / Statistical Mechanics I}
+\author{Bufan Zheng\\[0.2em]\normalsize Student ID: 35-256419}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	
+	I solved \hyperref[prob:1]{Problem~\ref*{prob:1}}, \hyperref[prob:2]{Problem~\ref*{prob:2}} and \hyperref[prob:3]{Problem~\ref*{prob:3}}.
+	
+	Final results can be found at \ref{fin:1}, \ref{fin:2}, \ref{fin:3}, \ref{fin:4}, \ref{fin:5}, \ref{fin:6}, \ref{fin:7}, \ref{fin:8}, \ref{fin:9}, \ref{fin:10}, \ref{fin:11}, \ref{fin:12}, \ref{fin:13}, \ref{fin:14} and \ref{fin:15}
+
+	\section{Tricritical Ising model}
+	\label{prob:1}
+
+	Let us consider the following $\mathbb{Z}_2$ field theory (tricritical Ising field theory) in $d$ dimensions:
+	\begin{equation}
+		Z=\int \mathcal{D}\phi\,e^{-H[\phi]},
+	\end{equation}
+	\begin{equation}
+		H[\phi]=\int d^d r\left[\frac{1}{2}(\nabla\phi)^2+t\phi^2+u\phi^4+v\phi^6\right],
+	\end{equation}
+	where $\phi\in\mathbb{R}$ is a real scalar field. We here focus on the behavior around the tricritical point $t=u=0$, $v>0$.
+
+	\begin{problembox}
+		Calculate the scaling dimension of the coupling $v$ at the Gaussian fixed point, and identify the upper critical dimension $d_c$.
+	\end{problembox}
+\begin{solution}
+	Since we are considering the Gaussian fixed point, the scaling dimensions can be read off from the Hamiltonian $H[\phi]$.
+	
+	First, from the kinetic term,
+	\begin{equation}
+		2([\phi]+1)=d\Rightarrow [\phi]=\frac{d-2}{2}.
+	\end{equation}
+	Then, from the $v\phi^6$ term,
+	\begin{equation}
+		[v]+6[\phi]=d\Rightarrow \boxed{[v]=6-2d}.
+	\end{equation}
+	The definition of the upper critical dimension $d_c$ means that $\left.[v]\right|_{d_c}=0$. Therefore,
+	\begin{equation}
+		\boxed{d_c=3}.
+	\end{equation}
+	The final answer is:
+	\begin{finalanswer}
+		\begin{equation}
+			\label{fin:1}
+			[v]=6-2d,\quad d_c=3.
+		\end{equation}
+	\end{finalanswer}
+\end{solution}
+
+	\begin{problembox}
+		Calculate the following operator product expansions at the Gaussian fixed point:
+		\begin{align}
+			\phi^2\cdot\phi^2 &= c_{220}+c_{222}\phi^2+c_{224}\phi^4,\\
+			\phi^2\cdot\phi^4 &= c_{242}\phi^2+c_{244}\phi^4+c_{246}\phi^6,\\
+			\phi^2\cdot\phi^6 &= c_{264}\phi^4+c_{266}\phi^6+\cdots,\\
+			\phi^4\cdot\phi^4 &= c_{440}+c_{442}\phi^2+c_{444}\phi^4+c_{446}\phi^6+\cdots,\\
+			\phi^4\cdot\phi^6 &= c_{462}\phi^2+c_{464}\phi^4+c_{466}\phi^6+\cdots,\\
+			\phi^6\cdot\phi^6 &= c_{660}+c_{662}\phi^2+c_{664}\phi^4+c_{666}\phi^6+\cdots.
+		\end{align}
+	\end{problembox}
+	\begin{solution}
+		We regard all composite operators as normal ordered and set
+		\[
+		|r_1-r_2|=1,
+		\qquad
+		\wick{\c\phi\c\phi}:=\langle \phi(r_1)\phi(r_2)\rangle_0=1.
+		\]
+		Hence every cross-contraction contributes a factor of \(1\). For \(k\)
+		cross-contractions between \(\phi^m(r_1)\) and \(\phi^n(r_2)\), the
+		number of equivalent contractions is
+		\[
+		\#\left(\wick{\c\phi^m\c\phi^n}\right)=\binom{m}{k}\binom{n}{k}k!.
+		\]
+		
+		First,\footnote{Only contractions between fields at $r_1$ and $r_2$ are allowed.
+			After performing the contractions, the remaining fields at $r_1$
+			are expanded around $r_2$. Since the action contains no derivative interaction terms, the OPE coefficients associated with such terms do not contribute to the RG equations and will therefore be omitted in the calculations below.
+			}
+		\begin{align}
+			\phi^2(r_1)\cdot\phi^2(r_2)
+			&=
+			\textcolor{red}{2}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)
+				\c2\phi(r_2)\c1\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{4}\,
+			\wick{
+				\c1\phi(r_1)\phi(r_1)
+				\c1\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{1}\,
+			\phi(r_1)\phi(r_1)\phi(r_2)\phi(r_2)
+			\notag\\
+			&=
+			\textcolor{red}{2}
+			+\textcolor{red}{4}\phi^2(r_2)
+			+\textcolor{red}{1}\phi^4(r_2).
+		\end{align}
+		Therefore,
+		\[
+		\boxed{
+			c_{220}=\textcolor{red}{2},
+			\qquad
+			c_{222}=\textcolor{red}{4},
+			\qquad
+			c_{224}=\textcolor{red}{1}.
+		}
+		\]
+		
+		Similarly,
+		\begin{align}
+			\phi^2(r_1)\cdot\phi^4(r_2)
+			&=
+			\textcolor{red}{12}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)
+				\c2\phi(r_2)\c1\phi(r_2)
+				\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{8}\,
+			\wick{
+				\c1\phi(r_1)\phi(r_1)
+				\c1\phi(r_2)\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{1}\,
+			\phi(r_1)\phi(r_1)
+			\phi(r_2)\phi(r_2)\phi(r_2)\phi(r_2)
+			\notag\\
+			&=
+			\textcolor{red}{12}\phi^2(r_2)
+			+\textcolor{red}{8}\phi^4(r_2)
+			+\textcolor{red}{1}\phi^6(r_2).
+		\end{align}
+		Therefore,
+		\[
+		\boxed{
+			c_{242}=\textcolor{red}{12},
+			\qquad
+			c_{244}=\textcolor{red}{8},
+			\qquad
+			c_{246}=\textcolor{red}{1}.
+		}
+		\]
+		
+		For \(\phi^2\cdot\phi^6\),
+		\begin{align}
+			\phi^2(r_1)\cdot\phi^6(r_2)
+			&=
+			\textcolor{red}{30}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)
+				\c2\phi(r_2)\c1\phi(r_2)
+				\phi(r_2)\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{12}\,
+			\wick{
+				\c1\phi(r_1)\phi(r_1)
+				\c1\phi(r_2)
+				\phi(r_2)\phi(r_2)\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			+\cdots
+			\notag\\
+			&=
+			\textcolor{red}{30}\phi^4(r_2)
+			+\textcolor{red}{12}\phi^6(r_2)
+			+\cdots .
+		\end{align}
+		Therefore,
+		\[
+		\boxed{
+			c_{264}=\textcolor{red}{30},
+			\qquad
+			c_{266}=\textcolor{red}{12}.
+		}
+		\]
+		
+		Next,
+		\begin{align}
+			\phi^4(r_1)\cdot\phi^4(r_2)
+			&=
+			\textcolor{red}{24}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\c3\phi(r_1)\c4\phi(r_1)
+				\c4\phi(r_2)\c3\phi(r_2)\c2\phi(r_2)\c1\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{96}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\c3\phi(r_1)\phi(r_1)
+				\c3\phi(r_2)\c2\phi(r_2)\c1\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{72}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\phi(r_1)\phi(r_1)
+				\c2\phi(r_2)\c1\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{16}\,
+			\wick{
+				\c1\phi(r_1)\phi(r_1)\phi(r_1)\phi(r_1)
+				\c1\phi(r_2)\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			+\cdots
+			\notag\\
+			&=
+			\textcolor{red}{24}
+			+\textcolor{red}{96}\phi^2(r_2)
+			+\textcolor{red}{72}\phi^4(r_2)
+			+\textcolor{red}{16}\phi^6(r_2)
+			+\cdots .
+		\end{align}
+		Therefore,
+		\[
+		\boxed{
+			c_{440}=\textcolor{red}{24},
+			\qquad
+			c_{442}=\textcolor{red}{96},
+			\qquad
+			c_{444}=\textcolor{red}{72},
+			\qquad
+			c_{446}=\textcolor{red}{16}.
+		}
+		\]
+		
+		For \(\phi^4\cdot\phi^6\),
+		\begin{align}
+			\phi^4(r_1)\cdot\phi^6(r_2)
+			&=
+			\textcolor{red}{360}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\c3\phi(r_1)\c4\phi(r_1)
+				\c4\phi(r_2)\c3\phi(r_2)\c2\phi(r_2)\c1\phi(r_2)
+				\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{480}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\c3\phi(r_1)\phi(r_1)
+				\c3\phi(r_2)\c2\phi(r_2)\c1\phi(r_2)
+				\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{180}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\phi(r_1)\phi(r_1)
+				\c2\phi(r_2)\c1\phi(r_2)
+				\phi(r_2)\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			+\cdots
+			\notag\\
+			&=
+			\textcolor{red}{360}\phi^2(r_2)
+			+\textcolor{red}{480}\phi^4(r_2)
+			+\textcolor{red}{180}\phi^6(r_2)
+			+\cdots .
+		\end{align}
+		Therefore,
+		\[
+		\boxed{
+			c_{462}=\textcolor{red}{360},
+			\qquad
+			c_{464}=\textcolor{red}{480},
+			\qquad
+			c_{466}=\textcolor{red}{180}.
+		}
+		\]
+		
+		Finally,
+		\begin{align}
+			\phi^6(r_1)\cdot\phi^6(r_2)
+			&=
+			\textcolor{red}{720}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\c3\phi(r_1)
+				\c4\phi(r_1)\c5\phi(r_1)\c6\phi(r_1)
+				\c6\phi(r_2)\c5\phi(r_2)\c4\phi(r_2)
+				\c3\phi(r_2)\c2\phi(r_2)\c1\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{4320}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\c3\phi(r_1)
+				\c4\phi(r_1)\c5\phi(r_1)\phi(r_1)
+				\c5\phi(r_2)\c4\phi(r_2)\c3\phi(r_2)
+				\c2\phi(r_2)\c1\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{5400}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\c3\phi(r_1)
+				\c4\phi(r_1)\phi(r_1)\phi(r_1)
+				\c4\phi(r_2)\c3\phi(r_2)\c2\phi(r_2)
+				\c1\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&\quad
+			+\textcolor{red}{2400}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\c3\phi(r_1)
+				\phi(r_1)\phi(r_1)\phi(r_1)
+				\c3\phi(r_2)\c2\phi(r_2)\c1\phi(r_2)
+				\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			+\cdots
+			\notag\\
+			&=
+			\textcolor{red}{720}
+			+\textcolor{red}{4320}\phi^2(r_2)
+			+\textcolor{red}{5400}\phi^4(r_2)
+			+\textcolor{red}{2400}\phi^6(r_2)
+			+\cdots .
+		\end{align}
+		Therefore,
+		\[
+		\boxed{
+			c_{660}=\textcolor{red}{720},
+			\qquad
+			c_{662}=\textcolor{red}{4320},
+			\qquad
+			c_{664}=\textcolor{red}{5400},
+			\qquad
+			c_{666}=\textcolor{red}{2400}.
+		}
+		\]
+		We collect these answers as:
+		\begin{finalanswer}
+			\begin{equation}
+			\label{fin:2}
+			\begin{gathered}
+				c_{220}=2,
+				\qquad
+				c_{222}=4,
+				\qquad
+				c_{224}=1,
+				\\[0.5em]
+				c_{242}=12,
+				\qquad
+				c_{244}=8,
+				\qquad
+				c_{246}=1,
+				\\[0.5em]
+				c_{264}=30,
+				\qquad
+				c_{266}=12,
+				\\[0.5em]
+				c_{440}=24,
+				\qquad
+				c_{442}=96,
+				\qquad
+				c_{444}=72,
+				\qquad
+				c_{446}=16,
+				\\[0.5em]
+				c_{462}=360,
+				\qquad
+				c_{464}=480,
+				\qquad
+				c_{466}=180,
+				\\[0.5em]
+				c_{660}=720,
+				\qquad
+				c_{662}=4320,
+				\qquad
+				c_{664}=5400,
+				\qquad
+				c_{666}=2400.
+			\end{gathered}
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+
+	\begin{problembox}
+		Write down the perturbative renormalization group equations for the couplings $t$, $u$, and $v$ up to second order in the couplings.
+	\end{problembox}
+	\begin{solution}
+		Consider a perturbative deformation of the Gaussian theory $H_*$:
+		\begin{equation}
+			H=H_*+\sum_k g_k\int d^d r\,\mathcal{O}_k(r).
+		\end{equation}
+		Denote the RG parameter by $\ell$ and rescale the coupling constants as
+		\[
+		\tilde{g}_k:=\frac{S_{d-1}}{2}g_k,
+		\quad
+		S_{d-1}=\frac{2\pi^{d/2}}{\Gamma(d/2)}.
+		\]
+		Then the general perturbative RG equation is
+		\begin{equation}
+			\beta_k:=\frac{d\tilde{g}_k}{d\ell}
+			=(d-x_k)\tilde{g}_k
+			-\sum_{i,j}C_{ijk}\tilde{g}_i\tilde{g}_j
+			+O(\tilde{g}^3).
+		\end{equation}
+		Here, $x_k$ is the scaling dimension of $\mathcal{O}_k$, so that
+		$d-x_k$ is the scaling dimension of $g_k$, i.e., $[g_k]$.
+		For our purposes, we set
+		\[
+		\mathcal{O}_2=\phi^2,\quad
+		\mathcal{O}_4=\phi^4,\quad
+		\mathcal{O}_6=\phi^6,
+		\]
+		and the corresponding couplings are
+		\[
+		g_2=t,\quad g_4=u,\quad g_6=v.
+		\]
+		Following the calculation in Problem (1), we obtain the scaling dimensions
+		\[
+		[t]=2,\quad [u]=4-d,\quad [v]=6-2d.
+		\]
+		Using the result of the previous problem, \ref{fin:2}, we obtain the
+		perturbative RG equations up to second order in the couplings:
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:3}
+				\begin{aligned}
+					\frac{dt}{d\ell}
+					={}&
+					2t
+					-\Bigl(
+					4t^2
+					+24tu
+					+96u^2
+					+720uv
+					+4320v^2
+					\Bigr),
+					\\[0.5em]
+					\frac{du}{d\ell}
+					={}&
+					(4-d)u
+					-\Bigl(
+					t^2
+					+16tu
+					+60tv
+					+72u^2
+					+960uv
+					+5400v^2
+					\Bigr),
+					\\[0.5em]
+					\frac{dv}{d\ell}
+					={}&
+					(6-2d)v
+					-\Bigl(
+					2tu
+					+24tv
+					+16u^2
+					+360uv
+					+2400v^2
+					\Bigr).
+				\end{aligned}
+			\end{equation}
+		\end{finalanswer}
+		Here, we have written $\tilde{g}_k$ simply as $g_k$.
+	\end{solution}
+
+	\begin{problembox}
+		On the basis of the perturbative renormalization group equations, find a nontrivial fixed point $(t^*,u^*,v^*)$ with $v^*\neq 0$ up to $\mathcal{O}(d-d_c)$ in the regime $\lvert d-d_c\rvert\ll 1$.
+	\end{problembox}
+	\begin{solution}
+			Set
+			\[
+			d=3+\epsilon,
+			\qquad
+			|\epsilon|\ll 1.
+			\]
+			Then the perturbative RG equations become
+			\begin{equation}
+				\begin{aligned}
+					\beta_t
+					={}&
+					2t
+					-\Bigl(
+					4t^2+24tu+96u^2+720uv+4320v^2
+					\Bigr),
+					\\
+					\beta_u
+					={}&
+					(1-\epsilon)u
+					-\Bigl(
+					t^2+16tu+60tv+72u^2+960uv+5400v^2
+					\Bigr),
+					\\
+					\beta_v
+					={}&
+					-2\epsilon v
+					-\Bigl(
+					2tu+24tv+16u^2+360uv+2400v^2
+					\Bigr).
+				\end{aligned}
+			\end{equation}
+			We expand the fixed-point couplings as\footnote{Note that in the expansion above (and similarly in the calculations below, where this term will also be omitted), we have assumed a priori that there is no $O(1)$ term. The validity of this assumption will be confirmed by the calculation below.
+			}
+			\[
+			t^*=t_1\epsilon+O(\epsilon^2),
+			\qquad
+			u^*=u_1\epsilon+O(\epsilon^2),
+			\qquad
+			v^*=v_1\epsilon+O(\epsilon^2).
+			\]
+			Substituting these expansions into the fixed-point equations
+			$\beta_t=\beta_u=\beta_v=0$, we obtain
+			\begin{align}
+				0=\beta_t(t^*,u^*,v^*)
+				&=
+				2t_1\epsilon+O(\epsilon^2),
+				\\
+				0=\beta_u(t^*,u^*,v^*)
+				&=
+				u_1\epsilon+O(\epsilon^2),
+				\\
+				0=\beta_v(t^*,u^*,v^*)
+				&=
+				-\Bigl(
+				2v_1
+				+2t_1u_1
+				+24t_1v_1
+				+16u_1^2
+				+360u_1v_1
+				+2400v_1^2
+				\Bigr)\epsilon^2
+				+O(\epsilon^3).
+			\end{align}
+			At order $O(\epsilon)$, the equations $\beta_t=0$ and
+			$\beta_u=0$ give
+			\[
+			2t_1=0,
+			\qquad
+			u_1=0.
+			\]
+			Therefore,
+			\[
+			t^*=O(\epsilon^2),
+			\qquad
+			u^*=O(\epsilon^2).
+			\]
+			Substituting these results into $\beta_v=0$, we obtain
+			\begin{equation}
+				0=\left(-2 v_1-2400 v_1^2\right)\epsilon^2+O(\epsilon^3).
+			\end{equation}
+			Besides the Gaussian solution $v_1=0$, the nontrivial solution is
+			\[
+			v^*=-\frac{\epsilon}{1200}+O(\epsilon^2).
+			\]
+			Thus, up to first order in $\epsilon=d-d_c$,
+			\begin{finalanswer}
+				\begin{equation}
+					\label{fin:4}
+					\boxed{
+						(t^*,u^*,v^*)
+						=
+						\left(
+						0,0,\frac{3-d}{1200}
+						\right)
+						+O\left((d-3)^2\right)
+					}.
+				\end{equation}
+			\end{finalanswer}
+	\end{solution}
+
+	\begin{problembox}
+		For the nontrivial fixed point obtained above, calculate the critical exponents associated with the correlation length.
+
+		\textit{Note.} At the tricritical point, both $t$ and $u$ are relevant for $\lvert d-d_c\rvert\ll 1$. Consequently, you should have two critical exponents.
+	\end{problembox}
+	\begin{solution}
+		First, we review the definition of the critical exponents from the RG equations. Expand the coupling constants around the fixed point:
+		\[
+		g_i=g_i^*+\delta g_i.
+		\]
+		Up to linear order, the RG equations give
+		\[
+		\frac{d\delta g_i}{d\ell}
+		=
+		\sum_j M_{ij}\delta g_j,
+		\quad
+		M_{ij}
+		=
+		\left.
+		\frac{\partial\beta_i}{\partial g_j}
+		\right|_{g_i=g_i^*}.
+		\]
+		If $y_a$ is an eigenvalue of $M$, the perturbation along the corresponding eigendirection scales as
+		\[
+		\delta g_a(\ell)\sim e^{y_a\ell}\delta g_a(0).
+		\]
+		Therefore, the correlation-length exponent associated with this direction is
+		\[
+		\boxed{\nu_a=\frac{1}{y_a}}.
+		\]
+		
+		We now compute the partial derivatives of $\beta_i$ at the fixed point obtained in the previous problem, \ref{fin:4}:
+		\begin{equation}
+			M_{ij}
+			:=
+			\left.
+			\frac{\partial\beta_i}{\partial g_j}
+			\right|_{g_i=g_i^*}
+			=
+			\begin{pmatrix}
+				2 & \dfrac{3}{5}\epsilon & \dfrac{36}{5}\epsilon
+				\\[0.5em]
+				\dfrac{1}{20}\epsilon & 1-\dfrac{1}{5}\epsilon & 9\epsilon
+				\\[0.5em]
+				\dfrac{1}{50}\epsilon & \dfrac{3}{10}\epsilon & 2\epsilon
+			\end{pmatrix}
+			+O(\epsilon^2).
+		\end{equation}
+		Here, $(g_1,g_2,g_3)=(t,u,v)$ and $\epsilon:=d-3$. The eigenvalues are
+		\begin{equation}
+			y_1=2+O(\epsilon^2),
+			\quad
+			y_2=1-\frac{1}{5}\epsilon+O(\epsilon^2),
+			\quad
+			y_3=2\epsilon+O(\epsilon^2).
+		\end{equation}
+		For $\epsilon<0$, only the first two eigendirections are relevant. We therefore obtain the following two critical exponents:
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:5}
+				\nu_1=\frac{1}{2}+O(\epsilon^2),
+				\quad
+				\nu_2=1+\frac{1}{5}\epsilon+O(\epsilon^2).
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+
+	\section{Yang--Lee edge singularity}
+	\label{prob:2}
+	Let us consider the following nonunitary field theory in $d$ dimensions:
+	\begin{equation}
+		Z=\int \mathcal{D}\phi\,e^{-H[\phi]},
+	\end{equation}
+	\begin{equation}
+		H[\phi]=\int d^d r\left[\frac{1}{2}(\nabla\phi)^2+t\phi^2+i\gamma\phi^3\right]
+	\end{equation}
+	with a scalar field $\phi$, and the real couplings $t,\gamma\in\mathbb{R}$. This model gives rise to a unique critical phenomenon, known as the Yang--Lee edge singularity, which has no counterparts in unitary field theory [C. N. Yang and T. D. Lee, \href{https://doi.org/10.1103/PhysRev.87.404}{Phys. Rev. \textbf{87}, 404 (1952)}; T. D. Lee and C. N. Yang, \href{https://doi.org/10.1103/PhysRev.87.410}{Phys. Rev. \textbf{87}, 410 (1952)}; M. E. Fisher, \href{https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.40.1610}{Phys. Rev. Lett. \textbf{40}, 1610 (1978)}].
+
+	\begin{problembox}
+		Calculate the scaling dimension of the coupling $\gamma$ at the Gaussian fixed point, and identify the upper critical dimension $d_c$.
+	\end{problembox}
+	\begin{solution}
+		The scaling dimension of $\phi$ has already been worked out in Problem (1). Therefore,
+		\[
+		[\gamma]+3[\phi]=d
+		\Rightarrow
+		[\gamma]=\frac{6-d}{2}
+		\Rightarrow
+		d_c=6.
+		\]
+		The final result is:
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:6}
+				[\gamma]=\frac{6-d}{2},\quad d_c=6.
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+
+	\begin{problembox}
+		Calculate the following operator product expansions at the Gaussian fixed point:
+		\begin{align}
+			\phi^2\cdot\phi^2 &= c_{220}+c_{222}\phi^2+c_{224}\phi^4,\\
+			\phi^2\cdot\phi^3 &= c_{231}\phi+c_{233}\phi^3+c_{235}\phi^5,\\
+			\phi^3\cdot\phi^3 &= c_{330}+c_{332}\phi^2+c_{334}\phi^4+c_{336}\phi^6.
+		\end{align}
+	\end{problembox}
+	\begin{solution}
+				The first OPE has already been calculated in Problem (2):
+		\begin{equation}
+			\phi^2\cdot\phi^2
+			=
+			2+4\phi^2+\phi^4.
+		\end{equation}
+		Therefore,
+		\[
+		c_{220}=2,
+		\qquad
+		c_{222}=4,
+		\qquad
+		c_{224}=1.
+		\]
+		
+		For $\phi^2\cdot\phi^3$, Wick's theorem gives
+		\begin{align}
+			\phi^2(r_1)\cdot\phi^3(r_2)
+			={}&
+			\textcolor{red}{6}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)
+				\c2\phi(r_2)\c1\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&+
+			\textcolor{red}{6}\,
+			\wick{
+				\c1\phi(r_1)\phi(r_1)
+				\c1\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&+
+			\textcolor{red}{1}\,
+			\phi(r_1)\phi(r_1)
+			\phi(r_2)\phi(r_2)\phi(r_2)
+			\notag\\
+			={}&
+			\textcolor{red}{6}\phi
+			+\textcolor{red}{6}\phi^3
+			+\textcolor{red}{1}\phi^5.
+		\end{align}
+		Thus,
+		\[
+		c_{231}=6,
+		\qquad
+		c_{233}=6,
+		\qquad
+		c_{235}=1.
+		\]
+		
+		Finally, for $\phi^3\cdot\phi^3$, we obtain
+		\begin{align}
+			\phi^3(r_1)\cdot\phi^3(r_2)
+			={}&
+			\textcolor{red}{6}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\c3\phi(r_1)
+				\c3\phi(r_2)\c2\phi(r_2)\c1\phi(r_2)
+			}
+			\notag\\
+			&+
+			\textcolor{red}{18}\,
+			\wick{
+				\c1\phi(r_1)\c2\phi(r_1)\phi(r_1)
+				\c2\phi(r_2)\c1\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&+
+			\textcolor{red}{9}\,
+			\wick{
+				\c1\phi(r_1)\phi(r_1)\phi(r_1)
+				\c1\phi(r_2)\phi(r_2)\phi(r_2)
+			}
+			\notag\\
+			&+
+			\textcolor{red}{1}\,
+			\phi(r_1)\phi(r_1)\phi(r_1)
+			\phi(r_2)\phi(r_2)\phi(r_2)
+			\notag\\
+			={}&
+			\textcolor{red}{6}
+			+\textcolor{red}{18}\phi^2
+			+\textcolor{red}{9}\phi^4
+			+\textcolor{red}{1}\phi^6.
+		\end{align}
+		Therefore,
+		\[
+		c_{330}=6,
+		\qquad
+		c_{332}=18,
+		\qquad
+		c_{334}=9,
+		\qquad
+		c_{336}=1.
+		\]
+		
+		The final result is
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:7}
+				\begin{gathered}
+					c_{220}=2,
+					\qquad
+					c_{222}=4,
+					\qquad
+					c_{224}=1,
+					\\[0.5em]
+					c_{231}=6,
+					\qquad
+					c_{233}=6,
+					\qquad
+					c_{235}=1,
+					\\[0.5em]
+					c_{330}=6,
+					\qquad
+					c_{332}=18,
+					\qquad
+					c_{334}=9,
+					\qquad
+					c_{336}=1.
+				\end{gathered}
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+
+	\begin{problembox}
+		Write down the perturbative renormalization group equations for the couplings $t$ and $\gamma$ up to second order in the couplings.
+	\end{problembox}
+	\begin{solution}
+		As in Problem (3), the OPE coefficients obtained in the previous problem
+		lead to the following perturbative RG equations. Note the factor of $i$
+		multiplying $\gamma$:
+		\begin{equation}
+			\label{eq:8.1}
+			\begin{aligned}
+				\beta_t
+				&:=
+				\frac{dt}{d\ell}
+				=
+				2t-c_{222}t^2-c_{332}(i\gamma)^2,
+				\\
+				i\beta_\gamma
+				&:=
+				\frac{d(i\gamma)}{d\ell}
+				=
+				\frac{6-d}{2}(i\gamma)
+				-\left(c_{233}+c_{323}\right)t\cdot i\gamma.
+			\end{aligned}
+		\end{equation}
+		Using
+		\[
+		c_{222}=4,
+		\qquad
+		c_{332}=18,
+		\qquad
+		c_{233}=c_{323}=6,
+		\]
+		we obtain
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:8}
+				\begin{aligned}
+					\beta_t
+					&=
+					2t-4t^2+18\gamma^2,
+					\\
+					\beta_\gamma
+					&=
+					\frac{6-d}{2}\gamma-12t\gamma.
+				\end{aligned}
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+
+	\begin{problembox}
+		On the basis of the perturbative renormalization group equations, find a nontrivial fixed point $(t^*,\gamma^*)$ with $\gamma^*\neq 0$ up to $\mathcal{O}(d-d_c)$ in the regime $\lvert d-d_c\rvert\ll 1$.
+	\end{problembox}
+	\begin{solution}
+		Set
+		\[
+			d=6-\epsilon,\quad |\epsilon|\ll 1,
+		\]
+		Then the perturbative RG equations become
+		\[
+		\begin{aligned}
+			0&=2t^*-4(t^*)^2+18(\gamma^*)^2\\
+			0&=\frac{\epsilon}{2}\gamma^*-12t*\gamma^*
+		\end{aligned}
+		\]
+		From these equations, we obtain,
+		\[
+		t^*\sim\epsilon\sim(\gamma^*)^2
+		\]
+		$\epsilon$-expand arroud the fixed point,
+		\[
+		t^*=t_1\epsilon+O(\epsilon^2),\quad \gamma^*=\gamma_1\sqrt{\epsilon}+O(\epsilon^{3/2})
+		\]
+		Plug in the RG equation
+		\[
+		\begin{aligned}
+			0&=(2t_1+18\gamma_1^2)\epsilon+O(\epsilon^{3/2})\\
+			0&=\left(\frac{\gamma_1}{2}-12t_1\gamma_1\right){\epsilon}^{3/2}+O(\epsilon^{5/2})
+		\end{aligned}
+		\]
+		It turns out there is \textbf{no} solution on $\mathbb{R}$.  The reason is that, in this case, the expansion of $\gamma$ starts at order $\epsilon^{1/2}$. Consequently, the cubic contribution $\gamma^3$ to $\beta_\gamma$ is of order $O(\epsilon^{3/2})$, which is the same order as the contributions retained up to quadratic order, and therefore cannot be neglected.
+		
+		
+		In the preceding calculations, we derived the $\beta$-functions using OPE coefficients computed in the free theory. This is justified up to quadratic order. However, at cubic order and beyond, one must also take into account contributions from interaction vertices, together with several other technical subtleties that were not covered in this course. After consulting the literature, I found that the relevant calculation was carried out in J. E. Kirkham and D. J. Wallace,
+		\href{https://doi.org/10.1088/0305-4470/12/2/001}
+		{\textit{J. Phys. A} \textbf{12}, L47 (1979)} and
+		O. F. de Alcantara Bonfim, J. E. Kirkham, and A. J. McKane,
+		\href{https://doi.org/10.1088/0305-4470/14/9/034}
+		{\textit{J. Phys. A} \textbf{14}, 2391 (1981)}. In our conventions, the result for $\beta_\gamma$, including the higher-order correction, can be written as
+		\begin{equation}
+			\beta_\gamma=\frac{6-d}{2}\gamma-12t\gamma-216\gamma^3
+		\end{equation}
+		Then the eqautions for fixed point are
+		\begin{equation}
+			\begin{aligned}
+			0&=(2t_1+18\gamma_1^2)\epsilon+O(\epsilon^{3/2})\\
+			0&=\left(\frac{\gamma_1}{2}-12t_1\gamma_1-216\gamma_1^3\right){\epsilon}^{3/2}+O(\epsilon^{5/2})
+			\end{aligned}
+		\end{equation}
+		The non-trivial solution is\footnote{There is an easy way to obtain the correct answer for the wrong reason in this problem. If, in the calculation of the previous problem, we fail to notice the extra sign introduced in equation \ref{eq:8.1} by the factor of $i$ multiplying $\gamma$, we would obtain $\beta_t=2t-4t^2\textcolor{red}{-}18\gamma^2$. Then, even without including the cubic correction to the $\beta$-function, we would happen to arrive at the correct result.
+		}
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:9}
+				(t^*,\gamma^*)=\left(-\frac{\epsilon}{24},\pm\sqrt{\frac{\epsilon}{216}}\right)
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+
+	\begin{problembox}
+		For the nontrivial fixed point obtained above, calculate the anomalous dimension
+		\begin{equation}
+			\eta=-24(\gamma^*)^2+\mathcal{O}\bigl((\gamma^*)^4\bigr),
+		\end{equation}
+		and the Yang--Lee edge exponent
+		\begin{equation}
+			\sigma=\frac{d-2+\eta}{d+2-\eta}.
+		\end{equation}
+
+		\textit{Note.} In Report I, you may have calculated the critical exponent $\sigma_{\mathrm{MF}}$ based on the mean-field approximation. For $d=d_c$, you should have $\sigma=\sigma_{\mathrm{MF}}$.
+	\end{problembox}
+	\begin{solution}
+		Substituting the results obtained in the previous problem into the formula given in the problem\footnote{\textit{Note.} This formula must be derived by computing the wave-function renormalization from loop diagrams. Since this topic was not covered in this course, the result is by no means trivial.}, we obtain
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:10}
+				\eta=-\frac{\epsilon}{9},\quad \sigma=\frac12 - \frac{\epsilon}{12}
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+
+
+
+	\section{\texorpdfstring{$O(N)$}{O(N)} model}
+	\label{prob:3}
+	Let us consider the $O(N)$ field theory in $d$ dimensions:
+	\begin{equation}
+		Z=\int \mathcal{D}\boldsymbol{\phi}\,e^{-H[\boldsymbol{\phi}]},
+	\end{equation}
+	\begin{equation}
+		H[\boldsymbol{\phi}]=\int d^d r\left[\frac{1}{2}(\nabla\boldsymbol{\phi})^2+t\boldsymbol{\phi}^2+u(\boldsymbol{\phi}^2)^2\right],
+	\end{equation}
+	where $\boldsymbol{\phi}=(\phi_1,\phi_2,\ldots,\phi_N)\in\mathbb{R}^N$ is an $N$-component real field, and $(\nabla\boldsymbol{\phi})^2$ and $\boldsymbol{\phi}^2$ are defined as
+	\begin{equation}
+		(\nabla\boldsymbol{\phi})^2:=\sum_{n=1}^{N}\sum_{\mu=1}^{d}(\partial_\mu\phi_n)^2,
+		\qquad
+		\boldsymbol{\phi}^2:=\sum_{n=1}^{N}\phi_n^2.
+	\end{equation}
+
+	\begin{problembox}
+		Calculate the scaling dimension of the coupling $u$ at the Gaussian fixed point, and identify the upper critical dimension $d_c$.
+	\end{problembox}
+	\begin{solution}
+		We already obtained the scaling dimension of $u$ in Problem (3), so the final result is
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:11}
+				[u]=4-d,\quad d_c=4
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+
+	\begin{problembox}
+		Calculate the following operator product expansions at the Gaussian fixed point:
+		\begin{align}
+			\boldsymbol{\phi}^2\cdot\boldsymbol{\phi}^2
+			&=c_{220}+c_{222}\boldsymbol{\phi}^2+c_{224}(\boldsymbol{\phi}^2)^2,\\
+			\boldsymbol{\phi}^2\cdot(\boldsymbol{\phi}^2)^2
+			&=c_{242}\boldsymbol{\phi}^2+c_{244}(\boldsymbol{\phi}^2)^2+\cdots,\\
+			(\boldsymbol{\phi}^2)^2\cdot(\boldsymbol{\phi}^2)^2
+			&=c_{440}+c_{442}\boldsymbol{\phi}^2+c_{444}(\boldsymbol{\phi}^2)^2+\cdots.
+		\end{align}
+	\end{problembox}
+	\begin{solution}
+		We use the convention
+		\[
+		|r_1-r_2|=1,
+		\qquad
+		\langle\phi_a(r_1)\phi_b(r_2)\rangle_0=\delta_{ab},
+		\]
+		and regard all composite operators as normal ordered as in previous problems.
+		
+		First, consider $\boldsymbol{\phi}^2\cdot\boldsymbol{\phi}^2$:
+		\begin{align*}
+			\boldsymbol{\phi}^2(r_1)\cdot\boldsymbol{\phi}^2(r_2)
+			={}&
+			\sum_{a,b=1}^{N}
+			\phi_a(r_1)\phi_a(r_1)
+			\phi_b(r_2)\phi_b(r_2)
+			\\
+			={}&
+			\textcolor{red}{2}
+			\sum_{a,b=1}^{N}
+			\wick{
+				\c1\phi_a(r_1)\c2\phi_a(r_1)
+				\c2\phi_b(r_2)\c1\phi_b(r_2)
+			}
+			+
+			\textcolor{red}{4}
+			\sum_{a,b=1}^{N}
+			\wick{
+				\c1\phi_a(r_1)\phi_a(r_1)
+				\c1\phi_b(r_2)\phi_b(r_2)
+			}
+			\\
+			&+
+			\sum_{a,b=1}^{N}
+			\phi_a(r_1)\phi_a(r_1)
+			\phi_b(r_2)\phi_b(r_2)
+			\\
+			=&\textcolor{red}{2}
+			\sum_{a,b=1}^{N}\delta_{ab}\delta_{ab}+	\textcolor{red}{4}
+			\sum_{a,b=1}^{N}
+			\delta_{ab}\phi_a(r_1)\phi_b(r_2)+
+			\sum_{a,b=1}^{N}
+			\phi_a(r_1)\phi_a(r_1)
+			\phi_b(r_2)\phi_b(r_2)
+			\\
+			=&
+			\textcolor{red}{2N}
+			+
+			\textcolor{red}{4}\boldsymbol{\phi}^2
+			+
+			\textcolor{red}{1}(\boldsymbol{\phi}^2)^2.
+		\end{align*}
+
+		Thus,
+		\[
+		\boxed{
+		c_{220}=\textcolor{red}{2N},
+		\qquad
+		c_{222}=\textcolor{red}{4},
+		\qquad
+		c_{224}=\textcolor{red}{1}
+		}
+		\]
+		
+		Next, consider $\boldsymbol{\phi}^2\cdot(\boldsymbol{\phi}^2)^2$:
+			\begin{align*}
+				\boldsymbol{\phi}^2(r_1)\cdot(\boldsymbol{\phi}^2(r_2))^2
+				=&
+				\sum_{a,b,c=1}^{N}
+				\phi_a(r_1)\phi_a(r_1)
+				\phi_b(r_2)\phi_b(r_2)
+				\phi_c(r_2)\phi_c(r_2)\\
+				=&
+				\textcolor{red}{4}
+				\sum_{a,b,c=1}^{N}
+				\wick{
+					\c1\phi_a(r_1)\c2\phi_a(r_1)
+					\c2\phi_b(r_2)\c1\phi_b(r_2)
+					\phi_c(r_2)\phi_c(r_2)
+				}
+				\\&+
+				\textcolor{red}{8}
+				\sum_{a,b,c=1}^{N}
+				\wick{
+					\c1\phi_a(r_1)\c2\phi_a(r_1)
+					\c1\phi_b(r_2)\phi_b(r_2)
+					\c2\phi_c(r_2)\phi_c(r_2)
+				}
+				\\
+				&+\textcolor{red}{8}
+				\sum_{a,b,c=1}^{N}
+				\wick{
+					\c1\phi_a(r_1)\phi_a(r_1)
+					\c1\phi_b(r_2)\phi_b(r_2)
+					\phi_c(r_2)\phi_c(r_2)
+				}+\cdots\\
+				=&
+				\textcolor{red}{4}
+				\sum_{a,b,c=1}^{N}
+				\delta_{ab}\delta_{ab}\phi_c(r_2)\phi_c(r_2)+\textcolor{red}{8}
+				\sum_{a,b,c=1}^{N}
+				\delta_{ab}\delta_{ac}
+				\phi_b(r_2)\phi_c(r_2)+	
+				\\&+\textcolor{red}{8}
+				\sum_{a,b,c=1}^{N}
+				\delta_{ab}
+				\phi_a(r_1)\phi_b(r_2)
+				\phi_c(r_2)\phi_c(r_2)+\cdots\\
+				=&\textcolor{red}{4(N+2)}\boldsymbol{\phi}^2+\textcolor{red}{8}(\boldsymbol{\phi}^2)^2
+				+\cdots
+			\end{align*}
+		
+		Thus,
+		\[
+		c_{242}=\textcolor{red}{4(N+2)},
+		\qquad
+		c_{244}=\textcolor{red}{8}.
+		\]
+		
+		Finally, consider $(\boldsymbol{\phi}^2)^2\cdot(\boldsymbol{\phi}^2)^2$:
+		\begin{align*}
+			(\boldsymbol{\phi}^2(r_1))^2\cdot(\boldsymbol{\phi}^2(r_2))^2
+			=&
+			\sum_{a,b,c,d=1}^{N}
+			\phi_a(r_1)\phi_a(r_1)
+			\phi_b(r_1)\phi_b(r_1)
+			\phi_c(r_2)\phi_c(r_2)
+			\phi_d(r_2)\phi_d(r_2)\\
+			=&\textcolor{red}{8}
+			\sum_{a,b,c,d=1}^{N}
+			\wick{
+				\c1\phi_a(r_1)\c2\phi_a(r_1)
+				\c3\phi_b(r_1)\c4\phi_b(r_1)
+				\c2\phi_c(r_2)\c1\phi_c(r_2)
+				\c4\phi_d(r_2)\c3\phi_d(r_2)
+			}\\
+			&+\textcolor{red}{16}\sum_{a,b,c,d=1}^{N}
+			\wick{
+				\c1\phi_a(r_1)\c2\phi_a(r_1)
+				\c3\phi_b(r_1)\c4\phi_b(r_1)
+				\c1\phi_c(r_2)\c3\phi_c(r_2)
+				\c2\phi_d(r_2)\c4\phi_d(r_2)
+			}\\
+			&+\textcolor{red}{32}\sum_{a,b,c,d=1}^{N}
+			\wick{
+				\c1\phi_a(r_1)\c2\phi_a(r_1)
+				\c3\phi_b(r_1)\phi_b(r_1)
+				\c2\phi_c(r_2)\c1\phi_c(r_2)
+				\c3\phi_d(r_2)\phi_d(r_2)
+			}\\
+			&+\textcolor{red}{64}
+			\sum_{a,b,c,d=1}^{N}
+			\wick{
+				\c1\phi_a(r_1)\c2\phi_a(r_1)
+				\c3\phi_b(r_1)\phi_b(r_1)
+				\c1\phi_c(r_2)\c3\phi_c(r_2)
+				\c2\phi_d(r_2)\phi_d(r_2)
+			}
+			\\
+			&+\textcolor{red}{8}
+			\sum_{a,b,c,d=1}^{N}
+			\wick{
+				\c1\phi_a(r_1)\c2\phi_a(r_1)
+				\phi_b(r_1)\phi_b(r_1)
+				\c2\phi_c(r_2)\c1\phi_c(r_2)
+				\phi_d(r_2)\phi_d(r_2)
+			}\\
+			&+\textcolor{red}{16}
+			\sum_{a,b,c,d=1}^{N}
+			\wick{
+				\c1\phi_a(r_1)\c2\phi_a(r_1)
+				\phi_b(r_1)\phi_b(r_1)
+				\c1\phi_c(r_2)\phi_c(r_2)
+				\c2\phi_d(r_2)\phi_d(r_2)
+			}\\
+			&+\textcolor{red}{16}
+			\sum_{a,b,c,d=1}^{N}
+			\wick{
+				\c1\phi_a(r_1)\phi_a(r_1)
+				\c2\phi_b(r_1)\phi_b(r_1)
+				\c2\phi_c(r_2)\c1\phi_c(r_2)
+				\phi_d(r_2)\phi_d(r_2)
+			}\\
+			&+\textcolor{red}{32}
+			\sum_{a,b,c,d=1}^{N}
+			\wick{
+				\c1\phi_a(r_1)\phi_a(r_1)
+				\c2\phi_b(r_1)\phi_b(r_1)
+				\c1\phi_c(r_2)\phi_c(r_2)
+				\c2\phi_d(r_2)\phi_d(r_2)
+			}\\
+			=&\textcolor{red}{8N^2}+\textcolor{red}{16N}+\textcolor{red}{32N}\boldsymbol{\phi}^2+\textcolor{red}{64}\boldsymbol{\phi}^2+\textcolor{red}{8N}\left(\boldsymbol{\phi}^2\right)^2+\textcolor{red}{16}\left(\boldsymbol{\phi}^2\right)^2+\textcolor{red}{16}\left(\boldsymbol{\phi}^2\right)^2\\
+			&+\textcolor{red}{32}\left(\boldsymbol{\phi}^2\right)^2\\
+			=&\textcolor{red}{8N(N+2)}+\textcolor{red}{32(N+2)}\boldsymbol{\phi}^2+\textcolor{red}{8(N+8)}\left(\boldsymbol{\phi}^2\right)^2
+		\end{align*}
+		
+		Thus,
+		\[
+		c_{440}=\textcolor{red}{8N(N+2)},
+		\qquad
+		c_{442}=\textcolor{red}{32(N+2)},
+		\qquad
+		c_{444}=\textcolor{red}{8(N+8)}.
+		\]
+		
+		The final result is
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:12}
+				\begin{gathered}
+					c_{220}=2N,
+					\qquad
+					c_{222}=4,
+					\qquad
+					c_{224}=1,
+					\\[0.5em]
+					c_{242}=4(N+2),
+					\qquad
+					c_{244}=8,
+					\\[0.5em]
+					c_{440}=8N(N+2),
+					\qquad
+					c_{442}=32(N+2),
+					\qquad
+					c_{444}=8(N+8).
+				\end{gathered}
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+	This can be checked by setting $N=1$, which reproduces \ref{fin:2}.
+	\begin{problembox}
+		Write down the perturbative renormalization group equations for the couplings $t$ and $u$ up to second order in the couplings.
+	\end{problembox}
+	\begin{solution}
+		\begin{equation}
+			\begin{aligned}
+				\beta_t&:=\frac{dt}{d\ell}=2t-c_{222}t^2-(c_{242}+c_{422})tu-c_{442}u^2\\
+				\beta_u&:=\frac{du}{d\ell}=(4-d)u-c_{444}u^2-c_{224}t^2-(c_{244}+c_{424})tu
+			\end{aligned}
+		\end{equation}
+		Using the result from previous problem, we obtain
+		\begin{finalanswer}
+			\begin{equation}
+					\label{fin:13}
+				\begin{aligned}
+					\frac{dt}{d\ell}&=2t-4t^2-8(N+2)tu-32(N+2)u^2\\
+					\frac{du}{d\ell}&=(4-d)u-8(N+8)u^2-t^2-16tu
+				\end{aligned}
+			\end{equation}
+		\end{finalanswer}
+		Again this reproduces \ref{fin:3} after setting $N=1$ and $v=0$.
+	\end{solution}
+
+	\begin{problembox}
+		On the basis of the perturbative renormalization group equations, find a nontrivial fixed point $(t^*,u^*)$ with $u^*\neq 0$ up to $\mathcal{O}(d-d_c)$ in the regime $\lvert d-d_c\rvert\ll 1$.
+	\end{problembox}
+	\begin{solution}
+		Set
+		\[
+		d=4-\epsilon,\quad |\epsilon|\ll 1,
+		\]
+		and expand the fixed-point coupling as
+		\[
+		t^*=t_1\epsilon+O(\epsilon^2),\quad u^*=u_1\epsilon+O(\epsilon^3)
+		\]
+		Then the perturbative RG equations become
+		\begin{equation}
+			0=2t_1\epsilon+O(\epsilon^2),\quad 0=\epsilon^2\left( u_1-8(N+8)u_1^2-t_1^2-16t_1u_1\right)+O(\epsilon^3)
+		\end{equation}
+		The non-trivial solution is
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:14}
+				(t^*,u^*)=\left(0,\frac{\epsilon}{8(N+8)}\right)
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+
+	\begin{problembox}
+		For the nontrivial fixed point obtained above, calculate the critical exponent associated with the correlation length.
+	\end{problembox}
+	\begin{solution}
+		First, we compute the partial derivatives of $(\beta_{t},\beta_u)$ at the fixed point:
+		\begin{equation}
+			\mathbf{M}=			
+			\begin{pmatrix}
+				2-\frac{N+2}{N+8}\epsilon & -8\frac{N+2 }{N+8}\epsilon
+				\\[0.5em]
+				-\frac{2}{N+8}\epsilon& -\epsilon 
+			\end{pmatrix}+O(\epsilon^2)
+		\end{equation}
+		It has following eigenvalues
+		\[
+			y_1=2 - \frac{N+2}{N+8}\epsilon,\quad y_2=-\epsilon
+		\]
+		For $\epsilon>0$, only the first one is relevant. The corresponding critical exponent is:
+		\begin{finalanswer}
+			\begin{equation}
+				\label{fin:15}
+				\nu=\frac12 + \frac{N+2}{4(N+8)}\epsilon
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+\end{document}

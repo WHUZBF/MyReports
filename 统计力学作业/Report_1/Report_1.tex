@@ -1,0 +1,523 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+% ---------- Page style ----------
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Advanced Statistical Mechanics / Statistical Mechanics I}
+\rhead{Solution Manual I}
+\cfoot{\thepage}
+
+% ---------- Hyperref ----------
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue,
+	citecolor=blue
+}
+
+% ---------- Counters ----------
+\newcounter{problem}
+\newcounter{saveequation}
+
+% Rounded box for each problem, with automatic numbering
+\newtcolorbox{problembox}{
+	enhanced,
+	breakable,
+	colback=white,
+	colframe=black,
+	boxrule=0.8pt,
+	arc=2.5mm,
+	left=2mm,
+	right=2mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	before upper={\refstepcounter{problem}\textbf{(\theproblem)}\quad\ignorespaces}
+}
+
+% Plain solution environment
+% Equations inside are numbered as problem.equation, e.g. 3.1, 3.2
+% Equation numbering outside remains unchanged
+\newenvironment{solution}
+{
+	\par
+	\setcounter{saveequation}{\value{equation}}
+	\begingroup
+	\setcounter{equation}{0}
+	\renewcommand{\theequation}{\arabic{problem}.\arabic{equation}}
+	\renewcommand{\theHequation}{sol.\arabic{problem}.\arabic{equation}}
+	\noindent\textbf{Solution.}\quad
+}
+{
+	\par
+	\endgroup
+	\setcounter{equation}{\value{saveequation}}
+}
+
+% Background matter box
+\definecolor{bgmatterback}{RGB}{245,248,252}
+\definecolor{bgmatterframe}{RGB}{120,140,170}
+\definecolor{bgmattertitle}{RGB}{70,92,125}
+
+\newtcolorbox{backgroundmatter}[1][]{
+	enhanced,
+	breakable,
+	colback=bgmatterback,
+	colframe=bgmatterframe,
+	coltitle=white,
+	colbacktitle=bgmattertitle,
+	boxrule=0.9pt,
+	arc=2.8mm,
+	left=2.5mm,
+	right=2.5mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	title=Background Matter,
+	fonttitle=\bfseries,
+	attach boxed title to top left={xshift=2mm,yshift=-2mm},
+	boxed title style={
+		arc=2mm,
+		boxrule=0pt,
+		left=1.5mm,
+		right=1.5mm,
+		top=0.8mm,
+		bottom=0.8mm
+	},
+	before upper={
+		\setlength{\parindent}{2em}
+		\setlength{\parskip}{0pt}
+	},
+	#1
+}
+
+% Final answer box
+\definecolor{finalansback}{RGB}{248,251,247}
+\definecolor{finalansframe}{RGB}{88,122,96}
+\definecolor{finalanstitle}{RGB}{63,96,70}
+
+\newtcolorbox{finalanswer}[1][]{
+	enhanced,
+	breakable,
+	colback=finalansback,
+	colframe=finalansframe,
+	coltitle=white,
+	colbacktitle=finalanstitle,
+	boxrule=1pt,
+	arc=2.8mm,
+	left=2.5mm,
+	right=2.5mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	title=Final Answer,
+	fonttitle=\bfseries,
+	attach boxed title to top left={xshift=2mm,yshift=-2mm},
+	boxed title style={
+		arc=2mm,
+		boxrule=0pt,
+		left=1.5mm,
+		right=1.5mm,
+		top=0.8mm,
+		bottom=0.8mm
+	},
+	#1
+}
+
+\title{\textbf{Report I}\\[0.4em]
+	\large Advanced Statistical Mechanics / Statistical Mechanics I}
+\author{Bufan Zheng\\[0.2em]\normalsize Student ID: 35-256419}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	The final results can be found in \eqref{fin:1}, \eqref{fin:2}, \eqref{fin:3}, \eqref{fin:4}, \eqref{fin:5}, \eqref{fin:6} and \eqref{fin:7}.
+	
+	\section*{Landau theory}
+	
+	Let us consider the Landau theory:
+	\begin{equation}
+		\label{eq:1}
+		f = t\phi^2 + u\phi^4 - h\phi
+		\qquad
+		(t,h \in \mathbb{R},\ u > 0).
+		\tag{1}
+	\end{equation}
+	
+	\begin{problembox}
+		\label{prob:1}
+		In the absence of the magnetic field (i.e., $h = 0$), determine the critical point $t = t_{\mathrm c}$.
+	\end{problembox}
+	\begin{solution}
+		The equilibrium value of the order parameter $\phi$ is determined by the minimum of the free energy, namely:
+		\begin{equation}
+			\label{eq:1.1}
+			\left.\frac{\partial f}{\partial \phi}\right|_{\phi=\phi_{\mathrm{eq}}}=0
+		\end{equation}
+		
+		Setting the external field to zero, $h=0$, we have
+		\begin{equation}
+			f(\phi)=t\phi^2+u\phi^4.
+		\end{equation}
+		
+		The extremum condition is
+		\begin{equation}
+			\frac{\partial f}{\partial \phi}=2t\phi+4u\phi^3=2\phi\left(t+2u\phi^2\right)=0.
+		\end{equation}
+		
+		We then obtain the following solutions
+		\begin{equation}
+			\label{eq:1.4}
+			\phi=0,\qquad \phi^2=-\frac{t}{2u}.
+		\end{equation}
+		
+		Using the second derivative
+		\begin{equation}
+		\frac{\partial^2 f}{\partial \phi^2}=2t+12u\phi^2
+		\end{equation}
+		we discuss the above solutions as follows:
+		
+		\begin{itemize}
+			\item When $t>0$, only $\phi=0$ is a stable minimum.
+			\item When $t<0$, the following two stable minima appear:
+		\end{itemize}
+		
+		\begin{equation}
+			\phi=\pm\sqrt{-\frac{t}{2u}}
+		\end{equation}
+		\begin{finalanswer}
+		Therefore, the critical point lies at the intersection of the two kinds of behavior,
+			\begin{equation}
+				\label{fin:1}
+				t_c=0.
+			\end{equation}
+			\end{finalanswer}
+	    \end{solution}
+	
+	\begin{problembox}
+		In the absence of the magnetic field, the specific heat $c$ exhibits the following critical phenomenon around the critical point $t = t_{\mathrm c}$:
+		\begin{equation}
+			c =
+			\begin{cases}
+				a_- |t - t_{\mathrm c}|^{-\alpha_-} & (t < t_{\mathrm c}), \\
+				a_+ |t - t_{\mathrm c}|^{-\alpha_+} & (t > t_{\mathrm c}).
+			\end{cases}
+			\tag{2}
+		\end{equation}
+		Calculate the critical exponents $\alpha_{\pm}$.
+	\end{problembox}
+	\begin{solution}
+		According to the equilibrium order parameter obtained from \eqref{eq:1.4}, the free energy in equilibrium can be determined as:
+		
+		\begin{itemize}
+			\item When $t>0$, the equilibrium point is $\phi=0$, so
+			\begin{equation}
+				f_{\min}=0.
+			\end{equation}
+			
+			\item When $t<0$, the equilibrium point satisfies
+			\begin{equation}
+				\phi^2=-\frac{t}{2u}.
+			\end{equation}
+			Substituting back into the free energy,
+			\begin{equation}
+				f_{\min}=t\phi^2+u\phi^4=t\left(-\frac{t}{2u}\right)+u\left(\frac{t^2}{4u^2}\right)=-\frac{t^2}{4u}.
+			\end{equation}
+		\end{itemize}
+		
+		Therefore
+		\begin{equation}
+			f_{\min}(t)=
+			\begin{cases}
+				0, & t>0,\\[6pt]
+				-\dfrac{t^2}{4u}, & t<0.
+			\end{cases}
+		\end{equation}
+		
+		According to the thermodynamic relation, the specific heat can be expressed by the second derivative of the free energy with respect to temperature as
+		\begin{equation}
+			c=-\frac{\partial^2 f_{\min}}{\partial t^2}.
+		\end{equation}
+		
+		Thus
+		\begin{equation}
+			c=
+			\begin{cases}
+				0, & t>0,\\[6pt]
+				\dfrac{1}{2u}, & t<0.
+			\end{cases}
+		\end{equation}
+		
+		\begin{finalanswer}
+			It can be seen that the specific heat does not diverge near the critical point, but only has a finite jump. This is because what is described by \eqref{eq:1} is actually a system undergoing a second-order phase transition, and
+			\begin{equation}
+				 \label{fin:2}
+				\alpha_{+}=\alpha_{-}=0.
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+	
+	\begin{problembox}
+		The spontaneous magnetization $m$ exhibits the following critical phenomenon around the critical point $t = t_{\mathrm c}$:
+		\begin{equation}
+			m \propto |t - t_{\mathrm c}|^{\beta}
+			\qquad
+			(t < t_{\mathrm c}).
+			\tag{3}
+		\end{equation}
+		Calculate the critical exponent $\beta$.
+	\end{problembox}
+	\begin{solution}
+		The spontaneous magnetization $m$ is in fact the value of the order parameter $\phi$ at equilibrium. According to the solutions of the previous two problems, when $h=0$ and $t<t_c=0$,
+		\begin{equation}
+			m=\phi_{\mathrm{eq}}=\pm\sqrt{-\frac{t}{2u}}.
+		\end{equation}
+		
+		Therefore, its magnitude satisfies
+		\begin{equation}
+			|m|\propto |t-t_c|^{1/2}.
+		\end{equation}
+		
+		With the definition
+		\begin{equation}
+			m\propto |t-t_c|^{\beta} \qquad (t<t_c)
+		\end{equation}
+		
+		\begin{finalanswer}
+			by comparison, we obtain
+			\begin{equation}
+				\label{fin:3}
+				\beta=\frac{1}{2}.
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+	
+	\begin{problembox}
+		The zero-field susceptibility $\chi$ exhibits the following critical phenomenon around the critical point $t = t_{\mathrm c}$:
+		\begin{equation}
+			\chi =
+			\begin{cases}
+				c_- |t - t_{\mathrm c}|^{-\gamma_-} & (t < t_{\mathrm c}), \\
+				c_+ |t - t_{\mathrm c}|^{-\gamma_+} & (t > t_{\mathrm c}).
+			\end{cases}
+			\tag{4}
+		\end{equation}
+		Calculate the critical exponents $\gamma_{\pm}$ and the ratio $c_+/c_-$ of the coefficients.
+		
+		\medskip
+		\textbf{[Note]} While the coefficients $c_{\pm}$ themselves are not universal, their ratio $c_+/c_-$ is universal.
+	\end{problembox}
+	\begin{solution}
+		Now we include the external field and consider the order parameter in equilibrium. Following \eqref{eq:1.1}, we write down the following equation. In order to keep the notation consistent with the later calculation of the magnetic susceptibility, $\phi_{\mathrm{eq}}$ has already been replaced in advance by $m$ here:
+		\begin{equation}
+			\label{eq:4.1}
+			h=2tm+4um^3.
+		\end{equation}
+		
+		According to the definition of the magnetic susceptibility,
+		\begin{equation}
+			\chi=\left(\frac{\partial m}{\partial h}\right)_{h\to 0}
+			=\left(\frac{\partial h}{\partial m}\right)^{-1}_{h\to 0}
+			=\left.\left(2t+12um^2\right)^{-1}\right|_{h\to 0}.
+		\end{equation}
+		
+		Now, using the discussion in Problem \ref{prob:1}, we discuss the two cases as follows:
+		\begin{itemize}
+			\item When $t>0$, the zero-field equilibrium solution is $m=0$, so
+			\begin{equation}
+				\chi_{+}=\frac{1}{2t}=\frac{1}{2}|t-t_c|^{-1}.
+			\end{equation}
+			
+			Therefore
+			\begin{equation}
+				\gamma_{+}=1,\qquad c_{+}=\frac{1}{2}.
+			\end{equation}
+			
+			\item When $t<0$, the zero-field equilibrium solution satisfies
+			\begin{equation}
+				m^2=-\frac{t}{2u}.
+			\end{equation}
+			
+			Substituting this in, we obtain
+			\begin{equation}
+				\chi_{-}^{-1}=2t+12u\left(-\frac{t}{2u}\right)=2t-6t=-4t=4|t|.
+			\end{equation}
+			
+			Therefore
+			\begin{equation}
+				\chi_{-}=\frac{1}{4|t|}=\frac{1}{4}|t-t_c|^{-1}.
+			\end{equation}
+			
+			by comparison, we obtain
+			\begin{equation}
+				\gamma_{-}=1,\qquad c_{-}=\frac{1}{4}.
+			\end{equation}
+		\end{itemize}
+		\begin{finalanswer}
+			Thus, the critical exponents $\gamma_{\pm}$ and the ratio ${c_{+}}/{c_{-}}$ of the coefficients are:
+			\begin{equation}
+				\label{fin:4}
+				\gamma_\pm =1,\quad \frac{c_{+}}{c_{-}}=\frac{1/2}{1/4}=2.
+			\end{equation}
+		\end{finalanswer}
+	\end{solution}
+	
+	\begin{problembox}
+		At the critical point $t = t_{\mathrm c}$, the magnetization $m$ exhibits the following critical phenomenon:
+		\begin{equation}
+			m \propto |h|^{1/\delta}.
+			\tag{5}
+		\end{equation}
+		Calculate the critical exponent $\delta$.
+	\end{problembox}
+	\begin{solution}
+		At the critical point $t=t_c=0$, \eqref{eq:4.1} becomes
+		\begin{equation}
+			h=4um^3.
+		\end{equation}
+		
+		Therefore
+		\begin{equation}
+			m=\left(\frac{h}{4u}\right)^{1/3}\propto |h|^{1/3}.
+		\end{equation}
+		
+	\begin{finalanswer}
+		Comparing with the definition, we obtain
+		\begin{equation}
+			\label{fin:5}
+			\delta=3.
+		\end{equation}
+	\end{finalanswer}
+	\end{solution}
+	
+	\section*{Optional assignment}
+	\begin{backgroundmatter}
+		While we have implicitly assumed that $\phi$ is real, allowing $\phi$ to take complex values also provides insight into phase transitions and critical phenomena [C. N. Yang and T. D. Lee, \href{https://doi.org/10.1103/PhysRev.87.404}{Phys. Rev. 87, 404 (1952)}; T. D. Lee and C. N. Yang, \href{https://doi.org/10.1103/PhysRev.87.410}{Phys. Rev. 87, 410 (1952)}]. Specifically, in contrast with the real-valued regime $\phi \in \mathbb{R}$, the Landau theory $f$ in Eq. (1) generally has three stationary points for the complex-valued regime $\phi \in \mathbb{C}$. For certain parameter choices, two of these stationary points coalesce, signaling a phase transition.
+		
+		For clarity, let us here assume $t \ge 0$ and $h = i\gamma$ $(\gamma \ge 0)$. Then, the stationary solutions for $\phi$ (i.e., magnetization $m$) are generally purely imaginary. As described above, two stationary points merge at $\gamma = \gamma_{\mathrm c}$, around which unique critical phenomena arise, the Yang-Lee edge singularity [M. E. Fisher, \href{https://doi.org/10.1103/PhysRevLett.40.1610}{Phys. Rev. Lett. 40, 1610 (1978)}].
+	\end{backgroundmatter}
+	
+	\begin{problembox}
+		(optional) Determine $\gamma_{\mathrm c}$ and obtain the following critical exponent $\Delta$:
+		\begin{equation}
+			\gamma_{\mathrm c} \propto t^{\Delta}.
+			\tag{6}
+		\end{equation}
+	\end{problembox}
+	\begin{solution}
+		Setting $\frac{\partial f}{\partial \phi}=0$, we obtain the following equation:
+		\begin{equation}
+			\label{eq:6.1}
+			4u\phi^3+2t\phi-i\gamma=0
+		\end{equation}
+		
+		Using the variable substitution $\phi\to i\varphi$, this can be rewritten as the following cubic equation with real coefficients:
+		\begin{equation}
+			4u\varphi^3-2t\varphi+\gamma=0
+		\end{equation}
+		
+		Putting it into the standard form:
+		\begin{equation}
+			\varphi^3+p\varphi+q=0,\qquad p=-\frac{t}{2u},\ q=\frac{\gamma}{4u}
+		\end{equation}
+		
+		Using the Cardano discriminant:
+		\begin{equation}
+			\Delta_c=\left(\frac{q}{2}\right)^2+\left(\frac{p}{3}\right)^3
+		\end{equation}
+		
+		\begin{itemize}
+			\item $\Delta_c>0$, one real root and two complex conjugate roots
+			\item $\Delta_c=0$, multiple roots
+			\item $\Delta_c<0$, all three roots are real
+		\end{itemize}
+		
+		A multiple root is a second-order zero point, so in addition to the first derivative being zero, it also satisfies that the second derivative is zero:
+		\begin{equation}
+			\label{eq:6.5}
+			\frac{\partial^2 f}{\partial \phi^2}=2t+12u\phi^2=0
+		\end{equation}
+		
+		This property will be used in the discussion of the next problem.
+		
+	\begin{finalanswer}
+			Therefore, the condition for having multiple roots is:
+		\begin{equation}
+			\label{fin:6}
+			\gamma_c=\sqrt{\frac{8t^3}{27u}}\sim t^{3/2}
+		\end{equation}
+		
+		Therefore:
+		\begin{equation}
+			\Delta=\frac{3}{2}
+		\end{equation}
+	\end{finalanswer}
+	\end{solution}
+	
+	\begin{problembox}
+		(optional) Around the critical point $\gamma = \gamma_{\mathrm c}$ for given $t > 0$, the (imaginary) magnetization $m$ exhibits the following critical phenomenon:
+		\begin{equation}
+			|m - m_{\mathrm c}| \propto |\gamma - \gamma_{\mathrm c}|^{\sigma}.
+			\tag{7}
+		\end{equation}
+		Calculate the critical exponent $\sigma$.
+	\end{problembox}
+	\begin{solution}
+		Perturb around the equilibrium solution
+		\begin{equation}
+			\phi=\phi_c+\delta\phi,\qquad \gamma=\gamma_c+\delta\gamma.
+		\end{equation}
+		
+		Substitute this into the equilibrium equation of state \eqref{eq:6.1}
+		\begin{equation}
+			2t(\phi_c+\delta\phi)+4u(\phi_c+\delta\phi)^3-i(\gamma_c+\delta\gamma)=0.
+		\end{equation}
+		
+		Subtract the equation satisfied by the critical point itself, \eqref{eq:6.1}
+		\begin{equation}
+			2t\phi_c+4u\phi_c^3-i\gamma_c=0,
+		\end{equation}
+		
+		we obtain
+		\begin{equation}
+			(2t+12u\phi_c^2)\delta\phi+12u\phi_c(\delta\phi)^2+4u(\delta\phi)^3-i\delta\gamma=0.
+		\end{equation}
+		
+		The imaginary magnetization we want to discuss corresponds to the double root, and the double root satisfies \eqref{eq:6.5}
+		\begin{equation}
+			2t+12u\phi_c^2=0,
+		\end{equation}
+		
+		so the linear term disappears, leaving only
+		\begin{equation}
+			12u\phi_c(\delta\phi)^2+4u(\delta\phi)^3-i\delta\gamma=0.
+		\end{equation}
+		
+		When we are sufficiently close to the critical point, the quadratic term is dominant, therefore
+		\begin{equation}
+			\delta\gamma\propto(\delta\phi)^2.
+		\end{equation}
+		
+		Thus
+		\begin{equation}
+			|m-m_c|=|\phi-\phi_c|\propto|\gamma-\gamma_c|^{1/2}.
+		\end{equation}
+		
+		\begin{finalanswer}
+			Therefore
+		\begin{equation}
+			\label{fin:7}
+			\sigma=\frac{1}{2}.
+		\end{equation}
+		\end{finalanswer}
+	\end{solution}
+\end{document}

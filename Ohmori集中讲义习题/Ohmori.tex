@@ -1,0 +1,997 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{braket}
+\usepackage[]{cancel}
+\usepackage[]{tikz}
+\usepackage{tikz-cd}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+% ---------- Page style ----------
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{TQFT and Tensor Networks}
+\rhead{Solution Manual}
+\cfoot{\thepage}
+
+% ---------- Hyperref ----------
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue,
+	citecolor=blue
+}
+
+% ---------- Counters ----------
+\newcounter{problem}
+\newcounter{saveequation}
+
+
+\newtcolorbox{problembox}[1][]{
+	enhanced,
+	breakable,
+	colback=white,
+	colframe=black,
+	boxrule=0.8pt,
+	arc=2.5mm,
+	left=2mm,
+	right=2mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	before upper={
+		\setcounter{problem}{\numexpr#1-1\relax}%
+		\refstepcounter{problem}%
+		\textbf{Problem~\theproblem}\quad
+		\ignorespaces
+	}
+}
+
+% Plain solution environment
+% Equations inside are numbered as problem.equation, e.g. 3.1, 3.2
+% Equation numbering outside remains unchanged
+\newenvironment{solution}
+{
+	\par
+	\setcounter{saveequation}{\value{equation}}
+	\begingroup
+	\setcounter{equation}{0}
+	\renewcommand{\theequation}{\arabic{problem}.\arabic{equation}}
+	\renewcommand{\theHequation}{sol.\arabic{problem}.\arabic{equation}}
+	\noindent\textbf{Solution.}\quad
+}
+{
+	\par
+	\endgroup
+	\setcounter{equation}{\value{saveequation}}
+}
+
+% Background matter box
+\definecolor{bgmatterback}{RGB}{245,248,252}
+\definecolor{bgmatterframe}{RGB}{120,140,170}
+\definecolor{bgmattertitle}{RGB}{70,92,125}
+
+\newtcolorbox{backgroundmatter}[1][]{
+	enhanced,
+	breakable,
+	colback=bgmatterback,
+	colframe=bgmatterframe,
+	coltitle=white,
+	colbacktitle=bgmattertitle,
+	boxrule=0.9pt,
+	arc=2.8mm,
+	left=2.5mm,
+	right=2.5mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	title=Background Matter,
+	fonttitle=\bfseries,
+	attach boxed title to top left={xshift=2mm,yshift=-2mm},
+	boxed title style={
+		arc=2mm,
+		boxrule=0pt,
+		left=1.5mm,
+		right=1.5mm,
+		top=0.8mm,
+		bottom=0.8mm
+	},
+	before upper={
+		\setlength{\parindent}{2em}
+		\setlength{\parskip}{0pt}
+	},
+	#1
+}
+
+% Final answer box
+\definecolor{finalansback}{RGB}{248,251,247}
+\definecolor{finalansframe}{RGB}{88,122,96}
+\definecolor{finalanstitle}{RGB}{63,96,70}
+
+\newtcolorbox{finalanswer}[1][]{
+	enhanced,
+	breakable,
+	colback=finalansback,
+	colframe=finalansframe,
+	coltitle=white,
+	colbacktitle=finalanstitle,
+	boxrule=1pt,
+	arc=2.8mm,
+	left=2.5mm,
+	right=2.5mm,
+	top=1.5mm,
+	bottom=1.5mm,
+	title=Final Answer,
+	fonttitle=\bfseries,
+	attach boxed title to top left={xshift=2mm,yshift=-2mm},
+	boxed title style={
+		arc=2mm,
+		boxrule=0pt,
+		left=1.5mm,
+		right=1.5mm,
+		top=0.8mm,
+		bottom=0.8mm
+	},
+	#1
+}
+
+% new commands
+\newcommand{\problemref}[1]{%
+	\hyperref[#1]{Problem~\ref*{#1}}%
+}
+
+\title{\textbf{TQFT and Tensor Networks}\\[0.4em]
+	\large Exercises}
+\author{Bufan Zheng\\[0.2em]\normalsize Student ID: 35-256419}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	I solved \problemref{prob.1}, \problemref{prob.2},
+	\problemref{prob.3}, \problemref{prob.13} and
+	\problemref{prob.14}.
+	
+	\textbf{AI Use Statement:} AI was used only to review some definitions, identify typographical errors, and improve the English writing. All proofs were completed by human.
+	
+	\section{Category theory}
+	
+	\begin{problembox}[1]
+		\label{prob.1}
+		(Naturality of $\varphi=p\otimes\mathrm{id}$).
+		
+		Work in $\mathrm{Vect}_{\mathbb{C}}$. Consider the two functors
+		$F=\mathbb{C}^{2}\otimes(-):\mathrm{Vect}_{\mathbb{C}}
+		\to\mathrm{Vect}_{\mathbb{C}}$
+		and $G=\mathrm{id}_{\mathrm{Vect}_{\mathbb{C}}}$.
+		Fix a linear map $p:\mathbb{C}^{2}\to\mathbb{C}$ and define,
+		for every vector space $V$,
+		\[
+		\varphi_V
+		=
+		p\otimes\mathrm{id}_V:
+		\mathbb{C}^{2}\otimes V
+		\longrightarrow
+		\mathbb{C}\otimes V
+		\cong V.
+		\]
+		
+		Show that $\varphi=(\varphi_V)_V$ is a natural transformation
+		$F\Rightarrow G$; that is, for every linear map $f:V\to W$ the square
+		\[
+		\begin{tikzcd}[column sep=large,row sep=large]
+			\mathbb{C}^{2}\otimes V
+			\arrow[r,"\mathrm{id}_{\mathbb{C}^{2}}\otimes f"]
+			\arrow[d,"\varphi_V"']
+			&
+			\mathbb{C}^{2}\otimes W
+			\arrow[d,"\varphi_W"]
+			\\
+			V
+			\arrow[r,"f"']
+			&
+			W
+		\end{tikzcd}
+		\]
+		commutes.
+		
+		\textit{Hint.} Evaluate both composites on a simple tensor
+		$e\otimes v$ with $e\in\mathbb{C}^{2}$, $v\in V$, and use
+		$\mathbb{C}\otimes W\cong W$.
+	\end{problembox}
+	\begin{solution}
+		Let
+		\[
+		\lambda_W:\mathbb{C}\otimes W \xrightarrow{\sim} W,
+		\qquad
+		a\otimes w \longmapsto aw,
+		\]
+		denote the canonical isomorphism, and define $\lambda_V$ similarly.
+		Since all the maps involved are linear, it suffices to verify the
+		commutativity on simple tensors
+		\[
+		e\otimes v\in\mathbb{C}^2\otimes V,
+		\qquad
+		e\in\mathbb{C}^2,\quad v\in V.
+		\]
+		
+		Along the first path, we have
+		\[
+		\begin{aligned}
+			e\otimes v
+			&\xmapsto{\operatorname{id}_{\mathbb{C}^2}\otimes f}
+			e\otimes f(v) \\
+			&\xmapsto{\varphi_W}
+			p(e)\otimes f(v) \\
+			&\xmapsto{\lambda_W}
+			p(e)f(v).
+		\end{aligned}
+		\]
+		
+		Along the second path, we have
+		\[
+		\begin{aligned}
+			e\otimes v
+			&\xmapsto{\varphi_V}
+			p(e)\otimes v \\
+			&\xmapsto{\lambda_V}
+			p(e)v \\
+			&\xmapsto{f}
+			f\bigl(p(e)v\bigr)
+			=
+			p(e)f(v),
+		\end{aligned}
+		\]
+		where the last equality follows from the linearity of $f$.
+		
+		Thus the two composites agree on every simple tensor. Since simple
+		tensors span $\mathbb{C}^2\otimes V$, it follows that
+		\[
+		\varphi_W\circ
+		\bigl(\operatorname{id}_{\mathbb{C}^2}\otimes f\bigr)
+		=
+		f\circ\varphi_V.
+		\]
+		Therefore the diagram commutes, and
+		$\varphi=(\varphi_V)_V$ is a natural transformation
+		$F\Rightarrow G$.
+	\end{solution}
+	
+	\begin{problembox}[2]
+		\label{prob.2}
+		(Adjoining a duplicate object is an equivalence).
+		
+		Let $\mathcal{C}$ be a (small) category and
+		$c_0\in\operatorname{Ob}\mathcal{C}$. Define a category
+		$\widetilde{\mathcal{C}}$ by adjoining one new object
+		$\widetilde{c}_0$:
+		\[
+		\operatorname{Ob}\widetilde{\mathcal{C}}
+		=
+		\operatorname{Ob}\mathcal{C}
+		\sqcup\{\widetilde{c}_0\},
+		\]
+		with hom-sets
+		$\operatorname{Hom}_{\widetilde{\mathcal{C}}}(c_1,c_2)
+		=\operatorname{Hom}_{\mathcal{C}}(c_1,c_2)$
+		for $c_1,c_2\in\mathcal{C}$, and
+		$\operatorname{Hom}_{\widetilde{\mathcal{C}}}(c,\widetilde{c}_0)
+		=\operatorname{Hom}_{\mathcal{C}}(c,c_0)$,
+		$\operatorname{Hom}_{\widetilde{\mathcal{C}}}(\widetilde{c}_0,c)
+		=\operatorname{Hom}_{\mathcal{C}}(c_0,c)$,
+		$\operatorname{Hom}_{\widetilde{\mathcal{C}}}
+		(\widetilde{c}_0,\widetilde{c}_0)
+		=\operatorname{Hom}_{\mathcal{C}}(c_0,c_0)$,
+		with composition inherited from $\mathcal{C}$. Show:
+		\begin{enumerate}
+			\item $c_0\cong\widetilde{c}_0$ in $\widetilde{\mathcal{C}}$;
+			
+			\item $\mathcal{C}\simeq\widetilde{\mathcal{C}}$ as an
+			equivalence of categories---even though
+			$\operatorname{Ob}\mathcal{C}
+			\neq\operatorname{Ob}\widetilde{\mathcal{C}}$ as sets.
+		\end{enumerate}
+		
+		\textit{Hint.} For (1), transport $\mathrm{id}_{c_0}$ through the
+		identifications of hom-sets. For (2), the inclusion
+		$\mathcal{C}\hookrightarrow\widetilde{\mathcal{C}}$ and the
+		\textit{collapse} $\widetilde{c}_0\mapsto c_0$ are mutually quasi-inverse.
+	\end{problembox}
+	\begin{solution}
+		Define the collapse map
+		\[
+		p:\operatorname{Ob}\widetilde{\mathcal C}
+		\longrightarrow
+		\operatorname{Ob}\mathcal C
+		\]
+		by
+		\[
+		p(c)=c
+		\quad
+		\forall\,c\in\operatorname{Ob}\mathcal C,
+		\qquad
+		p(\widetilde c_0):=c_0.
+		\]
+		
+		The family of isomorphisms between the Hom-sets stated in the problem means that, for every
+		\(x,y\in\operatorname{Ob}\widetilde{\mathcal C}\), there exists a bijection
+		\[
+		\Phi_{x,y}:
+		\operatorname{Hom}_{\widetilde{\mathcal C}}(x,y)
+		\xrightarrow{\sim}
+		\operatorname{Hom}_{\mathcal C}\bigl(p(x),p(y)\bigr).
+		\]
+		Moreover, since the composition in \(\widetilde{\mathcal C}\) is inherited from
+		\(\mathcal C\), we have
+		\[
+		\Phi_{x,z}(g\circ f)
+		=
+		\Phi_{y,z}(g)\circ\Phi_{x,y}(f).
+		\]
+		
+		For every \(x\in\operatorname{Ob}\widetilde{\mathcal C}\), define the identity
+		morphism in \(\operatorname{Hom}_{\widetilde{\mathcal C}}(x,x)\) by
+		\[
+		\operatorname{id}_x
+		:=
+		\Phi_{x,x}^{-1}\bigl(\operatorname{id}_{p(x)}\bigr).
+		\]
+		For every
+		\(\widetilde f\in\operatorname{Hom}_{\widetilde{\mathcal C}}(x,x)\), since
+		\(\Phi_{x,x}\) is a bijection, there exists
+		\(f\in\operatorname{Hom}_{\mathcal C}(p(x),p(x))\) such that
+		\(\widetilde f=\Phi_{x,x}^{-1}(f)\). Hence
+		\[
+		\operatorname{id}_x\circ\widetilde f
+		=
+		\Phi_{x,x}^{-1}\bigl(\operatorname{id}_{p(x)}\bigr)
+		\circ
+		\Phi_{x,x}^{-1}(f)
+		=
+		\Phi_{x,x}^{-1}(f)
+		=
+		\widetilde f.
+		\]
+		Similarly,
+		\[
+		\widetilde f\circ\operatorname{id}_x=\widetilde f,
+		\]
+		so this is indeed the identity morphism of \(x\).
+		
+		Now define
+		\[
+		u
+		:=
+		\Phi_{c_0,\widetilde c_0}^{-1}
+		\bigl(\operatorname{id}_{c_0}\bigr)
+		\in
+		\operatorname{Hom}_{\widetilde{\mathcal C}}
+		(c_0,\widetilde c_0),
+		\qquad
+		v
+		:=
+		\Phi_{\widetilde c_0,c_0}^{-1}
+		\bigl(\operatorname{id}_{c_0}\bigr)
+		\in
+		\operatorname{Hom}_{\widetilde{\mathcal C}}
+		(\widetilde c_0,c_0).
+		\]
+		
+		Then
+		\[
+		\Phi_{\widetilde c_0,\widetilde c_0}(u\circ v)
+		=
+		\Phi_{c_0,\widetilde c_0}(u)
+		\circ
+		\Phi_{\widetilde c_0,c_0}(v)
+		=
+		\operatorname{id}_{c_0}\circ\operatorname{id}_{c_0}
+		=
+		\operatorname{id}_{c_0}.
+		\]
+		Since \(\Phi_{\widetilde c_0,\widetilde c_0}\) is a bijection, it follows that
+		\[
+		u\circ v
+		=
+		\Phi_{\widetilde c_0,\widetilde c_0}^{-1}
+		\bigl(\operatorname{id}_{c_0}\bigr)
+		=
+		\operatorname{id}_{\widetilde c_0}.
+		\]
+		
+		Similarly,
+		\[
+		\Phi_{c_0,c_0}(v\circ u)
+		=
+		\Phi_{\widetilde c_0,c_0}(v)
+		\circ
+		\Phi_{c_0,\widetilde c_0}(u)
+		=
+		\operatorname{id}_{c_0}\circ\operatorname{id}_{c_0}
+		=
+		\operatorname{id}_{c_0}.
+		\]
+		Therefore,
+		\[
+		v\circ u
+		=
+		\Phi_{c_0,c_0}^{-1}
+		\bigl(\operatorname{id}_{c_0}\bigr)
+		=
+		\operatorname{id}_{c_0}.
+		\]
+		
+		Thus \(u:c_0\to\widetilde c_0\) and
+		\(v:\widetilde c_0\to c_0\) are inverse morphisms, and hence
+		\[
+		\boxed{
+		c_0\cong\widetilde c_0}
+		\]
+		Using the collapse map defined above, define the collapse functor
+		\[
+		P:\widetilde{\mathcal C}\longrightarrow\mathcal C.
+		\]
+		On objects, define
+		\[
+		P(x):=p(x),
+		\qquad
+		x\in\operatorname{Ob}(\widetilde{\mathcal C}),
+		\]
+		and on Hom-sets, define
+		\[
+		P(f):=\Phi_{x,y}(f),
+		\qquad
+		f\in\operatorname{Hom}_{\widetilde{\mathcal C}}(x,y).
+		\]
+		
+		Also define the inclusion functor
+		\[
+		I:\mathcal C\hookrightarrow\widetilde{\mathcal C}.
+		\]
+		On objects, define
+		\[
+		I(c)=c,
+		\qquad
+		c\in\operatorname{Ob}(\mathcal C),
+		\]
+		and on Hom-sets, define
+		\[
+		I(f):=\Phi_{c,d}^{-1}(f),
+		\qquad
+		f\in\operatorname{Hom}_{\mathcal C}(c,d).
+		\]
+		
+		It is straightforward to verify that \(I\) and \(P\) are indeed functors.
+		Consider the composite functor \(P\circ I\). For every object
+		\(c\in\operatorname{Ob}(\mathcal C)\), we have
+		\[
+		(P\circ I)(c)=P(c)=p(c)=c.
+		\]
+		For every morphism
+		\(f\in\operatorname{Hom}_{\mathcal C}(c,d)\), we have
+		\[
+		(P\circ I)(f)
+		=
+		P(I(f))
+		=
+		\Phi_{c,d}
+		\left(
+		\Phi_{c,d}^{-1}(f)
+		\right)
+		=
+		f.
+		\]
+		Therefore, we have the strict equality
+		\[
+		P\circ I=\operatorname{Id}_{\mathcal C}.
+		\]
+		
+		On the other hand, we construct a natural isomorphism
+		\[
+		\eta:I\circ P\Longrightarrow
+		\operatorname{Id}_{\widetilde{\mathcal C}}
+		\]
+		by defining
+		\[
+		\eta
+		:=
+		\left\{
+		\eta_x
+		:=
+		\Phi_{p(x),x}^{-1}
+		\left(
+		\operatorname{id}_{p(x)}
+		\right)
+		\right\}_{x\in\operatorname{Ob}(\widetilde{\mathcal C})}.
+		\]
+		
+		First, each component \(\eta_x\) is an isomorphism. If
+		\(x\in\operatorname{Ob}(\mathcal C)\), then \(p(x)=x\), and hence
+		\[
+		\eta_x
+		=
+		\Phi_{x,x}^{-1}
+		\left(
+		\operatorname{id}_x
+		\right)
+		=
+		\operatorname{id}_x.
+		\]
+		If \(x=\widetilde c_0\), then
+		\[
+		\eta_{\widetilde c_0}
+		=
+		\Phi_{c_0,\widetilde c_0}^{-1}
+		\left(
+		\operatorname{id}_{c_0}
+		\right),
+		\]
+		which is precisely the isomorphism
+		\(c_0\to\widetilde c_0\) constructed in the first part.
+		
+		We now verify the naturality of \(\eta\). Let
+		\(x,y\in\operatorname{Ob}(\widetilde{\mathcal C})\) and let
+		\[
+		f\in\operatorname{Hom}_{\widetilde{\mathcal C}}(x,y).
+		\]
+		We need to show that the following diagram commutes:
+		\[
+		\begin{tikzcd}
+			I(P(x))
+			\arrow[r,"I(P(f))"]
+			\arrow[d,"\eta_x"']
+			&
+			I(P(y))
+			\arrow[d,"\eta_y"]
+			\\
+			x
+			\arrow[r,"f"']
+			&
+			y.
+		\end{tikzcd}
+		\]
+		Equivalently, we need to prove that
+		\[
+		\eta_y\circ I(P(f))
+		=
+		f\circ\eta_x.
+		\]
+		
+		Apply the bijection \(\Phi_{p(x),y}\) to both sides. For the left-hand
+		side, we have
+		\[
+		\begin{aligned}
+			\Phi_{p(x),y}
+			\left(
+			\eta_y\circ I(P(f))
+			\right)
+			&=
+			\Phi_{p(y),y}(\eta_y)
+			\circ
+			\Phi_{p(x),p(y)}
+			\left(
+			I(P(f))
+			\right)
+			\\
+			&=
+			\operatorname{id}_{p(y)}
+			\circ P(f)
+			\\
+			&=
+			P(f).
+		\end{aligned}
+		\]
+		For the right-hand side, we have
+		\[
+		\begin{aligned}
+			\Phi_{p(x),y}
+			\left(
+			f\circ\eta_x
+			\right)
+			&=
+			\Phi_{x,y}(f)
+			\circ
+			\Phi_{p(x),x}(\eta_x)
+			\\
+			&=
+			P(f)
+			\circ
+			\operatorname{id}_{p(x)}
+			\\
+			&=
+			P(f).
+		\end{aligned}
+		\]
+		
+		Since \(\Phi_{p(x),y}\) is a bijection, it follows immediately that
+		\[
+		\eta_y\circ I(P(f))
+		=
+		f\circ\eta_x.
+		\]
+		Thus the diagram commutes, and \(\eta\) is a natural isomorphism.
+		
+		Therefore,
+		\[
+		P\circ I
+		=
+		\operatorname{Id}_{\mathcal C},
+		\qquad
+		I\circ P
+		\cong
+		\operatorname{Id}_{\widetilde{\mathcal C}}.
+		\]
+		Hence \(P\) and \(I\) are quasi-inverse functors, and therefore
+		\[
+		\boxed{
+			\mathcal C\simeq\widetilde{\mathcal C}
+		}
+		\]
+		\textbf{Note added:} After completing the proof, I realized that it could apparently be simplified by directly showing that the inclusion functor is fully faithful and essentially surjective. The proof given here is the more elaborate one obtained by explicitly constructing a quasi-inverse.
+		
+	\end{solution}
+	
+	\section{Matrix product states and entanglement}
+	\textit{Conventions.} Entanglement entropies use the natural logarithm $\log$; to read them in bits replace $\log$ by $\log_2$ (so the GHZ value $\log 2$ becomes $1$ bit). States are always normalized before forming reduced density matrices.
+	\begin{problembox}[3]
+		\label{prob.3}
+		(Entanglement bound for an MPS).
+		
+		Let $\lvert\mathrm{MPS}(T)\rangle$ be a periodic, bond-dimension-$D$
+		matrix product state on a ring, with local tensors
+		$T_{k_{s-1}k_s}^{(s)\,i}$ and bond indices
+		$k_s=1,\ldots,D$. Let $X$ be a nonempty proper connected region
+		(an interval).
+		
+		\begin{enumerate}
+			\item
+			(Entropy vs.\ rank.) Show that for any density matrix $\rho$,
+			\[
+			S(\rho)
+			=
+			-\operatorname{Tr}(\rho\log\rho)
+			\leq
+			\log(\operatorname{rank}\rho).
+			\]
+			
+			\item
+			(Rank vs.\ bond dimension.) Show that cutting out the interval
+			$X$ severs exactly two bonds, and hence
+			$\operatorname{rank}\rho_X\leq D^2$.
+			
+			\item
+			Conclude $S_X^{\mathrm{EE}}\leq 2\log D$. Explain, from this
+			entanglement-capacity bound, why a constant $D$ is compatible
+			with gapped (area-law) vacua, whereas a gapless (critical) vacuum
+			whose entanglement entropy grows as the logarithm of the subsystem
+			size, $S_X^{\mathrm{EE}}\sim \frac{c}{3}\log\lvert X\rvert$
+			(the infinite-line scaling regime)---forces $D$ to grow with
+			$\lvert X\rvert$ (in fact polynomially,
+			$D\gtrsim \lvert X\rvert^{c/6}$).
+		\end{enumerate}
+		
+		\textit{Hint.}
+		For (1), $\rho$ has $r=\operatorname{rank}\rho$ nonzero eigenvalues
+		summing to $1$; maximize $-\sum_i p_i\log p_i$ over the simplex.
+		For (2), group the contracted bulk tensors and read off the Schmidt
+		rank across $\partial X$.
+	\end{problembox}
+	\begin{solution}
+		$\rho$ has $\operatorname{rank}\rho$ nonzero eigenvalues, denoted by $\lambda_i$, $i=1,\ldots,\operatorname{rank}\rho$. From the normalization of $\rho$, i.e.\ $\operatorname{Tr}\rho=1$, these eigenvalues sum to $1$. Since $\log$ is a concave function, Jensen's inequality gives
+		\[
+		\sum_{i=1}^{\operatorname{rank}\rho} p_i\log\frac{1}{p_i}
+		\leq
+		\log\left(
+		\sum_{i=1}^{\operatorname{rank}\rho}p_i\frac{1}{p_i}
+		\right)
+		=
+		\log\operatorname{rank}\rho
+		\]
+		for any $\{p_i\}$ with $\sum_i p_i=1$. Then we have
+		\[
+		S(\rho)
+		=
+		-\operatorname{Tr}\left(\rho\log\rho\right)
+		=
+		-\sum_{i=1}^{\operatorname{rank}\rho}\lambda_i\log\lambda_i
+		\leq
+		\log\operatorname{rank}\rho.
+		\]
+		
+		The MPS state can be constructed as
+		\[
+		\ket{\mathrm{MPS}}
+		=
+		\sum_{\{i_s\}}
+		\sum_{k_1,\ldots,k_N=1}^D
+		\prod_{s=1}^{N}
+		T^{(s)i_s}_{k_{s-1}k_s}
+		\ket{i_1\cdots i_N},
+		\]
+		where $N$ is the size of the whole system and the periodic boundary condition $k_0=k_N$ has been imposed. Now consider an interval
+		\[
+		X=\{a,a+1,\ldots,b\}.
+		\]
+		The MPS state on this interval is
+		\[
+		\ket{X_{k_{a-1}k_b}}
+		=
+		\sum_{\{i_s:s\in X\}}
+		\sum_{k_a,\ldots,k_{b-1}=1}^D
+		T^{(a)i_a}_{k_{a-1}k_a}
+		T^{(a+1)i_{a+1}}_{k_ak_{a+1}}
+		\cdots
+		T^{(b)i_b}_{k_{b-1}k_b}
+		\ket{i_a\cdots i_b}.
+		\]
+		Similarly, we can define the MPS state on the complementary interval, $\ket{\tilde{X}_{k_bk_{a-1}}}$. Then the MPS state for the whole system can be written as
+		\[
+		\ket{\mathrm{MPS}}
+		=
+		\sum_{k_{a-1},k_b=1}^D
+		\ket{X_{k_{a-1}k_b}}
+		\otimes
+		\ket{\tilde{X}_{k_bk_{a-1}}}.
+		\]
+		Taking the partial trace of the total MPS state, we obtain
+		\[
+		\begin{aligned}
+			\rho_X:&=\operatorname{Tr}_{\tilde X} \rho
+			=
+			\operatorname{Tr}_{\tilde X}
+			\ket{\mathrm{MPS}}\bra{\mathrm{MPS}}\\
+			&=
+			\sum_{k_{a-1},k_b=1}^D
+			\sum_{k_{a-1}',k_b'=1}^D
+			\sum_m
+			\braket{m|\tilde{X}_{k_bk_{a-1}}}
+			\braket{\tilde{X}_{k_b'k_{a-1}'}|m}
+			\ket{X_{k_{a-1}k_b}}
+			\bra{X_{k_{a-1}'k_b'}}\\
+			&=
+			\sum_{k_{a-1},k_b=1}^D
+			\sum_{k_{a-1}',k_b'=1}^D
+			\braket{
+				\tilde{X}_{k_b'k_{a-1}'}
+				|
+				\tilde{X}_{k_bk_{a-1}}
+			}
+			\ket{X_{k_{a-1}k_b}}
+			\bra{X_{k_{a-1}'k_b'}}.
+		\end{aligned}
+		\]
+		Here we used the completeness of $\{\ket{m}\}$ on $\mathcal{H}_{\tilde X}$. We immediately conclude that
+		\[
+		\operatorname{rank}\rho_X\leq D^2.
+		\]
+		By definition,
+		\[
+		S^{\mathrm{EE}}_X
+		=
+		-\operatorname{Tr}\left(\rho_X\log\rho_X\right)
+		\leq
+		\log(\operatorname{rank}\rho_X)
+		\leq
+		\log D^2
+		=
+		2\log D.
+		\]
+		It is well known that the entanglement entropy obeys the following scaling law:
+		\[
+		S^{\mathrm{EE}}_{X}
+		\sim
+		\begin{cases}
+			\mathrm{const}, & \text{for gapped vacua},\\ 
+			\frac{c}{3}\log|X|, & \text{for gapless vacua}.
+		\end{cases}
+		\]
+		Combining this with the above bound on the entanglement capacity, we conclude that
+		\[
+		D\gtrsim
+		\begin{cases}
+			\mathrm{const}, & \text{for gapped vacua},\\ 
+			|X|^{c/6}, & \text{for gapless vacua}.
+		\end{cases}
+		\]
+		Thus a constant bond dimension is compatible with gapped area-law
+		vacua, whereas representing a critical vacuum requires the bond
+		dimension to grow at least polynomially with the subsystem size.
+	\end{solution}
+	\section{Karoubi (idempotent) completion}
+	\begin{problembox}[13]
+		\label{prob.13}
+		($\operatorname{Kar}(\mathcal{C})$ is idempotent complete).
+		
+		Recall the Karoubi completion of a $1$-category $\mathcal{C}$:
+		objects are pairs $(X,p)$ with
+		$X\in\operatorname{Ob}\mathcal{C}$ and
+		$p\in\operatorname{Hom}_{\mathcal{C}}(X,X)$ idempotent
+		($p^2=p$), and
+		\[
+		\operatorname{Hom}_{\operatorname{Kar}(\mathcal{C})}
+		\bigl((X,p_X),(Y,p_Y)\bigr)
+		=
+		\left\{
+		f\in\operatorname{Hom}_{\mathcal{C}}(X,Y)
+		:
+		f=f\circ p_X=p_Y\circ f
+		\right\}.
+		\]
+		Note $\operatorname{id}_{(X,p)}=p$. Show that
+		$\operatorname{Kar}(\mathcal{C})$ is Karoubi
+		(idempotent-splitting) complete: every idempotent in
+		$\operatorname{Kar}(\mathcal{C})$ splits.
+		
+		\textit{Hint.}
+		An idempotent on $(X,p)$ is a
+		$q\in\operatorname{Hom}_{\mathcal{C}}(X,X)$ with
+		$q=qp=pq$ and $q^2=q$. Try the object $(X,q)$.
+	\end{problembox}
+	\begin{solution}
+		An idempotent $e\in\operatorname{Hom}_{\mathcal C}(X,X)$
+		is said to split if there exist an object \(Y\in\operatorname{Ob}(\mathcal C)\) and morphisms $r\in\operatorname{Hom}_{\mathcal C}(X,Y)$, $s\in\operatorname{Hom}_{\mathcal C}(Y,X)$
+		such that
+		\[
+		r\circ s=\operatorname{id}_Y,
+		\qquad
+		s\circ r=e.
+		\]
+		
+		$\forall (X,p)\in\operatorname{Ob}(\operatorname{Kar}(\mathcal C))$ and let \(q\) be an idempotent endomorphism of \((X,p)\). Thus
+		\[
+		q\in\operatorname{Hom}_{\mathcal C}(X,X),
+		\qquad
+		q=qp=pq,
+		\qquad
+		q^2=q.
+		\]
+		Consider the object $
+		(X,q)\in\operatorname{Ob}(\operatorname{Kar}(\mathcal C))$. Since $
+		\operatorname{id}_{(X,q)}=q$, we seek morphisms
+		\[
+		f\in
+		\operatorname{Hom}_{\operatorname{Kar}(\mathcal C)}
+		\bigl((X,p),(X,q)\bigr),
+		\qquad
+		g\in
+		\operatorname{Hom}_{\operatorname{Kar}(\mathcal C)}
+		\bigl((X,q),(X,p)\bigr)
+		\]
+		such that the following diagrams commute:
+		\[
+		\begin{tikzcd}[column sep=large,row sep=large]
+			(X,p)
+			\arrow[r,"f"]
+			\arrow[dr,"q"']
+			&
+			(X,q)
+			\arrow[d,"g"]
+			\\
+			&
+			(X,p)
+		\end{tikzcd}
+		\qquad\qquad
+		\begin{tikzcd}[column sep=large,row sep=large]
+			(X,q)
+			&
+			(X,q)
+			\arrow[l,"q=\operatorname{id}_{(X,q)}"']
+			\arrow[dl,"g"]
+			\\
+			(X,p)
+			\arrow[u,"f"]
+			&
+		\end{tikzcd}
+		\]
+		That is, we require
+		\[
+		g\circ f=q,
+		\qquad
+		f\circ g=q=\operatorname{id}_{(X,q)}.
+		\]
+		
+		By the definition of the Hom-sets in
+		\(\operatorname{Kar}(\mathcal C)\), the required conditions on \(f\) and \(g\) are
+		\[
+		f=f\circ p=q\circ f,
+		\qquad
+		g=g\circ q=p\circ g,
+		\qquad
+		f,g\in\operatorname{Hom}_{\mathcal C}(X,X).
+		\]
+		
+		It is not difficult to see that we may simply take
+		\[
+		f=g=q.
+		\]
+		Indeed, from
+		\[
+		q=qp=pq
+		\qquad\text{and}\qquad
+		q^2=q,
+		\]
+		we obtain
+		\[
+		q\in
+		\operatorname{Hom}_{\operatorname{Kar}(\mathcal C)}
+		\bigl((X,p),(X,q)\bigr),\quad
+		q\in
+		\operatorname{Hom}_{\operatorname{Kar}(\mathcal C)}
+		\bigl((X,q),(X,p)\bigr).
+		\]
+		Moreover,
+		\[
+		g\circ f=q\circ q=q
+		\]
+		and
+		\[
+		f\circ g=q\circ q=q
+		=
+		\operatorname{id}_{(X,q)}.
+		\]
+		
+		Therefore, the idempotent \(q\) splits. Since \(q\) was arbitrary, $\operatorname{Kar}(\mathcal C)$ is idempotent complete.
+	\end{solution}
+	\begin{problembox}[14]
+		\label{prob.14}
+		(Karoubi completion is idempotent on complete categories).
+		
+		Show that if $\mathcal{C}$ is already Karoubi complete, then the
+		canonical inclusion
+		\[
+		\mathcal{C}\hookrightarrow\operatorname{Kar}(\mathcal{C}),
+		\qquad
+		X\longmapsto (X,\operatorname{id}_X),
+		\]
+		is an equivalence of categories, so
+		$\mathcal{C}\simeq\operatorname{Kar}(\mathcal{C})$.
+		
+		\textit{Hint.}
+		Full faithfulness is immediate from the hom-set definition.
+		For essential surjectivity, split each idempotent $p$ in
+		$\mathcal{C}$.
+	\end{problembox}
+	\begin{solution}
+	We prove $\mathcal{C}\simeq \mathrm{Kar}(\mathcal{C})$ by showing that the canonical inclusion $I:\mathcal{C}\hookrightarrow \mathrm{Kar}(\mathcal{C})$ is fully faithful and essentially surjective, i.e., for all $X,Y\in \mathrm{Ob}(\mathcal{C})$, the following map is a bijection of Hom-sets:
+	$$
+	I_{X,Y}: \mathrm{Hom}_\mathcal{C}(X,Y)\overset{\sim}{\longrightarrow} \mathrm{Hom}_{\mathrm{Kar}(\mathcal{C})}\left((X,\mathrm{id}_X),(Y,\mathrm{id}_Y)\right)
+	$$
+	and for every $(X,p)\in\mathrm{Ob}(\mathrm{Kar}(\mathcal{C}))$, there exists $Y\in\mathrm{Ob}(\mathcal{C})$ such that $I(Y)=(Y,\mathrm{id}_Y)\cong (X,p)$. We first consider full faithfulness. By the definition of the Hom-set,
+	$$
+	\mathrm{Hom}_{\mathrm{Kar}(\mathcal{C})}\left((X,\mathrm{id}_X),(Y,\mathrm{id}_Y)\right)=\{f\in \mathrm{Hom}_\mathcal{C}(X,Y):f=f\circ\mathrm{id}_X=\mathrm{id}_Y\circ f\}= \mathrm{Hom}_\mathcal{C}(X,Y)
+	$$
+	Therefore, $I$ is fully faithful. Next, let $(X,p)\in\mathrm{Ob}(\mathrm{Kar}(\mathcal{C}))$. Since $\mathcal{C}$ is Karoubi complete, the idempotent $p\in\mathrm{Hom}_{\mathcal{C}}(X,X)$ splits:
+	$$
+	\exists\, Y\in\mathrm{Ob}(\mathcal{C}),\, f\in\mathrm{Hom}_\mathcal{C}(Y,X),\,g\in\mathrm{Hom}_\mathcal{C}(X,Y)\quad\text{such that}\quad p=f\circ g,\quad \mathrm{id}_Y=g\circ f
+	$$
+	Therefore,
+	$$
+	\mathrm{id}_{(X,p)}=p=f\circ g,\quad \mathrm{id}_{(Y,\mathrm{id}_Y)}=\mathrm{id}_Y=g\circ f
+	$$
+	Hence $(Y,\mathrm{id}_Y)\cong (X,p)$ \textbf{\textit{once we verify that}}
+	$$
+	f\in \mathrm{Hom}_{\mathrm{Kar}(\mathcal{C})}\left((Y,\mathrm{id}_Y),(X,p)\right) \text{~and~} g\in \mathrm{Hom}_{\mathrm{Kar}(\mathcal{C})}\left((X,p),(Y,\mathrm{id}_Y)\right).
+	$$
+	By the definition of the Hom-set, we need to prove
+	$$
+	f=p\circ f,\quad g=g\circ p.
+	$$
+	These equations follow immediately:
+	$$
+	\begin{aligned}
+		p\circ f&=f\circ g \circ f=f\circ\mathrm{id}_Y=f,\\
+		g\circ p&=g\circ f\circ g=\mathrm{id}_Y\circ g=g.
+	\end{aligned}
+	$$
+	Therefore, $I$ is essentially surjective. Since $I$ is fully faithful and essentially surjective, it is an equivalence of categories, so
+	$$
+	\boxed{\mathcal{C}\simeq\mathrm{Kar}(\mathcal{C})}.
+	$$
+	\end{solution}
+\end{document}
